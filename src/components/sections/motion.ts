@@ -35,27 +35,47 @@ else if (cue) {
   addEventListener('scroll', leave, { once: true, passive: true });
 }
 
-// The hand waits for the visitor: the hero's button, or a click anywhere on its table that isn't on
-// a control. Once the hole cards lie face down, a second button offers to show them: hovering or
-// focusing it squeezes them up to read, as the pointer over the cards does, and it, or a click
-// anywhere that isn't on a control, turns them face up. Only where there's a stage to deal on, so
-// not on the static tier.
+// The hand waits for the visitor: the hero's button, a click anywhere on its table that isn't on a
+// control, or "Yes, deal me in" in the seat question. Once the hole cards lie face down, a second
+// button offers to show them: hovering or focusing it squeezes them up to read, as the pointer over
+// the cards does, and it, or a click anywhere that isn't on a control, turns them face up. With a
+// stage the cards are the 3D ones on the felt. Without one (phones, reduced motion, a lost context)
+// the 2D hand over the table deals and flips instead.
 const hero = document.getElementById('the-deal');
 const dealButton = hero?.querySelector<HTMLButtonElement>('[data-deal]');
 const showButton = hero?.querySelector<HTMLButtonElement>('[data-show]');
-if (hero && dealButton && showButton && !reduce && tier.get() !== 'static') {
+const flatHand = hero?.querySelector<HTMLElement>('[data-flat-hand]');
+if (hero && dealButton && showButton && flatHand) {
+  const flat = () => tier.get() === 'static';
+  const fade = reduce ? 0.15 : 0.4;
   const appear = (button: HTMLButtonElement) => {
     button.hidden = false;
-    gsap.fromTo(button, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 });
+    gsap.fromTo(button, { autoAlpha: 0 }, { autoAlpha: 1, duration: fade });
   };
   // A button that leaves while it has focus hands focus to the hero's first link, so it isn't lost.
   const leave = (button: HTMLButtonElement) => {
     if (document.activeElement === button) hero.querySelector('a')?.focus();
-    gsap.to(button, { autoAlpha: 0, duration: 0.4, onComplete: () => void (button.hidden = true) });
+    gsap.to(button, { autoAlpha: 0, duration: fade, onComplete: () => void (button.hidden = true) });
   };
+  const deal = () => handDealt.set(true);
+
+  // The 2D hand: dealt in from below the table face down, then turned face up together.
+  const cards = flatHand.querySelectorAll<HTMLElement>('.flat-card');
+  const inners = flatHand.querySelectorAll<HTMLElement>('.inner');
+  const drawFlat = (now: 'deck' | 'down' | 'up', from: 'deck' | 'down' | 'up') => {
+    if (!flat() || now === 'deck') return;
+    gsap.set(flatHand, { autoAlpha: 1 });
+    if (now === 'down' && from === 'deck') {
+      gsap.set(inners, { rotationY: 0 });
+      if (reduce) gsap.from(cards, { autoAlpha: 0, duration: 0.15 });
+      else gsap.from(cards, { y: 220, rotation: (i) => (i ? 18 : -18), autoAlpha: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out' });
+    }
+    if (now === 'up') gsap.to(inners, { rotationY: 180, duration: reduce ? 0 : 0.9, stagger: 0.1, ease: 'expo.out' });
+  };
+
   dealButton.hidden = false;
   hero.classList.add('clickable');
-  dealButton.addEventListener('click', () => handDealt.set(true));
+  dealButton.addEventListener('click', deal);
   showButton.addEventListener('click', () => holeCards.set('up'));
   for (const [on, off] of [
     ['pointerenter', 'pointerleave'],
@@ -67,27 +87,37 @@ if (hero && dealButton && showButton && !reduce && tier.get() !== 'static') {
   document.addEventListener('click', (event) => {
     const target = event.target as Element;
     if (target.closest('a, button, input, select, textarea, label, dialog')) return;
-    if (!handDealt.get()) hero.contains(target) && handDealt.set(true);
+    if (!handDealt.get()) hero.contains(target) && deal();
     else if (holeCards.get() === 'down') holeCards.set('up');
   });
-  handDealt.listen((dealt) => {
+  // The seat question deals the hand when the visitor says yes, before or after this loads.
+  if (document.documentElement.dataset.deal === 'now') deal();
+  document.addEventListener('seat:deal', deal);
+
+  handDealt.subscribe((dealt) => {
     if (!dealt) return;
     hero.classList.remove('clickable');
-    leave(dealButton);
+    if (!dealButton.hidden) leave(dealButton);
+    // Without a stage nothing else puts the hole cards down, so the 2D hand does.
+    if (flat() && holeCards.get() === 'deck') holeCards.set('down');
   });
+  let was = holeCards.get();
   holeCards.listen((now) => {
     hero.classList.toggle('clickable', now === 'down');
     if (now === 'down') appear(showButton);
     if (now === 'up') {
       peek.set(false);
-      leave(showButton);
+      if (!showButton.hidden) leave(showButton);
     }
+    drawFlat(now, was);
+    was = now;
   });
-  // Once the stage gives way to the static tier, there's nothing to click.
+  // When the stage gives way to the static tier, the 2D hand takes over from wherever the deal was.
   tier.listen((now) => {
     if (now !== 'static') return;
-    hero.classList.remove('clickable');
-    [dealButton, showButton].forEach(leave);
+    const state = holeCards.get();
+    if (handDealt.get() && state === 'deck') holeCards.set('down');
+    else drawFlat(state, 'deck');
   });
 }
 

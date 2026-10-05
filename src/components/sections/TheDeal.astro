@@ -1,7 +1,13 @@
 ---
 import { getEntry } from 'astro:content';
 
-const { site } = (await getEntry('profile', 'main'))!.data;
+const { site, hand } = (await getEntry('profile', 'main'))!.data;
+const PIPS = { s: '♠', h: '♥', d: '♦', c: '♣' } as const;
+const cards = hand.hole.map((card) => ({
+  rank: card[0] === 'T' ? '10' : card[0],
+  pip: PIPS[card[1] as keyof typeof PIPS],
+  red: card[1] === 'h' || card[1] === 'd',
+}));
 ---
 
 <section id="the-deal" class="deal relative flex min-h-svh items-start md:items-center">
@@ -15,9 +21,29 @@ const { site } = (await getEntry('profile', 'main'))!.data;
       </div>
     </div>
   </div>
-  <!-- The motion pass shows these where there's a stage to deal on: the first until the hand is
-       dealt, the second while the hole cards lie face down. A click on the table deals too, and a
-       click anywhere once they're down turns them up. -->
+  <!-- The hand in 2D, for phones, reduced motion and anywhere else without a stage: dealt face down
+       by the same buttons as the 3D hand, then turned face up. Without JavaScript it lies face up.
+       The motion pass shows the buttons: the first until the hand is dealt, the second while the
+       hole cards lie face down. A click on the table deals too, and a click anywhere once they're
+       down turns them up. -->
+  <div class="flat-hand" data-flat-hand aria-hidden="true">
+    {
+      cards.map((card) => (
+        <span class="flat-card">
+          <span class="inner">
+            <span class="back" />
+            <span class:list={['face', { red: card.red }]}>
+              <span class="corner">
+                {card.rank}
+                <span>{card.pip}</span>
+              </span>
+              <span class="pip">{card.pip}</span>
+            </span>
+          </span>
+        </span>
+      ))
+    }
+  </div>
   <button type="button" class="button deal-button" data-deal hidden>Deal the hand</button>
   <button type="button" class="button deal-button" data-show hidden>Show the hand</button>
   <span class="cue" aria-hidden="true"></span>
@@ -81,6 +107,91 @@ const { site } = (await getEntry('profile', 'main'))!.data;
 
   .deal.clickable {
     cursor: pointer;
+  }
+
+  /* Two cards over the table, above the deal buttons. They turn on their long axis like a real flip. */
+  .flat-hand {
+    position: absolute;
+    bottom: 10.5rem;
+    left: 50%;
+    display: flex;
+    gap: 0.5rem;
+    translate: -50% 0;
+    pointer-events: none;
+  }
+
+  :global(.js) .flat-hand {
+    visibility: hidden;
+  }
+
+  .flat-card {
+    width: clamp(4.25rem, 16vw, 6rem);
+    aspect-ratio: 63 / 88;
+    perspective: 700px;
+    rotate: -5deg;
+  }
+
+  .flat-card + .flat-card {
+    rotate: 6deg;
+    translate: 0 0.35rem;
+  }
+
+  .inner {
+    position: relative;
+    display: block;
+    height: 100%;
+    transform-style: preserve-3d;
+  }
+
+  /* Without JavaScript nobody can turn them, so they lie face up. */
+  :global(html:not(.js)) .inner {
+    transform: rotateY(180deg);
+  }
+
+  .back,
+  .face {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+    backface-visibility: hidden;
+    box-shadow: 0 14px 24px -12px rgb(0 0 0 / 0.8);
+  }
+
+  .back {
+    border: 0.3rem solid var(--color-cream);
+    background: repeating-linear-gradient(
+      45deg,
+      var(--color-card-red) 0 0.25rem,
+      color-mix(in srgb, var(--color-card-red), black 25%) 0.25rem 0.5rem
+    );
+  }
+
+  .face {
+    display: grid;
+    place-items: center;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    transform: rotateY(180deg);
+  }
+
+  .face.red {
+    color: var(--color-card-red);
+  }
+
+  .corner {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.45rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .face .pip {
+    font-size: 2.25rem;
   }
 
   .cue {
