@@ -7,7 +7,7 @@ import Paper from '../components/paper/Paper.astro';
 const { site, straight } = (await getEntry('profile', 'main'))!.data;
 ---
 
-<Base path="/straight" plate={false} title={[straight?.masthead, site.fullName ?? site.name].filter(Boolean).join(' | ')} skip={{ href: '#p-a1', label: 'Skip to the front page' }}>
+<Base path="/straight" plate={false} title={[straight?.masthead, site.name].filter(Boolean).join(' | ')} skip={{ href: '#p-a1', label: 'Skip to the front page' }}>
   <Fragment slot="head">
     <script is:inline>
       // Wide screens with motion get the paper as a book, decided before first paint so nothing jumps.

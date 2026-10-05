@@ -8,7 +8,7 @@ paths:
 
 content.md is the source Naman edits. src/content mirrors it as typed data validated with zod. When they disagree, content.md wins: update src/content to match and never the other way round. A missing field renders nothing. Never fill a gap with invented text.
 
-- site: name, fullName, tagline, title, description, email, github, linkedin, resumePath (public/resume.pdf), url
+- site: name, tagline, title, description, email, github, linkedin, resumePath (public/resume.pdf), url
 - player: blurb (three sentences at most), stats (label, value, optional note; four at most, only numbers Naman can defend)
 - hand: hole (exactly two cards written like "As" and "Ks"), used by the equity readout
 - experience: company, role, start, end, location, result (one sentence), details (up to three bullets), tags, suit

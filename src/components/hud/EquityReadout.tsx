@@ -37,7 +37,12 @@ export function dealt(board: EquityReadoutProps['board'], upTo: Street) {
  * hear only that answer, once.
  */
 export default function EquityReadout({ hole, board }: EquityReadoutProps) {
-  const current = useStore(street);
+  const dealtStreet = useStore(street);
+  // The motion pass deals the river before this hydrates under reduced motion, or when the board
+  // loads in view, so the first render shows preflop to match the server HTML.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
+  const current = hydrated ? dealtStreet : 'preflop';
   const [result, setResult] = useState<EquityResult | null>(null);
   const [ladder, setLadder] = useState<Partial<Record<Street, number>>>({});
   const [announcement, setAnnouncement] = useState('');
@@ -70,9 +75,9 @@ export default function EquityReadout({ hole, board }: EquityReadoutProps) {
   }, []);
 
   useEffect(() => {
-    const request: EquityRequest = { id: ++latest.current, hole: [...hole], board: dealt(board, current) };
+    const request: EquityRequest = { id: ++latest.current, hole: [...hole], board: dealt(board, dealtStreet) };
     worker.current!.postMessage(request);
-  }, [current]);
+  }, [dealtStreet]);
 
   useEffect(() => {
     if (!result) return;

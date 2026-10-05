@@ -115,7 +115,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
               {page.id === 'front' && (
                 <div class="front-body">
                   <article class="lead">
-                    <h1 id={`${sheetId(page.label)}-title`} class="name">{site.fullName ?? site.name}</h1>
+                    <h1 id={`${sheetId(page.label)}-title`} class="name">{site.name}</h1>
                     {site.tagline && <p class="deck">{site.tagline}</p>}
                     {player.blurb && <p class="lede">{player.blurb}</p>}
                   </article>

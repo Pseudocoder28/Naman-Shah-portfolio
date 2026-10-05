@@ -18,7 +18,6 @@ const profile = defineCollection({
   schema: z.object({
     site: z.object({
       name: z.string(),
-      fullName: text,
       tagline: text,
       title: text,
       description: text,
