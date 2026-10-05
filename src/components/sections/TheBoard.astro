@@ -15,6 +15,8 @@ const projects = await Promise.all(
       hasSheet: Boolean(project.body?.trim()) || project.data.links.length > 0,
     })),
 );
+// A card face holds this many stack tags. The project sheet lists the whole stack.
+const FACE_TAGS = 3;
 const streets = [
   { street: 'flop', name: 'Flop' },
   { street: 'turn', name: 'Turn' },
@@ -51,11 +53,11 @@ const face = (card: string) => {
                           <span>{pip}</span>
                         </span>
                         <span class="name">{project.data.name}</span>
-                        {project.data.pitch && <span>{project.data.pitch}</span>}
+                        {project.data.pitch && <span class="pitch">{project.data.pitch}</span>}
                         {project.data.metric && <span class="metric">{project.data.metric}</span>}
                         {project.data.stack.length > 0 && (
                           <span class="stack mt-auto">
-                            {project.data.stack.map((tag) => (
+                            {project.data.stack.slice(0, FACE_TAGS).map((tag) => (
                               <span>{tag}</span>
                             ))}
                           </span>
@@ -185,8 +187,10 @@ const face = (card: string) => {
     color: color-mix(in srgb, var(--color-cream) 80%, transparent);
   }
 
+  /* Slots size to their card, not to the row, so no outline shows below a card. */
   .cards {
     display: flex;
+    align-items: flex-start;
     gap: var(--gap);
   }
 
@@ -201,8 +205,10 @@ const face = (card: string) => {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    /* Every card is exactly poker size, whatever its face holds, so a street's cards line up. */
     width: var(--card);
-    aspect-ratio: 63 / 88;
+    height: calc(var(--card) * 88 / 63);
+    overflow: hidden;
     padding: 4rem 1rem;
     font-size: var(--text-small);
     line-height: 1.45;
@@ -243,6 +249,18 @@ const face = (card: string) => {
   .metric {
     margin-top: 0.25rem;
     color: var(--color-card-red);
+  }
+
+  /* The pitch gives way first when a face is full: four lines, three beside a metric. */
+  .pitch {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+
+  .card:has(.metric) .pitch {
+    -webkit-line-clamp: 3;
   }
 
   .stack {
