@@ -11,7 +11,7 @@ The single source of every word on the site. Replace each TODO, delete any line 
 - github: https://github.com/Pseudocoder28
 - linkedin: https://www.linkedin.com/in/namanshah2008
 - resumePath: /resume.pdf
-- url: TODO (none yet, the site runs on Vercel's default URL. Add it once there's a domain.)
+- url: https://naman-shah-portfolio.vercel.app
 
 ## player
 - blurb (DRAFT, three sentences at most): I study Computer Science co-op at the University of Waterloo and graduate in May 2031. I build systems where data meets markets, from a cross-venue arbitrage monitor for prediction markets to the research data pipeline and backtester for the UW Stocks Club. I'm looking for quant development and software engineering co-op roles.
