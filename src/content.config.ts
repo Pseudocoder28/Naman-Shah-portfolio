@@ -30,7 +30,7 @@ const profile = defineCollection({
     player: z.object({
       blurb: text,
       stats: z.array(z.object({ label: z.string(), value: z.string(), note: text })).max(4).default([]),
-      // Shown in the morning paper's profile.
+      // Shown in The Player and the morning paper's profile.
       education: z.array(z.object({ school: z.string(), program: text, place: text, dates: text })).default([]),
       skills: z.array(z.object({ group: z.string(), items: z.array(z.string()) })).default([]),
     }),

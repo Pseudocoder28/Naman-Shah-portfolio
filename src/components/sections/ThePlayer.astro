@@ -12,7 +12,7 @@ const { player } = (await getEntry('profile', 'main'))!.data;
     </div>
     {
       player.stats.length > 0 && (
-        <div class="stats self-start" data-follow>
+        <div class="stats self-start md:row-span-2" data-follow>
           <div class="bar">
             <span aria-hidden="true" />
             <span aria-hidden="true" />
@@ -31,10 +31,107 @@ const { player } = (await getEntry('profile', 'main'))!.data;
         </div>
       )
     }
+    {/* Under the blurb on a wide screen, beside the stats; after the stats on a phone. */}
+    {
+      (player.education.length > 0 || player.skills.length > 0) && (
+        <div class="md:col-start-1">
+          {
+            player.education.length > 0 && (
+              <div data-follow>
+                <h3 class="part">Education</h3>
+                <ul class="schools" role="list">
+                  {player.education.map((school) => (
+                    <li>
+                      <span class="school">{school.school}</span>
+                      {school.program && <span>{school.program}</span>}
+                      <span class="meta">{[school.place, school.dates].filter(Boolean).join(' · ')}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+          {
+            player.skills.length > 0 && (
+              <div class="mt-10" data-follow>
+                <h3 class="part">Skills</h3>
+                <dl class="skills">
+                  {player.skills.map((group) => (
+                    <div>
+                      <dt>{group.group}</dt>
+                      <dd>
+                        <ul class="tags" role="list">
+                          {group.items.map((item) => (
+                            <li>{item}</li>
+                          ))}
+                        </ul>
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )
+          }
+        </div>
+      )
+    }
   </div>
 </section>
 
 <style>
+  /* Education and skills under the blurb: a small head over a rule, then the entries. */
+  .part {
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid var(--color-ink);
+    font-size: var(--text-small);
+    font-weight: 500;
+  }
+
+  .schools li {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
+  }
+
+  .school {
+    font-weight: 500;
+  }
+
+  .meta,
+  .skills dt {
+    font-size: var(--text-small);
+    color: color-mix(in srgb, var(--color-ink) 75%, var(--color-cream));
+  }
+
+  .skills > div {
+    display: grid;
+    gap: 0.375rem 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
+  }
+
+  @media (min-width: 640px) {
+    .skills > div {
+      grid-template-columns: 7.5rem minmax(0, 1fr);
+      align-items: baseline;
+    }
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .tags li {
+    border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
+    border-radius: var(--radius-chip);
+    padding: 0 0.625rem;
+    font-size: var(--text-small);
+    line-height: 1.7;
+  }
+
   .stats {
     border: 1px solid var(--color-brass);
     border-radius: var(--radius-panel);
@@ -70,7 +167,7 @@ const { player } = (await getEntry('profile', 'main'))!.data;
     color: var(--color-brass);
   }
 
-  dl {
+  .stats dl {
     padding: 0.5rem 1rem 0.75rem;
   }
 
@@ -87,11 +184,11 @@ const { player } = (await getEntry('profile', 'main'))!.data;
   }
 
   /* Right-aligned, so a value counting up grows toward its label. */
-  dt + dd {
+  .stats dt + dd {
     text-align: right;
   }
 
-  dt {
+  .stats dt {
     color: color-mix(in srgb, var(--color-cream) 75%, transparent);
   }
 

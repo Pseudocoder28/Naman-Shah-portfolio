@@ -9,7 +9,7 @@ import './palette.css';
 // The section names are proper names, so search also matches the plain word for each.
 const KEYWORDS: Record<SectionId, string[]> = {
   'the-deal': ['home', 'top', 'start'],
-  'the-player': ['about', 'bio'],
+  'the-player': ['about', 'bio', 'education', 'school', 'skills', 'languages'],
   'hand-history': ['experience', 'work', 'internships'],
   'the-board': ['projects'],
   'the-cashes': ['awards', 'competitions', 'contests', 'math'],

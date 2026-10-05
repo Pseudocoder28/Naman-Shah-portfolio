@@ -23,7 +23,7 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 - Static tier (phones, reduced motion, a lost context): the still plate with the copy block, and the same two buttons deal a 2D hand over the table: two cards dealt in face down, then turned face up with a 2D flip. Under reduced motion both steps are a 150ms fade. Without JavaScript the 2D hand lies face up.
 
 ## The Player (about)
-- A cream panel with ink text laid over the felt, as in the reference frames: the heading, the three-sentence blurb, then the stats panel.
+- A cream panel with ink text laid over the felt, as in the reference frames: the heading, the three-sentence blurb, then education (school, program, place and dates) and skills (each group with its items as small outlined tags) under it, with the stats panel beside them.
 - The stats panel is a brass-framed panel #363430 in IBM Plex Mono with up to four rows, label on the left and value on the right. Values count up once when the panel enters the viewport. Under reduced motion they appear at their final value.
 - Phase 2: a small toggle on the panel opens the performance HUD.
 

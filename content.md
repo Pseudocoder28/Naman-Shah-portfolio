@@ -20,10 +20,10 @@ The single source of every word on the site. Replace each TODO, delete any line 
   - Grade 12 board exams: 99.25% (note: ISC, India: top of the state and 4th in the country)
   - Euclid 2026: 94/100 (note: Waterloo's math contest: top 50 of almost 24,000)
   - Student council led: 75 members (note: Representing more than 2,000 students)
-- education (in the morning paper's profile):
+- education (in The Player and the morning paper's profile):
   - University of Waterloo: Bachelor of Computer Science, co-op, Waterloo, Canada, Sept 2026 to May 2031
   - SNV International School: ICSE and ISC, India, 2026
-- skills (in the morning paper's profile):
+- skills (in The Player and the morning paper's profile):
   - Languages: Python, Java, JavaScript, TypeScript, C, C++, C#, SQL, Bash, R
   - Frameworks: Spring, FastAPI, Flask, Django, Node, React, Angular
   - AI and ML: TensorFlow, XGBoost, OpenCV, YOLO, ONNX Runtime, CNNs, LSTMs, reinforcement learning, time series forecasting
