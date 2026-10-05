@@ -1,9 +1,9 @@
 {
   "site": {
     "name": "Naman",
-    "tagline": "Computer Science at the University of Waterloo, class of 2031. Quant development and software engineering.",
+    "tagline": "First-year Computer Science at Waterloo. I build the data pipelines, backtesters and market tools that quant work runs on.",
     "title": "Naman Shah | Quant development and software engineering",
-    "description": "Naman Shah studies Computer Science at the University of Waterloo and builds quant and software systems.",
+    "description": "Naman Shah is a first-year Computer Science student at Waterloo who builds data pipelines, backtesters and market tools for quant work.",
     "email": "n45shah@uwaterloo.ca",
     "github": "https://github.com/Pseudocoder28",
     "linkedin": "https://www.linkedin.com/in/namanshah2008",
@@ -11,7 +11,7 @@
     "url": "https://naman-shah-portfolio.vercel.app"
   },
   "player": {
-    "blurb": "I study Computer Science co-op at the University of Waterloo and graduate in May 2031. I build systems where data meets markets, from a cross-venue arbitrage monitor for prediction markets to the research data pipeline and backtester for the UW Stocks Club. I'm looking for quant development and software engineering co-op roles.",
+    "blurb": "I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm looking for a quant development or software engineering co-op.",
     "stats": [
       {
         "label": "Graduating",
@@ -155,5 +155,5 @@
       }
     ]
   },
-  "showdown": "If you're hiring for quant development or software engineering co-op roles, I'd like to hear from you."
+  "showdown": "Hiring for a quant development or software engineering co-op? Send me an email."
 }

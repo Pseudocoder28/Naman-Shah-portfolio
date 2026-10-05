@@ -1,12 +1,12 @@
 # content.md
 
-The single source of every word on the site. Replace each TODO, delete any line you don't want shown and keep only numbers you'd defend in an interview. Lines marked DRAFT are starting points to rewrite in your own voice. Never put a phone number here: the page is public.
+The single source of every word on the site. Replace each TODO, delete any line you don't want shown and keep only numbers you'd defend in an interview. Never put a phone number here: the page is public.
 
 ## site
 - name: Naman
-- tagline: Computer Science at the University of Waterloo, class of 2031. Quant development and software engineering. (DRAFT)
+- tagline: First-year Computer Science at Waterloo. I build the data pipelines, backtesters and market tools that quant work runs on.
 - title: Naman Shah | Quant development and software engineering
-- description: Naman Shah studies Computer Science at the University of Waterloo and builds quant and software systems. (DRAFT)
+- description: Naman Shah is a first-year Computer Science student at Waterloo who builds data pipelines, backtesters and market tools for quant work.
 - email: n45shah@uwaterloo.ca
 - github: https://github.com/Pseudocoder28
 - linkedin: https://www.linkedin.com/in/namanshah2008
@@ -14,7 +14,7 @@ The single source of every word on the site. Replace each TODO, delete any line 
 - url: https://naman-shah-portfolio.vercel.app
 
 ## player
-- blurb (DRAFT, three sentences at most): I study Computer Science co-op at the University of Waterloo and graduate in May 2031. I build systems where data meets markets, from a cross-venue arbitrage monitor for prediction markets to the research data pipeline and backtester for the UW Stocks Club. I'm looking for quant development and software engineering co-op roles.
+- blurb (three sentences at most): I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm looking for a quant development or software engineering co-op.
 - stats (four at most):
   - Graduating: May 2031
   - ISC grade 12: 99.25%
@@ -120,4 +120,4 @@ Awards and competition results, newest and biggest first.
   - Cultural: 11
 
 ## showdown
-- line (DRAFT): If you're hiring for quant development or software engineering co-op roles, I'd like to hear from you.
+- line: Hiring for a quant development or software engineering co-op? Send me an email.
