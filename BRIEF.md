@@ -64,7 +64,11 @@ Read each repo's README for details, stack and metrics. Only use metrics the REA
 Assign cards so hole + board are seven distinct valid cards and the streets are flop, flop, flop, turn, river. Keep a small poker story like the template's.
 
 ## table (leadership)
-Only UW Stocks Club is available and it is already an experience. Either reframe this section (e.g. as education / "The seat") or drop it. Do not invent team sizes.
+- org: SNV International School (his high school; confirm the name with the user if unsure)
+- role: Student President
+- dates: TODO (not given; leave empty until the user supplies them)
+- summary: Led a 75-member student council representing more than 2,000 students.
+- teams: no per-team breakdown was given. Do not invent one. Show a single stack of 75 (or one stack for the council and a contrasting stack labelled for the 2,000+ students represented), and ask the user if a breakdown exists.
 
 ## skills
 Languages: Python, Java, JavaScript, TypeScript, C, C++, C#, SQL, Bash, R. Frameworks: Spring, FastAPI, Flask, Django, Node, React, Angular. AI/ML: TensorFlow, XGBoost, OpenCV, YOLO, ONNX Runtime, CNNs, LSTMs, reinforcement learning, time series forecasting. Tools: Linux, Git, Docker, Kubernetes, Jenkins, AWS (SageMaker, EC2, S3), Airflow, MongoDB, PostgreSQL.
