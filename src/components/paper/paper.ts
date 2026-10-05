@@ -1,7 +1,7 @@
 // The morning paper's motion. On a wide screen with motion allowed, the head script has already set
 // .book-mode, so the paper is a book: leaves turn on their spine by drag, by the dog-eared corners,
 // by the arrow keys and from the page tabs. Everywhere else the sheets stack and only settle onto
-// the desk as they scroll in.
+// the desk as they scroll in. Either way, a story lifts into the reading lens when it's clicked.
 import { gsap } from 'gsap';
 import { depth, leavesBetween, openPages, shift, spreadOf } from './book';
 
@@ -11,6 +11,8 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (book && root.classList.contains('book-mode')) openBook(book);
 else if (book && !reduce) settleSheets(book);
+const lens = document.querySelector<HTMLDialogElement>('[data-lens]');
+if (book && lens) openLens(book, lens);
 
 function openBook(book: HTMLElement) {
   const paper = book.querySelector<HTMLElement>('[data-paper]')!;
@@ -101,6 +103,8 @@ function openBook(book: HTMLElement) {
 
   addEventListener('keydown', (event) => {
     if (event.altKey || event.metaKey || event.ctrlKey || (event.target as Element).closest('input, textarea, select')) return;
+    // The lens and the palette sit over the paper and keep the keys to themselves.
+    if (document.querySelector('dialog[open]')) return;
     const step = { ArrowRight: 1, PageDown: 1, ArrowLeft: -1, PageUp: -1 }[event.key];
     if (step) go(spread + step);
     else if (event.key === 'Home') go(0);
@@ -167,6 +171,86 @@ function openBook(book: HTMLElement) {
   gsap.from(book.querySelector('.chips'), { autoAlpha: 0, y: 12, duration: 0.6, delay: 0.7, ease: 'power3.out' });
   root.classList.remove('intro');
   root.classList.add('book-ready');
+}
+
+/**
+ * The reading lens. A story on the page is short: a headline, one line and one fact. Clicking it,
+ * or its "Read the full story", lifts the full story off the page into a close-up held at full size,
+ * and Close, Esc or a click on the desk puts it back where it came from. Box score rows do the same
+ * for their contest. The lens is a modal dialog, so focus stays in it and returns to the story.
+ */
+function openLens(book: HTMLElement, lens: HTMLDialogElement) {
+  const sheet = lens.querySelector<HTMLElement>('[data-lens-sheet]')!;
+  const body = lens.querySelector<HTMLElement>('[data-lens-body]')!;
+  let origin: HTMLElement | undefined;
+  let back: HTMLElement | undefined;
+  for (const button of book.querySelectorAll<HTMLElement>('[data-lens-for]')) button.hidden = false;
+  for (const text of book.querySelectorAll<HTMLElement>('[data-lens-text]')) text.hidden = true;
+
+  // Where the story sits, as a move and a scale of the lens's own box.
+  const from = (el: HTMLElement) => {
+    const a = el.getBoundingClientRect();
+    const b = sheet.getBoundingClientRect();
+    return { x: a.left - b.left, y: a.top - b.top, scale: a.width / b.width };
+  };
+
+  const open = (full: Element, story: HTMLElement, focus: HTMLElement) => {
+    body.replaceChildren(...[...full.childNodes].map((node) => node.cloneNode(true)));
+    lens.setAttribute('aria-label', body.querySelector('h1, h2, h3')?.textContent ?? 'Story');
+    origin = story;
+    back = focus;
+    lens.showModal();
+    sheet.scrollTop = 0;
+    if (reduce) return void gsap.fromTo(sheet, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.15 });
+    story.classList.add('lifted');
+    // Picked up off the page: it rises from where it lay, tipping toward the reader, then settles.
+    gsap.fromTo(
+      sheet,
+      { ...from(story), transformOrigin: '0 0', transformPerspective: 1400, rotationX: 18, autoAlpha: 0.5 },
+      { x: 0, y: 0, scale: 1, rotationX: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
+    );
+  };
+
+  const close = () => {
+    if (!lens.open || !origin) return;
+    const story = origin;
+    const done = () => {
+      lens.close();
+      gsap.set(sheet, { clearProps: 'all' });
+      story.classList.remove('lifted');
+      back?.focus({ preventScroll: true });
+    };
+    if (reduce) return void gsap.to(sheet, { autoAlpha: 0, duration: 0.15, onComplete: done });
+    story.classList.remove('lifted');
+    gsap.to(sheet, { ...from(story), rotationX: 12, autoAlpha: 0, duration: 0.4, ease: 'power3.in', onComplete: done });
+  };
+
+  lens.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    close();
+  });
+  lens.addEventListener('click', (event) => {
+    const target = event.target as Element;
+    if (target === lens || target.closest('[data-lens-close]')) close();
+  });
+
+  book.addEventListener('click', (event) => {
+    const target = event.target as Element;
+    const row = target.closest<HTMLElement>('[data-lens-row]');
+    if (row && !target.closest('a')) {
+      const button = row.querySelector<HTMLElement>('[data-lens-for]')!;
+      const full = document.getElementById(button.dataset.lensFor!);
+      if (full) open(full, row, button);
+      return;
+    }
+    const story = target.closest<HTMLElement>('[data-story]');
+    // Links in a story still go where they point; the rest of it opens the lens.
+    if (!story || target.closest('a, button')) return;
+    const full = story.querySelector('.full');
+    if (!full) return;
+    event.preventDefault();
+    open(full, story, story.querySelector('summary') ?? story);
+  });
 }
 
 // Stacked sheets lie down onto the desk as they scroll into view. Sheets already on screen stay put.
