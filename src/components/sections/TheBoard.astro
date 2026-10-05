@@ -336,7 +336,21 @@ const face = (card: string) => {
     padding: 0.25rem 1rem;
   }
 
-  .details :global(p + p) {
+  .details :global(* + *) {
     margin-top: 1em;
+  }
+
+  /* Project write-ups list their facts as bullets. */
+  .details :global(ul) {
+    padding-left: 1.2em;
+    list-style: disc;
+  }
+
+  .details :global(li + li) {
+    margin-top: 0.4em;
+  }
+
+  .details :global(li::marker) {
+    color: var(--color-card-red);
   }
 </style>

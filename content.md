@@ -20,6 +20,14 @@ The single source of every word on the site. Replace each TODO, delete any line 
   - Grade 12 board exams: 99.25% (note: ISC, India: top of the state and 4th in the country)
   - Euclid 2026: 94/100 (note: Waterloo's math contest: top 50 of almost 24,000)
   - Student council led: 75 members (note: Representing more than 2,000 students)
+- education (in the morning paper's profile):
+  - University of Waterloo: Bachelor of Computer Science, co-op, Waterloo, Canada, Sept 2026 to May 2031
+  - SNV International School: ICSE and ISC, India, 2026
+- skills (in the morning paper's profile):
+  - Languages: Python, Java, JavaScript, TypeScript, C, C++, C#, SQL, Bash, R
+  - Frameworks: Spring, FastAPI, Flask, Django, Node, React, Angular
+  - AI and ML: TensorFlow, XGBoost, OpenCV, YOLO, ONNX Runtime, CNNs, LSTMs, reinforcement learning, time series forecasting
+  - Tools: Linux, Git, Docker, Kubernetes, Jenkins, AWS (SageMaker, EC2, S3), Airflow, MongoDB, PostgreSQL
 
 ## hand
 - hole: 7h 2s
@@ -37,6 +45,7 @@ Suits: spades for quant and trading, hearts for product and full-stack, diamonds
   - Ingests daily OHLCV bars, corporate actions and fundamentals for 1,000+ US equities through the LSEG API into a Parquet store, with automated checks for missing data, split and dividend adjustments and survivorship bias.
   - Developed a performance attribution engine that splits returns into sector, factor and security selection effects with Brinson-Fachler attribution and multi-factor regression, plus ex-ante and ex-post risk metrics across every systematic strategy.
   - Designed an event-driven backtesting engine that simulates 20 years of history across 1,000+ tickers, modelling transaction costs, slippage and point-in-time data to prevent lookahead bias.
+- hook (one line with numbers, for the morning paper): 1,000+ US equities, 20 years of history, every club strategy
 - tags: Python, LSEG API, Parquet, Pandas
 - suit: spades
 
@@ -49,6 +58,7 @@ Suits: spades for quant and trading, hearts for product and full-stack, diamonds
 - details:
   - Owned authentication and role-based authorization across multiple sites, so each user reached only the records their role allowed.
   - Built an internal LLM assistant using RAG over the ERP's data, letting executives ask about inventory, invoicing, procurement, production, HR and sales in plain English.
+- hook (one line with numbers, for the morning paper): One ERP across 6 parts of the business, and an assistant executives ask in plain English
 - tags: Java, Spring, RAG, LLM
 - suit: hearts
 
@@ -63,19 +73,36 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 ### flop: Kc
 - name: Cross-Book
 - pitch: Cross-venue arbitrage measurement for Kalshi and Polymarket US: fee-exact, depth-aware price gaps from live order books.
-- metric: TODO (one number with its unit, only once the README states one)
+- metric: 500+ automated tests
 - stack: Python, asyncio, WebSockets, Pandas, Plotly
 - links:
   - GitHub: https://github.com/Pseudocoder28/Cross-Book
-- details: The gap between two best prices isn't an edge. Cross-Book walks both order books level by level, charges each venue's taker fee on every fill and stops at the first fill that doesn't pay for itself. One normalized order book serves both venues, a recorder stores every message before it's parsed, and a recorded run replays through the same code. It measures and paper-trades only: no code in it can place an order.
+- details:
+  The gap between two best prices isn't an edge. Cross-Book walks both order books level by level, charges each venue's taker fee on every fill and stops at the first fill that doesn't pay for itself.
+
+  - One normalized order book for both venues, in integer ticks of $0.0001, so live Kalshi books with fractional counts fit.
+  - Fees are worked out with exact fractions, then rounded the way each venue documents: Kalshi up to the next tick, Polymarket US half-even to the cent.
+  - Every raw message is recorded before it's parsed, and a recorded run replays through the same code on the recorded clock.
+  - A keyboard-driven terminal UI with 8 pages, from the live depth monitor to the control plane, where every action is validated and audited.
+  - 394 Python tests and 109 frontend tests, with the parsers tested on captured venue payloads.
+
+  It measures and paper-trades only: no code in it can place an order.
 
 ### flop: Qd
 - name: Blurr
 - pitch: Real-time video redaction that blurs documents, ID cards, bystanders and on-screen text out of a live call, frame by frame.
+- metric: 4 kinds of sensitive content, blurred live
 - stack: Python, FastAPI, aiortc, OpenCV, YOLOv8, React, TypeScript, Firebase
 - links:
   - GitHub: https://github.com/Pseudocoder28/Blur
-- details: The camera feed streams over WebRTC to a FastAPI and aiortc server, which finds text-shaped regions with an OpenCV pipeline and cards, documents and other people with YOLOv8, then blurs them. Only the blurred video goes on to the other caller, and it's the same video you see in your own preview. Detection runs in a background thread on every second frame so the stream stays real time.
+- details:
+  The camera feed streams over WebRTC to a FastAPI and aiortc server that blurs it before it reaches the other caller. What you see in your own preview is exactly what they get.
+
+  - Blurs 4 kinds of content: lines of text, ID-shaped cards, documents and everyone in frame but you.
+  - Text is found by an OpenCV pipeline. Objects are found by YOLOv8n at a 0.5 confidence threshold, loaded once and shared by every call.
+  - Detection runs in a background thread on every second frame and reuses the latest boxes in between, so the stream stays real time.
+  - Each box is padded and covered with a 41×41 Gaussian blur. Everything outside the boxes is left alone.
+  - Calls are peer-to-peer WebRTC, with Firebase Firestore as the signaling channel.
 
 ### flop: 7d
 - name: Fast Flag
@@ -84,23 +111,48 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 - stack: Python, FastF1, IsolationForest, LightGBM
 - links:
   - GitHub: https://github.com/Pseudocoder28/Fast-Flag
-- details: It replays historical FastF1 data tick by tick and never sees the future. Detectors, an anomaly model and a crash-risk model feed a rules engine that makes the flag call with a reason a steward can check. On a race the models never saw, the 2026 Azerbaijan GP, its median crash-to-Safety-Car call was 1.0 s against race control's 28.3 s, and it caught 7 of 10 incidents at 0.6 false alarms per race hour.
+- details:
+  It replays historical FastF1 data tick by tick and never sees the future. Detectors, an anomaly model and a crash-risk model feed a rules engine that makes the flag call with a reason a steward can check.
+
+  On a race the models never saw, the 2026 Azerbaijan GP:
+
+  - Safety Car called in a median 1.0 s, against race control's 28.3 s.
+  - Double yellow in 1.4 s against 5.7 s, and yellow in 3.2 s against 4.0 s.
+  - 7 of 10 incidents caught at 0.6 false alarms per race hour. A plain speed threshold needs 16.6 per hour to catch 8.
+
+  Both models trained on 20 races. The anomaly model, an IsolationForest, learned normal driving without seeing a single crash. The LightGBM risk model, 10 s ahead, scores 13 times the chance level.
+
+  Across 62 crashes, every second a flag waits lets about 0.12 cars drive past the wreck at racing speed.
 
 ### turn: 2c
 - name: Investing Made Easy
 - pitch: An ETF portfolio tool that matches a non-technical investor's goals and risk answers to an ETF, with a performance dashboard.
+- metric: 8 dashboard views
 - stack: Python, Pandas, FinQuant, Plotly, Panel
 - links:
   - GitHub: https://github.com/Pseudocoder28/Investing-made-easy
-- details: A short questionnaire builds the investor's risk profile and sector preferences. ETF data from the FinQuant and EOD APIs is cleaned and matched to that profile, and a dashboard shows the chosen ETF's top holdings, sector and region split, returns by period and prices against its top ten constituents.
+- details:
+  Built for older investors who are interested in markets but not in code. A short questionnaire weighs their interest in each sector and their tolerance for risk into a profile, then matches it to an ETF.
+
+  - ETF data from the FinQuant and EOD APIs, cleaned and merged.
+  - Returns for the past 5 years, and the investment projected 5 years forward.
+  - Risk in plain numbers: expected return, volatility, Sharpe ratio, beta and alpha.
+  - A dashboard with 8 views, from the top 10 holdings and the split by sector and region to daily prices against those holdings and a map of where they're headquartered.
 
 ### river: 7c
 - name: LooLoop
 - pitch: Helps new university students find nearby events by voice or questionnaire and join event circles with people going too.
+- metric: 3 event sources in one feed
 - stack: JavaScript, Node.js, Express, Supabase
 - links:
   - GitHub: https://github.com/Saarthi09/LooLoop
-- details: Students say what they want, answer a short questionnaire or browse everything. Events from Ticketmaster, the University of Waterloo and WUSA are filtered by interests, time, budget and travel distance, and signed-in students join a circle for each event through Supabase Auth. I'm the top contributor, with 21 of the project's 31 commits.
+- details:
+  Built to help new university students find something to do and someone to go with. I'm the top contributor, with 21 of the project's 31 commits.
+
+  - Events from Ticketmaster, the University of Waterloo and WUSA, searched together and filtered by interests, time, budget, travel distance and place.
+  - Voice works in the browser: speech becomes text there and a local parser turns it into filters. No recording is sent to the server.
+  - Signed-in students join a circle for each event, kept in Supabase.
+  - One source failing never fails the feed: the others still return, with a warning.
 
 ## cashes
 Awards and competition results, newest and biggest first. Each ticket opens a sheet with what the contest is and the field's official numbers. Only numbers from the linked source go in; contests publish means and cutoffs, not medians, so there are none.

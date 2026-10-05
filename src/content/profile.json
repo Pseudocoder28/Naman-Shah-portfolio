@@ -32,6 +32,77 @@
         "value": "75 members",
         "note": "Representing more than 2,000 students"
       }
+    ],
+    "education": [
+      {
+        "school": "University of Waterloo",
+        "program": "Bachelor of Computer Science, co-op",
+        "place": "Waterloo, Canada",
+        "dates": "Sept 2026 to May 2031"
+      },
+      {
+        "school": "SNV International School",
+        "program": "ICSE and ISC",
+        "place": "India",
+        "dates": "2026"
+      }
+    ],
+    "skills": [
+      {
+        "group": "Languages",
+        "items": [
+          "Python",
+          "Java",
+          "JavaScript",
+          "TypeScript",
+          "C",
+          "C++",
+          "C#",
+          "SQL",
+          "Bash",
+          "R"
+        ]
+      },
+      {
+        "group": "Frameworks",
+        "items": [
+          "Spring",
+          "FastAPI",
+          "Flask",
+          "Django",
+          "Node",
+          "React",
+          "Angular"
+        ]
+      },
+      {
+        "group": "AI and ML",
+        "items": [
+          "TensorFlow",
+          "XGBoost",
+          "OpenCV",
+          "YOLO",
+          "ONNX Runtime",
+          "CNNs",
+          "LSTMs",
+          "reinforcement learning",
+          "time series forecasting"
+        ]
+      },
+      {
+        "group": "Tools",
+        "items": [
+          "Linux",
+          "Git",
+          "Docker",
+          "Kubernetes",
+          "Jenkins",
+          "AWS (SageMaker, EC2, S3)",
+          "Airflow",
+          "MongoDB",
+          "PostgreSQL"
+        ]
+      }
     ]
   },
   "hand": {
@@ -65,7 +136,8 @@
         "Parquet",
         "Pandas"
       ],
-      "suit": "spades"
+      "suit": "spades",
+      "hook": "1,000+ US equities, 20 years of history, every club strategy"
     },
     {
       "company": "Agropac Pvt Ltd",
@@ -84,7 +156,8 @@
         "RAG",
         "LLM"
       ],
-      "suit": "hearts"
+      "suit": "hearts",
+      "hook": "One ERP across 6 parts of the business, and an assistant executives ask in plain English"
     }
   ],
   "awards": [

@@ -30,6 +30,9 @@ const profile = defineCollection({
     player: z.object({
       blurb: text,
       stats: z.array(z.object({ label: z.string(), value: z.string(), note: text })).max(4).default([]),
+      // Shown in the morning paper's profile.
+      education: z.array(z.object({ school: z.string(), program: text, place: text, dates: text })).default([]),
+      skills: z.array(z.object({ group: z.string(), items: z.array(z.string()) })).default([]),
     }),
     hand: z.object({ hole: z.tuple([card, card]) }),
     suits: z.record(suit, z.string()).optional(),
@@ -42,6 +45,8 @@ const profile = defineCollection({
           end: text,
           location: text,
           result: text,
+          // One line with numbers, the morning paper's fact for the job.
+          hook: text,
           details: z.array(z.string()).max(3).default([]),
           tags: z.array(z.string()).default([]),
           suit: suit.optional(),
