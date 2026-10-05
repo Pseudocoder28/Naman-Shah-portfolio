@@ -111,10 +111,10 @@ Awards and competition results, newest and biggest first.
 - org: SNV Group of Schools, student council
 - role: Student President
 - dates: September 2024 to September 2025
-- summary: Led a 75-member student council representing more than 2,000 students: five committees plus the president and vice-president.
-- teams (five committees with 73 members; the president and vice-president make 75):
+- summary: Led a 75-member student council representing more than 2,000 students across five committees.
+- teams (five committees adding up to the council's 75):
+  - Sports: 21
   - Discipline: 20
-  - Sports: 19
   - Literary: 12
   - Well-being: 11
   - Cultural: 11

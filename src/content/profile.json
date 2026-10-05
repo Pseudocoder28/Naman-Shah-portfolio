@@ -130,15 +130,15 @@
     "org": "SNV Group of Schools, student council",
     "role": "Student President",
     "dates": "September 2024 to September 2025",
-    "summary": "Led a 75-member student council representing more than 2,000 students: five committees plus the president and vice-president.",
+    "summary": "Led a 75-member student council representing more than 2,000 students across five committees.",
     "teams": [
+      {
+        "name": "Sports",
+        "members": 21
+      },
       {
         "name": "Discipline",
         "members": 20
-      },
-      {
-        "name": "Sports",
-        "members": 19
       },
       {
         "name": "Literary",

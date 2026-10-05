@@ -70,12 +70,11 @@ Assign cards so hole + board are seven distinct valid cards and the streets are 
 - summary: Led a 75-member student council representing more than 2,000 students.
 - council size: 75 members (use 75), representing more than 2,000 students
 - teams (committees, confirmed counts, use as the chip stacks):
+  - Sports: 21
   - Discipline: 20
-  - Sports: 19
   - Literary: 12
   - Well-being: 11
   - Cultural: 11
-  - (plus President and Vice-President, making 75)
 - Never put any other students' names on the site.
 
 ## skills
