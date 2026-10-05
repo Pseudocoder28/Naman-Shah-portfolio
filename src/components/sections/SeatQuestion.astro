@@ -12,15 +12,11 @@ const gate = straight?.gate;
 const script = `(() => {
   const ask = ${shouldAsk.toString()};
   const dialog = document.getElementById('seat');
-  const remember = (seat) => { try { localStorage.setItem('seat', seat); } catch {} };
-  let stored = null;
-  try { stored = localStorage.getItem('seat'); } catch {}
-  const params = new URLSearchParams(location.search);
-  if (params.get('seat') === 'poker') {
-    remember('poker');
-    history.replaceState(null, '', location.pathname + location.hash);
-  }
-  if (ask({ stored, hash: location.hash, search: params.toString() })) dialog.showModal();
+  const search = location.search;
+  // ?seat has done its job once read, so a refresh of the same page asks again.
+  if (search) history.replaceState(null, '', location.pathname + location.hash);
+  const navigation = performance.getEntriesByType('navigation')[0]?.type;
+  if (ask({ search, navigation })) dialog.showModal();
   // The motion pass deals on this event, or on the flag if it hasn't loaded yet.
   const deal = () => {
     document.documentElement.dataset.deal = 'now';
@@ -28,9 +24,7 @@ const script = `(() => {
   };
   dialog.addEventListener('click', (event) => {
     const choice = event.target.closest('[data-seat]');
-    if (!choice || dialog.classList.contains('leaving')) return;
-    remember(choice.dataset.seat);
-    if (choice.dataset.seat !== 'poker') return;
+    if (!choice || dialog.classList.contains('leaving') || choice.dataset.seat !== 'poker') return;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return dialog.close(), deal();
     // The panel clears and the two cards drop toward the table, where the deal picks them up.
     dialog.classList.add('leaving');

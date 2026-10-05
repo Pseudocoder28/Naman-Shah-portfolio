@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { depth, leavesBetween, openPages, shift, spreadOf } from '../src/components/paper/book';
-import { shouldAsk } from '../src/lib/seat';
+import { backToQuestion, shouldAsk } from '../src/lib/seat';
 
 // Eight pages on four leaves, as the morning paper prints them.
 const LEAVES = 4;
@@ -35,12 +35,20 @@ test('turns leaves forward in order and back in reverse', () => {
   expect(leavesBetween(2, 2)).toEqual([]);
 });
 
-test('asks only first-time visitors who land on the top of the poker page', () => {
-  const fresh = { stored: null, hash: '', search: '' };
-  expect(shouldAsk(fresh)).toBe(true);
-  expect(shouldAsk({ ...fresh, hash: '#the-deal' })).toBe(true);
-  expect(shouldAsk({ ...fresh, stored: 'poker' })).toBe(false);
-  expect(shouldAsk({ ...fresh, stored: 'straight' })).toBe(false);
-  expect(shouldAsk({ ...fresh, hash: '#the-board' })).toBe(false);
-  expect(shouldAsk({ ...fresh, search: '?seat=poker' })).toBe(false);
+test('asks on every load, refreshes and section links included', () => {
+  expect(shouldAsk({ search: '' })).toBe(true);
+  expect(shouldAsk({ search: '', navigation: 'navigate' })).toBe(true);
+  expect(shouldAsk({ search: '', navigation: 'reload' })).toBe(true);
+});
+
+test("doesn't ask on the way back or when the link already answers", () => {
+  expect(shouldAsk({ search: '', navigation: 'back_forward' })).toBe(false);
+  expect(shouldAsk({ search: '?seat=poker', navigation: 'navigate' })).toBe(false);
+});
+
+test('sends a refreshed paper back to the question, and nothing else', () => {
+  expect(backToQuestion('reload')).toBe(true);
+  expect(backToQuestion('navigate')).toBe(false);
+  expect(backToQuestion('back_forward')).toBe(false);
+  expect(backToQuestion(undefined)).toBe(false);
 });
