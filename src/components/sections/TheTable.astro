@@ -2,7 +2,10 @@
 import { getEntry } from 'astro:content';
 
 const { table } = (await getEntry('profile', 'main'))!.data;
-const tallest = Math.max(...table.teams.map((team) => team.members));
+// Stacks stand in proportion to member counts when every team has one, and all the same height otherwise.
+const counted = table.teams.every((team) => team.members);
+const tallest = counted ? Math.max(...table.teams.map((team) => team.members!)) : 1;
+const height = (members?: number) => (counted ? members! / tallest : 1);
 const chips = ['--color-cream', '--color-panel', '--color-felt', '--color-card-red'];
 const byline = [table.role, table.dates].filter(Boolean).join(' · ');
 ---
@@ -22,11 +25,11 @@ const byline = [table.role, table.dates].filter(Boolean).join(' · ');
             <li>
               <span
                 class="stack"
-                style={`--height: ${team.members / tallest}; --chip: var(${chips[i % chips.length]})`}
+                style={`--height: ${height(team.members)}; --chip: var(${chips[i % chips.length]})`}
                 aria-hidden="true"
               />
               <span class="mt-3">{team.name}</span>
-              <span class="text-small text-cream/80">{team.members}</span>
+              {counted && <span class="text-small text-cream/80">{team.members}</span>}
             </li>
           ))}
         </ul>
@@ -40,7 +43,8 @@ const byline = [table.role, table.dates].filter(Boolean).join(' · ');
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    gap: 3rem;
+    flex-wrap: wrap;
+    gap: 2rem 3rem;
     text-align: center;
   }
 

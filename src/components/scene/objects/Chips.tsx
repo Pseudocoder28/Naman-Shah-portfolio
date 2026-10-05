@@ -34,17 +34,25 @@ const DECOR = [
   { x: 0.86, z: -0.22, clay: 2, count: 7 },
 ];
 const SPACING = 0.055; // between the team stacks
+// The chips in each stack when the teams have no member counts, so every stack stands alike.
+const UNCOUNTED = 10;
 
 /**
  * Chip stacks: one per team in The Table section, a chip per member so the heights keep their
  * proportions, each labelled on its top chip, plus a few decorative stacks round the far rail.
- * The labels repeat the team names and counts The Table lists in the DOM.
+ * The labels repeat the team names, and counts when there are any, that The Table lists in the DOM.
  */
 export function Chips({ teams }: Pick<StageProps, 'teams'>) {
   const { geometries, materials } = useChip();
 
+  const counted = teams.every((team) => team.members);
   const stacks = [
-    ...teams.map((team, i) => ({ x: SPOTS.stacks.x + i * SPACING, z: SPOTS.stacks.z, clay: i % CLAYS.length, count: team.members })),
+    ...teams.map((team, i) => ({
+      x: SPOTS.stacks.x + i * SPACING,
+      z: SPOTS.stacks.z,
+      clay: i % CLAYS.length,
+      count: counted ? team.members! : UNCOUNTED,
+    })),
     ...DECOR,
   ];
   // Every chip, a little ragged in its stack, each nudged and turned by a fixed amount so nothing
@@ -88,7 +96,7 @@ export function Chips({ teams }: Pick<StageProps, 'teams'>) {
           rotation-x={-Math.PI / 2}
           receiveShadow
         >
-          {`${teams[i].name}\n${teams[i].members}`}
+          {counted ? `${teams[i].name}\n${teams[i].members}` : teams[i].name}
         </Text>
       ))}
     </group>

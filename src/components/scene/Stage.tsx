@@ -5,7 +5,7 @@ import { tier } from '../../lib/state';
 export type StageProps = {
   hole: readonly string[];
   board: readonly { street: string; card: string }[];
-  teams: readonly { name: string; members: number }[];
+  teams: readonly { name: string; members?: number }[];
 };
 
 // Hydrates at idle and renders nothing on the server. The scene loads only after the hero

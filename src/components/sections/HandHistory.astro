@@ -85,7 +85,7 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
 </script>
 
 <style>
-  /* Phones scroll a row of cards. Tablets deal three by two, desktops one row of six. */
+  /* Phones scroll a row of cards. Wider screens deal them left to right at a readable width. */
   .row {
     display: flex;
     gap: 1rem;
@@ -103,14 +103,8 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
   @media (min-width: 768px) {
     .row {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 20rem));
       overflow: visible;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .row {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }
 
