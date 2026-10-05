@@ -18,16 +18,19 @@
         "value": "May 2031"
       },
       {
-        "label": "ISC grade 12",
-        "value": "99.25%"
+        "label": "Grade 12 board exams",
+        "value": "99.25%",
+        "note": "ISC, India: top of the state and 4th in the country"
       },
       {
         "label": "Euclid 2026",
-        "value": "94/100"
+        "value": "94/100",
+        "note": "Waterloo's math contest: top 50 of almost 24,000"
       },
       {
-        "label": "Council led",
-        "value": "75"
+        "label": "Student council led",
+        "value": "75 members",
+        "note": "Representing more than 2,000 students"
       }
     ]
   },
@@ -80,6 +83,22 @@
         "Spring",
         "RAG",
         "LLM"
+      ],
+      "suit": "hearts"
+    },
+    {
+      "company": "Neocab Pvt Ltd",
+      "role": "Software Engineering Intern",
+      "start": "May 2022",
+      "end": "Aug 2022",
+      "location": "India",
+      "result": "Built a full-stack e-commerce website and app with five other interns that increased sales by 200%.",
+      "details": [
+        "Built a custom notification system with JavaScript and WebSockets for real-time messages between employees and supervisors."
+      ],
+      "tags": [
+        "JavaScript",
+        "WebSockets"
       ],
       "suit": "hearts"
     }

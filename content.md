@@ -15,11 +15,11 @@ The single source of every word on the site. Replace each TODO, delete any line 
 
 ## player
 - blurb (three sentences at most): I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm looking for a quant development or software engineering co-op.
-- stats (four at most):
+- stats (four at most, each with an optional note in plain words):
   - Graduating: May 2031
-  - ISC grade 12: 99.25%
-  - Euclid 2026: 94/100
-  - Council led: 75
+  - Grade 12 board exams: 99.25% (note: ISC, India: top of the state and 4th in the country)
+  - Euclid 2026: 94/100 (note: Waterloo's math contest: top 50 of almost 24,000)
+  - Student council led: 75 members (note: Representing more than 2,000 students)
 
 ## hand
 - hole: 7h 2s
@@ -50,6 +50,17 @@ Suits: spades for quant and trading, hearts for product and full-stack, diamonds
   - Owned authentication and role-based authorization across multiple sites, so each user reached only the records their role allowed.
   - Built an internal LLM assistant using RAG over the ERP's data, letting executives ask about inventory, invoicing, procurement, production, HR and sales in plain English.
 - tags: Java, Spring, RAG, LLM
+- suit: hearts
+
+### Neocab Pvt Ltd
+- role: Software Engineering Intern
+- start: May 2022
+- end: Aug 2022
+- location: India
+- result: Built a full-stack e-commerce website and app with five other interns that increased sales by 200%.
+- details:
+  - Built a custom notification system with JavaScript and WebSockets for real-time messages between employees and supervisors.
+- tags: JavaScript, WebSockets
 - suit: hearts
 
 ## board
