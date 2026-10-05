@@ -1,0 +1,165 @@
+---
+// The question a first-time visitor sees over the table: do you play? Yes keeps them here, no takes
+// them to the morning paper. It opens from an inline script as the page parses, so the table never
+// flashes up first, and without JavaScript it never opens at all.
+import { getEntry } from 'astro:content';
+import { shouldAsk } from '../../lib/seat';
+
+const { straight } = (await getEntry('profile', 'main'))!.data;
+const gate = straight?.gate;
+// The same function the tests cover, compiled and written into the page.
+const script = `(() => {
+  const ask = ${shouldAsk.toString()};
+  const dialog = document.getElementById('seat');
+  const remember = (seat) => { try { localStorage.setItem('seat', seat); } catch {} };
+  let stored = null;
+  try { stored = localStorage.getItem('seat'); } catch {}
+  const params = new URLSearchParams(location.search);
+  if (params.get('seat') === 'poker') {
+    remember('poker');
+    history.replaceState(null, '', location.pathname + location.hash);
+  }
+  if (ask({ stored, hash: location.hash, search: params.toString() })) dialog.showModal();
+  dialog.addEventListener('click', (event) => {
+    const choice = event.target.closest('[data-seat]');
+    if (!choice) return;
+    remember(choice.dataset.seat);
+    if (choice.dataset.seat === 'poker') dialog.close();
+  });
+})();`;
+---
+
+{
+  gate && (
+    <>
+      <dialog id="seat" class="seat" aria-labelledby="seat-question" aria-describedby="seat-note">
+        <h2 id="seat-question" class="text-h2">{gate.question}</h2>
+        {gate.note && <p id="seat-note" class="mt-3 text-cream/80">{gate.note}</p>}
+        <div class="choices">
+          <button type="button" class="choice card-stock" data-seat="poker" autofocus>
+            <span class="pip" aria-hidden="true">♠</span>
+            <span class="label">{gate.yes}</span>
+            <span class="pip end" aria-hidden="true">♠</span>
+          </button>
+          <a class="choice paper" href="/straight" data-seat="straight">
+            <span class="masthead" aria-hidden="true">{straight.masthead}</span>
+            <span class="label">{gate.no}</span>
+            <span class="lines" aria-hidden="true" />
+          </a>
+        </div>
+      </dialog>
+      <script is:inline set:html={script} />
+    </>
+  )
+}
+
+<style>
+  .seat {
+    width: min(36rem, calc(100% - 2rem));
+    margin: auto;
+    border: 1px solid var(--color-brass);
+    border-radius: var(--radius-panel);
+    padding: 2.5rem;
+    background: var(--color-rail);
+    color: var(--color-cream);
+    text-align: center;
+    box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.8);
+  }
+
+  .seat::backdrop {
+    background: color-mix(in srgb, var(--color-room) 75%, transparent);
+    backdrop-filter: blur(3px);
+  }
+
+  .choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  /* Two things to pick up: a playing card for the table, a folded morning paper for the rest. */
+  .choice {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 10rem;
+    padding: 2rem 1rem;
+    border-radius: var(--radius-card);
+    color: var(--color-ink);
+    font-size: 1.25rem;
+    line-height: 1.3;
+    transition:
+      translate 0.35s cubic-bezier(0.215, 0.61, 0.355, 1),
+      rotate 0.35s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .choice:hover,
+  .choice:focus-visible {
+    translate: 0 -4px;
+    rotate: -1.5deg;
+  }
+
+  .choice.paper:hover,
+  .choice.paper:focus-visible {
+    rotate: 1.5deg;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .choice {
+      transition: none;
+    }
+  }
+
+  .pip {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .pip.end {
+    top: auto;
+    left: auto;
+    right: 0.75rem;
+    bottom: 0.6rem;
+    rotate: 180deg;
+  }
+
+  .paper {
+    border-radius: 2px;
+    background: var(--color-cream);
+    box-shadow:
+      0 1px 1px rgb(0 0 0 / 0.25),
+      0 16px 28px -14px rgb(0 0 0 / 0.65);
+  }
+
+  .masthead {
+    position: absolute;
+    top: 0.6rem;
+    inset-inline: 0.75rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 3px double color-mix(in srgb, var(--color-ink) 35%, transparent);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  /* Columns of type, suggested, under the headline. */
+  .lines {
+    position: absolute;
+    inset: auto 0.75rem 0.75rem;
+    height: 1.5rem;
+    background: repeating-linear-gradient(transparent 0 4px, color-mix(in srgb, var(--color-ink) 15%, transparent) 4px 5px);
+  }
+
+  @media (max-width: 479px) {
+    .seat {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .choice {
+      min-height: 8.5rem;
+      font-size: 1.0625rem;
+    }
+  }
+</style>

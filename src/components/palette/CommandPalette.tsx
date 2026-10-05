@@ -154,6 +154,10 @@ export default function CommandPalette({ site }: { site: CollectionEntry<'profil
               Show performance HUD
               <kbd aria-hidden="true">H</kbd>
             </Command.Item>
+            <Command.Item value="Read the morning paper" keywords={['plain', 'newspaper', 'no poker', 'simple', 'straight']} onSelect={() => (close(), (location.href = '/straight'))}>
+              Read the morning paper
+              {enter}
+            </Command.Item>
             <Command.Item value="How this table works" keywords={['about', 'architecture', 'built', 'source']} onSelect={() => (close(), thisTableOpen.set(true))}>
               How this table works
               {enter}
