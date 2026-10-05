@@ -1,7 +1,8 @@
 ---
-// The question a first-time visitor sees over the table: do you play? Yes keeps them here, no takes
-// them to the morning paper. It opens from an inline script as the page parses, so the table never
-// flashes up first, and without JavaScript it never opens at all.
+// The question a first-time visitor sees over the table: do you play? Yes deals them in: the two cards
+// they picked fly down to the table as the question clears, and the hand is dealt. No takes them to
+// the morning paper. It opens from an inline script as the page parses, so the table never flashes
+// up first, and without JavaScript it never opens at all.
 import { getEntry } from 'astro:content';
 import { shouldAsk } from '../../lib/seat';
 
@@ -20,11 +21,27 @@ const script = `(() => {
     history.replaceState(null, '', location.pathname + location.hash);
   }
   if (ask({ stored, hash: location.hash, search: params.toString() })) dialog.showModal();
+  // The motion pass deals on this event, or on the flag if it hasn't loaded yet.
+  const deal = () => {
+    document.documentElement.dataset.deal = 'now';
+    document.dispatchEvent(new Event('seat:deal'));
+  };
   dialog.addEventListener('click', (event) => {
     const choice = event.target.closest('[data-seat]');
-    if (!choice) return;
+    if (!choice || dialog.classList.contains('leaving')) return;
     remember(choice.dataset.seat);
-    if (choice.dataset.seat === 'poker') dialog.close();
+    if (choice.dataset.seat !== 'poker') return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return dialog.close(), deal();
+    // The panel clears and the two cards drop toward the table, where the deal picks them up.
+    dialog.classList.add('leaving');
+    choice.querySelectorAll('.hole').forEach((card, i) => {
+      const side = i ? -1 : 1;
+      card.animate(
+        [{}, { transform: 'translate(' + side * 3 + 'rem, 60vh) rotate(' + side * 14 + 'deg) scale(0.6)', opacity: 0 }],
+        { duration: 650, delay: i * 70, easing: 'cubic-bezier(0.55, 0.06, 0.68, 0.19)', fill: 'forwards' },
+      );
+    });
+    setTimeout(() => (dialog.close(), deal()), 600);
   });
 })();`;
 ---
@@ -36,10 +53,13 @@ const script = `(() => {
         <h2 id="seat-question" class="text-h2">{gate.question}</h2>
         {gate.note && <p id="seat-note" class="mt-3 text-cream/80">{gate.note}</p>}
         <div class="choices">
-          <button type="button" class="choice card-stock" data-seat="poker" autofocus>
-            <span class="pip" aria-hidden="true">♠</span>
-            <span class="label">{gate.yes}</span>
-            <span class="pip end" aria-hidden="true">♠</span>
+          <button type="button" class="choice deal-in" data-seat="poker" autofocus>
+            <span class="hole under" aria-hidden="true" />
+            <span class="hole over card-stock">
+              <span class="pip" aria-hidden="true">♠</span>
+              <span class="label">{gate.yes}</span>
+              <span class="pip end" aria-hidden="true">♠</span>
+            </span>
           </button>
           <a class="choice paper" href="/straight" data-seat="straight">
             <span class="masthead" aria-hidden="true">{straight.masthead}</span>
@@ -69,6 +89,44 @@ const script = `(() => {
   .seat::backdrop {
     background: color-mix(in srgb, var(--color-room) 75%, transparent);
     backdrop-filter: blur(3px);
+  }
+
+  /* Yes clears the panel while its cards fall to the table, so they mustn't be clipped by it. */
+  .seat {
+    overflow: visible;
+    transition:
+      background-color 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
+      border-color 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
+      box-shadow 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .seat::backdrop {
+    transition: opacity 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .seat.leaving {
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .seat.leaving::backdrop {
+    opacity: 0;
+  }
+
+  .seat > :not(.choices),
+  .choice.paper {
+    transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .seat.leaving > :not(.choices),
+  .seat.leaving .choice.paper {
+    opacity: 0;
+  }
+
+  /* The cards leave their button behind, so its focus ring goes too. */
+  .seat.leaving .deal-in {
+    outline: none;
   }
 
   .choices {
@@ -103,6 +161,61 @@ const script = `(() => {
   .choice.paper:hover,
   .choice.paper:focus-visible {
     rotate: 1.5deg;
+  }
+
+  /* Yes is a hand of two: a face card with a second card behind it that fans out under the pointer,
+     the way a hand opens when you look at it. */
+  .deal-in {
+    padding: 0;
+    background: none;
+  }
+
+  .deal-in:hover,
+  .deal-in:focus-visible {
+    translate: none;
+    rotate: none;
+  }
+
+  .hole {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 2rem 1rem;
+    border-radius: var(--radius-card);
+    transition:
+      translate 0.45s cubic-bezier(0.215, 0.61, 0.355, 1),
+      rotate 0.45s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .under {
+    border: 0.35rem solid var(--color-cream);
+    background: repeating-linear-gradient(
+      45deg,
+      var(--color-card-red) 0 0.3rem,
+      color-mix(in srgb, var(--color-card-red), black 25%) 0.3rem 0.6rem
+    );
+    box-shadow: 0 16px 28px -14px rgb(0 0 0 / 0.65);
+    rotate: 3deg;
+    translate: 0.35rem -0.2rem;
+  }
+
+  .deal-in:hover .under,
+  .deal-in:focus-visible .under {
+    rotate: 12deg;
+    translate: 1.6rem -0.6rem;
+  }
+
+  .deal-in:hover .over,
+  .deal-in:focus-visible .over {
+    rotate: -4deg;
+    translate: -0.5rem -0.35rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hole {
+      transition: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
