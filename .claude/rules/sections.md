@@ -10,13 +10,13 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 
 ## Nav
 - Left: "Naman" in EB Garamond, linking to the top. From 1024px wide the stage's chip riffle sits beside it, in a slot that holds its size from the first paint.
-- Right: Hand History, The Board, Showdown, a Résumé button, a ⌘K button (Ctrl K on Windows and Linux) and, in phase 3, a sound toggle.
+- Right: Hand History, The Board, Showdown, a folded-newspaper icon to the morning paper at /straight (from 640px wide; the phone sheet lists The Morning After instead), a Résumé button, a ⌘K button (Ctrl K on Windows and Linux) and, in phase 3, a sound toggle.
 - Transparent over the hero. After the hero it sits on rail #3A3329 at 90% opacity with a light backdrop blur.
 - Under 768px the links move into a sheet opened by a menu button. The Résumé button stays visible.
 - There is no login and no sign up.
 
 ## The Deal (hero)
-- Full viewport height. A left-aligned copy block over the room: the name as the display heading, the tagline, then two buttons: "View the hand" (scrolls to The Player) and "Résumé" (opens the PDF in a new tab).
+- Full viewport height. A left-aligned copy block over the room: the name as the display heading, the tagline, then two buttons: "View the hand" (scrolls to The Player) and "Résumé" (opens the PDF in a new tab). Under them lies a folded morning paper, a little askew with a corner turned down: the masthead and "Not a card player? The same story, in plain print.", a link to /straight that straightens and lifts under the pointer.
 - The deal waits for the visitor: a "Deal the hand" button over the table, or a click anywhere on the table that isn't a link or a button. On the static tier the same button deals the 2D hand instead. Then the camera pushes in for the spring, and the two hole cards land face down at the player's seat, one on the other, as the camera drops to the player's view.
 - The hole cards wait face down. While the pointer is over them, their near ends lift together to show both indices, and they lie back down when it leaves. A "Show the hand" button takes the deal button's place: hovering or focusing it lifts them the same way, and it, or a click anywhere that isn't on a control, spreads them and turns them face up. Keyboard focus moves to "View the hand" when the button goes. The board's streets deal whether or not the hand is face up.
 - A quiet scroll cue at the bottom: a thin brass line that grows downward and disappears after the first scroll.
@@ -39,7 +39,7 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 - Face: rank and suit from content in the corners, the project name, the one-line pitch, the metric and stack tags.
 - Activating a card opens the project sheet: an accessible dialog on a cream panel with the details markdown, the stack and the links.
 - The equity readout sits under the board, as one strip on a wide screen, and updates as each street lands.
-- Phones (under 768px) get the board at a glance instead of the row of full cards, which only ever showed one and a half at a time: all five cards small in one row under their street names, face down until their street is dealt, then turned over with a 2D flip. The readout and its deal button sit right under them, so a deal and its equity share the screen, and the dealt projects list under the readout as rows (rank and suit, name and metric) that open each project's sheet. motion.ts measures the section, not the hidden row, to decide whether the board starts dealt.
+- Phones (under 768px) also get the board at a glance, since the row of full cards only ever shows one and a half at a time: all five cards small in one row under their street names, face down until their street is dealt, then turned over with a 2D flip. The readout and its deal button sit right under them, so a deal and its equity share the screen, and the full cards follow under the readout as the swipeable row, dealt the same way. motion.ts measures the section, not the row, to decide whether the board starts dealt.
 - The project sheet shows the metric in card red under the pitch.
 
 ## The Cashes (awards)

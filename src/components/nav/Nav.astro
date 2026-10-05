@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 
-const { site } = (await getEntry('profile', 'main'))!.data;
+const { site, straight } = (await getEntry('profile', 'main'))!.data;
 const links = [
   { id: 'hand-history', name: 'Hand History' },
   { id: 'the-board', name: 'The Board' },
@@ -22,6 +22,18 @@ const links = [
     </ul>
     <div class="flex items-center gap-3">
       {/* On a phone the full name leaves no room for it here, so it moves into the sheet. */}
+      {/* The morning paper, folded small: the same story without the cards. */}
+      {
+        straight && (
+          <a href="/straight" class="pill paper hidden sm:inline-flex" aria-label="Read the morning paper" title={straight.footer}>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 5h13v13a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2z" />
+              <path d="M17 8h3v10a2 2 0 0 1-2 2" />
+              <path d="M7 9h7M7 12h7M7 15h4" />
+            </svg>
+          </a>
+        )
+      }
       {site.resumePath && <a href={site.resumePath} target="_blank" rel="noopener" class="pill hidden sm:inline-block">Résumé</a>}
       <button type="button" class="pill key" aria-label="Command palette" aria-haspopup="dialog" data-palette>
         <span data-mod>⌘</span>K
@@ -34,6 +46,7 @@ const links = [
     <ul class="flex flex-col gap-6 text-h3">
       {links.map((link) => <li><a href={`#${link.id}`}>{link.name}</a></li>)}
       {site.resumePath && <li class="sm:hidden"><a href={site.resumePath} target="_blank" rel="noopener">Résumé</a></li>}
+      {straight && <li><a href="/straight">{straight.masthead}</a></li>}
     </ul>
     <button type="button" class="pill mt-8" popovertarget="nav-sheet" popovertargetaction="hide">Close</button>
   </div>
@@ -112,6 +125,11 @@ const links = [
     height: 3rem;
     translate: 0 -0.5rem;
     pointer-events: none;
+  }
+
+  .paper {
+    align-items: center;
+    padding-inline: 0.6rem;
   }
 
   /* Wide enough for "Ctrl K", so swapping the label never shifts the nav. */
