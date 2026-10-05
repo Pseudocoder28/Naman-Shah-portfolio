@@ -68,7 +68,15 @@ Assign cards so hole + board are seven distinct valid cards and the streets are 
 - role: Student President
 - dates: September 2024 to September 2025
 - summary: Led a 75-member student council representing more than 2,000 students.
-- teams (committees): Discipline, Cultural, Well-being, Literary, Sports. Member counts per committee were NOT given. Do not invent them: either render five equal, unlabelled-height stacks with the committee names (noting the council total of 75), or ask the user for the counts (they must add up to 75 if given). The zod schema currently requires a positive member count per team, so adjust it to make members optional.
+- council size: 75 members (use 75), representing more than 2,000 students
+- teams (committees, confirmed counts, use as the chip stacks):
+  - Discipline: 20
+  - Sports: 19
+  - Literary: 12
+  - Well-being: 11
+  - Cultural: 11
+  - (plus President and Vice-President, making 75)
+- Never put any other students' names on the site.
 
 ## skills
 Languages: Python, Java, JavaScript, TypeScript, C, C++, C#, SQL, Bash, R. Frameworks: Spring, FastAPI, Flask, Django, Node, React, Angular. AI/ML: TensorFlow, XGBoost, OpenCV, YOLO, ONNX Runtime, CNNs, LSTMs, reinforcement learning, time series forecasting. Tools: Linux, Git, Docker, Kubernetes, Jenkins, AWS (SageMaker, EC2, S3), Airflow, MongoDB, PostgreSQL.
