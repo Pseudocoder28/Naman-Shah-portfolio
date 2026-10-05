@@ -2,7 +2,10 @@
 import { getEntry } from 'astro:content';
 import { PIPS, type Suit } from '../../lib/deck';
 
-const { experience, suits } = (await getEntry('profile', 'main'))!.data;
+const { experience, suits, drawing, site } = (await getEntry('profile', 'main'))!.data;
+// Suits no card is dealt in yet. The legend shows them as open, and the drawing line asks for them.
+const held = new Set(experience.map((job) => job.suit));
+const open = suits ? Object.keys(suits).filter((suit) => !held.has(suit as Suit)) : [];
 const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
 ---
 
@@ -63,12 +66,24 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
       suits && (
         <ul class="legend" role="list" data-follow>
           {Object.entries(suits).map(([suit, meaning]) => (
-            <li>
+            <li class:list={{ open: open.includes(suit) }}>
               <span aria-hidden="true">{PIPS[suit as Suit]}</span>
               <span class="sr-only">{title(suit)}:</span> {meaning}
             </li>
           ))}
         </ul>
+      )
+    }
+    {
+      drawing && open.length > 0 && (
+        <p class="drawing" data-follow>
+          {drawing.line}{' '}
+          {drawing.cta && site.email && (
+            <a href={`mailto:${site.email}`} class="deal-in">
+              {drawing.cta}
+            </a>
+          )}
+        </p>
       )
     }
   </div>
@@ -238,5 +253,29 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
     margin-top: 2rem;
     font-size: var(--text-small);
     color: color-mix(in srgb, var(--color-cream) 80%, transparent);
+  }
+
+  /* A suit still in the deck: drawn as an empty seat, a dashed outline round its meaning. */
+  .legend .open {
+    border: 1px dashed color-mix(in srgb, var(--color-brass) 70%, transparent);
+    border-radius: var(--radius-chip);
+    padding: 0 0.625rem;
+  }
+
+  .drawing {
+    max-width: 62ch;
+    margin-top: 1.25rem;
+    color: var(--color-cream);
+  }
+
+  .deal-in {
+    color: var(--color-lamp);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    white-space: nowrap;
+  }
+
+  .deal-in:hover {
+    color: var(--color-cream);
   }
 </style>
