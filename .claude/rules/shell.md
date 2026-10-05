@@ -9,9 +9,9 @@ paths:
 
 # Shell and state
 
-- One page. src/pages/index.astro composes the nav, the six sections in order and the footer. The Stage island sits in a fixed layer behind the content and only takes pointer events where the scene needs them.
-- Section ids match the nav and the palette: the-deal, the-player, hand-history, the-board, the-table, showdown.
-- src/layouts/Base.astro owns the head: title and description from content, the canonical URL, Open Graph and Twitter tags, the OG image (1200x630, made by scripts/make-og.mjs from the hero plate with Naman's name), an SVG favicon of a brass-rimmed chip, theme-color room #1B1009 and preloads for the hero plate and the two main font files.
+- Two pages. src/pages/straight.astro is the morning paper (see .claude/rules/paper.md). src/pages/index.astro composes the nav, the six sections in order and the footer. The Stage island sits in a fixed layer behind the content and only takes pointer events where the scene needs them.
+- Section ids match the nav and the palette: the-deal, the-player, hand-history, the-board, the-cashes, the-table, showdown.
+- src/layouts/Base.astro owns the head for both pages. Props: path (the canonical URL), plate (preload the hero plate; off for the paper), skip (the skip link) and title, plus a head slot for scripts that must run before first paint. It holds title and description from content, the canonical URL, Open Graph and Twitter tags, the OG image (1200x630, made by scripts/make-og.mjs from the hero plate with Naman's name), an SVG favicon of a brass-rimmed chip, theme-color room #1B1009 and preloads for the hero plate and the two main font files.
 - Add @astrojs/sitemap and a robots.txt that allows everything.
 - src/styles/tokens.css defines every token from CLAUDE.md as a custom property, plus spacing on a 4px base (4, 8, 12, 16, 24, 32, 48, 64, 96, 128), radii (cards 10px, panels 14px, chips fully round) and z-index layers (stage 0, content 10, nav 20, overlays 30, palette 40).
 - src/styles/global.css sets the base: room background, cream text on dark, ink text on cream panels, the brass focus ring (2px with a 3px offset) and a skip link to #the-player.

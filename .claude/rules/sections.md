@@ -31,7 +31,7 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 - One playing card per role, dealt left to right in a row on desktop and in a horizontal scroll-snap row on phones.
 - Face: the suit from content in the corners, then company, role, dates and the one-sentence result.
 - Activating a card (click, Enter or Space) flips it to the back, which lists the details and tags. Each card is a button with aria-expanded, and the back content is in the DOM.
-- A one-line suit legend sits under the row.
+- A one-line suit legend sits under the row. Suits no card holds yet show as open seats, a dashed outline round their meaning, and while any are open the drawing line from content follows, with its "Deal me in" link to the email address.
 
 ## The Board (projects)
 - Five cards laid out as a real board: three for the flop, a small gap, the turn, a small gap, the river. Street names (Flop, Turn, River) sit above in small EB Garamond.
@@ -53,4 +53,7 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 ## Showdown (contact)
 - The heading, the inviting sentence from content, then four large chips as buttons: Email (copies the address and shows "Email copied"), GitHub, LinkedIn and Résumé.
 - A hint below: "Press ⌘K for everything else" (Ctrl K on Windows and Linux).
-- The footer follows.
+- The footer follows, with a link to the morning paper at /straight for visitors who don't play.
+
+## The seat question
+- A first visit asks "Do you play poker?" in a dialog over the hero. See .claude/rules/paper.md.

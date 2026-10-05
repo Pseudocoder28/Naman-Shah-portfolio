@@ -4,6 +4,8 @@
 
 Naman Shah's personal portfolio for software engineering and quant roles, built as one hand of poker at a private table in a late-night lounge. The visitor sits down, the cards are dealt and each section is a street of the hand: The Deal (hero), The Player (about), Hand History (experience), The Board (projects), The Cashes (awards), The Table (leadership) and Showdown (contact).
 
+Visitors who don't play poker get a second version of the same story at /straight: The Morning After, a morning newspaper with 3D page turns. A first visit to / asks which they'd like. See .claude/rules/paper.md.
+
 The look comes from the frames in /reference, which are stills from an AI-generated concept video. Match their lighting, materials and lens. Never copy their text: it is garbled, and some of it is blackjack ("Dealer busts", "Double down", "Stand"), which must never appear on this site. The video's "Login" and "Sign up" links don't exist here either.
 
 ## Origin
@@ -24,7 +26,7 @@ Build only what belongs to the current phase unless the task names a later one. 
 - Tailwind for layout. Design tokens are CSS custom properties in src/styles/tokens.css.
 - React only inside islands: Stage (the WebGL scene, client:idle: it renders nothing on the server and dynamically imports the scene only after the hero plate has loaded, so React and three.js arrive after first paint), CommandPalette (client:idle) and the HUD panels (client:idle, phase 2).
 - Nanostores with @nanostores/react for state shared between the page and the islands: scroll progress, active section, quality tier and sound, plus HUD visibility, the street The Board has dealt, whether the This Table panel is open and the stage's render stats. Stores live in src/lib/state.
-- three, @react-three/fiber, @react-three/drei and @react-three/postprocessing, imported only inside src/components/scene and src/components/hud.
+- three, @react-three/fiber, @react-three/drei and @react-three/postprocessing, imported only inside src/components/scene and src/components/hud. The morning paper uses CSS 3D with GSAP and no three.js.
 - Phase 3 only: three-custom-shader-material for the card bend, @react-three/rapier for chip physics (lazy-loaded) and @sparkjsdev/spark for the splat room.
 - GSAP with ScrollTrigger, ScrollSmoother, SplitText, Flip and CustomEase for all motion. Follow the GSAP skills in .claude/skills. No other animation library.
 - cmdk for the palette. Howler.js for sound (phase 3).
@@ -63,6 +65,7 @@ Sampled from the reference frames, except lamp, which was chosen.
 | HUDs and poker math | src/components/hud, src/lib/poker, src/workers, tests/poker, src/integrations | .claude/rules/hud.md | hud |
 | Palette | src/components/palette | .claude/rules/palette.md | palette |
 | Sound | src/lib/audio, public/audio | .claude/rules/audio.md | audio |
+| Morning paper and seat question | src/components/paper, src/pages/straight.astro, src/components/sections/SeatQuestion.astro, src/lib/seat.ts | .claude/rules/paper.md | paper |
 
 Each spec loads automatically when you open files in its area. Read it yourself before starting in an area whose folder is still empty. Stay inside your workspace's area. If you need a change elsewhere, describe it in your summary instead of making it.
 

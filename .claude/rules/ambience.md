@@ -32,7 +32,7 @@ A private card room in a members' lounge, late at night. Dark walnut walls, a ba
 
 ## Typography
 - EB Garamond for headings and body. Scale: display clamp(3rem, 7vw, 5.5rem), h2 2.75rem, h3 1.75rem, body 1.125rem with a 1.65 line height, small 0.875rem.
-- IBM Plex Mono only inside HUD-style panels (stats, equity, performance, This Table), with tabular numbers.
+- IBM Plex Mono only inside HUD-style panels (stats, equity, performance, This Table), with tabular numbers, and for figures and box scores in the morning paper.
 - Body lines under 70 characters. Headings in sentence case, except the section names, which are proper names: The Deal, The Player, Hand History, The Board, The Cashes, The Table, Showdown.
 - No single accented word in a headline, no all-caps labels, no eyebrow labels above headings.
 
