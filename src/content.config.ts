@@ -57,7 +57,17 @@ const profile = defineCollection({
       teams: z.array(z.object({ name: z.string(), members: z.number().int().positive().optional() })).default([]),
     }),
     awards: z
-      .array(z.object({ name: z.string(), year: text, result: text, note: text }))
+      .array(
+        z.object({
+          name: z.string(),
+          year: text,
+          result: text,
+          note: text,
+          about: text,
+          stats: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+          source: z.object({ label: z.string(), href: link }).optional(),
+        }),
+      )
       .default([]),
     showdown: text,
   }),

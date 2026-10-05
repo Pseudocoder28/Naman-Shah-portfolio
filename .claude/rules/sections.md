@@ -42,7 +42,8 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 
 ## The Cashes (awards)
 - Between The Board and The Table: the hand's winnings so far. One cream ticket per award in a grid, newest and biggest first.
-- Each ticket: the year on a stub behind a brass perforation, then the contest name, the result in card red and the optional note.
+- Each ticket: the year on a stub behind a brass perforation, then the contest name, the result in card red, the optional note and "See the field".
+- Activating a ticket opens a sheet like The Board's: an accessible dialog on a cream panel with what the contest is, the field's official numbers (Naman's own result first, in card red) and a link to the source. Only numbers the source publishes go in, so no invented medians or percentiles.
 - Reachable from the palette. It stays out of the nav, which has no room for a fourth link at 768px.
 
 ## The Table (leadership)

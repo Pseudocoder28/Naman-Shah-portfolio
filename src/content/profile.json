@@ -108,42 +108,203 @@
       "name": "ISC grade 12",
       "year": "2026",
       "result": "99.25%",
-      "note": "State topper and 4th in India."
+      "note": "State topper and 4th in India.",
+      "about": "The Indian School Certificate exams at the end of grade 12, set by India's CISCE board.",
+      "stats": [
+        {
+          "label": "My score",
+          "value": "99.25%"
+        },
+        {
+          "label": "My rank",
+          "value": "1st in the state, 4th in India"
+        },
+        {
+          "label": "Students who sat it",
+          "value": "About 103,000"
+        }
+      ],
+      "source": {
+        "label": "Deccan Herald, CISCE 2026 results",
+        "href": "https://deccanherald.com/education/cisce-results-2026-icse-class-10-pass-percentage-at-9918-isc-class-12-at-9914-3986176"
+      }
     },
     {
       "name": "Euclid",
       "year": "2026",
       "result": "94/100",
-      "note": "Top 50 of almost 24,000 entrants."
+      "note": "Top 50 of almost 24,000 entrants.",
+      "about": "The University of Waterloo's contest for students in their last year of high school: 10 questions in 2.5 hours, out of 100.",
+      "stats": [
+        {
+          "label": "My score",
+          "value": "94/100"
+        },
+        {
+          "label": "My placing",
+          "value": "Top 50"
+        },
+        {
+          "label": "Contestants",
+          "value": "23,985"
+        },
+        {
+          "label": "Average score",
+          "value": "52.2"
+        },
+        {
+          "label": "Distinction cutoff (top 25%)",
+          "value": "66"
+        }
+      ],
+      "source": {
+        "label": "CEMC, 2026 Euclid results",
+        "href": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026_Euclid_Results.pdf"
+      }
     },
     {
       "name": "Euclid",
       "year": "2025",
       "result": "89/100",
-      "note": "Top 150 of over 27,000 entrants."
+      "note": "Top 150 of over 27,000 entrants.",
+      "about": "The University of Waterloo's contest for students in their last year of high school: 10 questions in 2.5 hours, out of 100.",
+      "stats": [
+        {
+          "label": "My score",
+          "value": "89/100"
+        },
+        {
+          "label": "My placing",
+          "value": "Top 150"
+        },
+        {
+          "label": "Average score",
+          "value": "54.8"
+        },
+        {
+          "label": "Distinction cutoff (top 25%)",
+          "value": "68"
+        }
+      ],
+      "source": {
+        "label": "CEMC, 2025 Euclid results",
+        "href": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025EuclidResults.pdf"
+      }
     },
     {
       "name": "AMC 12A",
       "year": "2025",
       "result": "144/150",
-      "note": "Qualified for the AIME."
+      "note": "Qualified for the AIME.",
+      "about": "The Mathematical Association of America's 25-question, 75-minute contest for grade 12 and below, out of 150.",
+      "stats": [
+        {
+          "label": "My score",
+          "value": "144/150"
+        },
+        {
+          "label": "Average score",
+          "value": "64.44"
+        },
+        {
+          "label": "AIME qualifying cutoff",
+          "value": "96"
+        },
+        {
+          "label": "Distinction cutoff (top 5%)",
+          "value": "127.5"
+        }
+      ],
+      "source": {
+        "label": "MAA cutoffs, as reported by Think Academy",
+        "href": "https://www.thethinkacademy.com/blog/2025-amc-10-and-amc-12-cutoff-scores-qualification-thresholds/"
+      }
     },
     {
       "name": "CSMC",
       "year": "2025",
       "result": "60/60",
-      "note": "A perfect score, ranked 1st globally."
+      "note": "A perfect score, ranked 1st globally.",
+      "about": "The Canadian Senior Mathematics Contest, the University of Waterloo's contest for senior high school students, out of 60.",
+      "stats": [
+        {
+          "label": "My score",
+          "value": "60/60"
+        },
+        {
+          "label": "My rank",
+          "value": "1st"
+        },
+        {
+          "label": "Contestants",
+          "value": "15,153"
+        },
+        {
+          "label": "Average score",
+          "value": "28.6"
+        },
+        {
+          "label": "Distinction cutoff (top 25%)",
+          "value": "35"
+        }
+      ],
+      "source": {
+        "label": "CEMC, 2025 CSMC and CIMC results",
+        "href": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025CSIMCResultsBooklet.pdf"
+      }
     },
     {
       "name": "CCC Junior",
       "year": "2025",
-      "result": "73/75"
+      "result": "73/75",
+      "about": "The Canadian Computing Competition from the University of Waterloo: five programming problems in three hours, out of 75.",
+      "stats": [
+        {
+          "label": "My score",
+          "value": "73/75"
+        },
+        {
+          "label": "Field statistics",
+          "value": "Not published for 2025"
+        }
+      ],
+      "source": {
+        "label": "CEMC, Canadian Computing Competition",
+        "href": "https://cemc.uwaterloo.ca/contests/ccc"
+      }
     },
     {
       "name": "CCC Senior",
       "year": "2026",
       "result": "39/75",
-      "note": "Honour roll."
+      "note": "Honour roll.",
+      "about": "The harder division of the Canadian Computing Competition: five programming problems in three hours, out of 75.",
+      "stats": [
+        {
+          "label": "My score",
+          "value": "39/75"
+        },
+        {
+          "label": "Contestants",
+          "value": "2,439"
+        },
+        {
+          "label": "Average score",
+          "value": "15.56"
+        },
+        {
+          "label": "Distinction cutoff (top 25%)",
+          "value": "26"
+        },
+        {
+          "label": "Honour roll band",
+          "value": "39 to 44"
+        }
+      ],
+      "source": {
+        "label": "CEMC, 2026 CCC results",
+        "href": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCResults.pdf"
+      }
     }
   ],
   "table": {

@@ -13,7 +13,7 @@ content.md is the source Naman edits. src/content mirrors it as typed data valid
 - hand: hole (exactly two cards written like "As" and "Ks"), used by the equity readout
 - experience: company, role, start, end, location, result (one sentence), details (up to three bullets), tags, suit
 - board: exactly five projects, each with street (flop, flop, flop, turn, river), card (rank and suit, like "Qh"), name, pitch (one line), metric (one number with its unit), stack (tags), links (label and href) and details (markdown for the project sheet)
-- cashes (awards in profile.json): name, year, result (the score or rank), note (one short sentence); newest and biggest first
+- cashes (awards in profile.json): name, year, result (the score or rank), note (one short sentence), about (what the contest is), stats (label and value, from the source only), source (label and https href); newest and biggest first
 - table: org, role, dates, summary, teams (name and an optional member count; give every team a count or none, and never invent one)
 - showdown: one inviting sentence
 

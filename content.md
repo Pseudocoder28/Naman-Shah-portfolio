@@ -109,14 +109,70 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 - details: Students say what they want, answer a short questionnaire or browse everything. Events from Ticketmaster, the University of Waterloo and WUSA are filtered by interests, time, budget and travel distance, and signed-in students join a circle for each event through Supabase Auth. I'm the top contributor, with 21 of the project's 31 commits.
 
 ## cashes
-Awards and competition results, newest and biggest first.
-- ISC grade 12, 2026: 99.25%. State topper and 4th in India.
-- Euclid, 2026: 94/100. Top 50 of almost 24,000 entrants.
-- Euclid, 2025: 89/100. Top 150 of over 27,000 entrants.
-- AMC 12A, 2025: 144/150. Qualified for the AIME.
-- CSMC, 2025: 60/60. A perfect score, ranked 1st globally.
-- CCC Junior, 2025: 73/75.
-- CCC Senior, 2026: 39/75. Honour roll.
+Awards and competition results, newest and biggest first. Each ticket opens a sheet with what the contest is and the field's official numbers. Only numbers from the linked source go in; contests publish means and cutoffs, not medians, so there are none.
+
+### ISC grade 12, 2026: 99.25%. State topper and 4th in India.
+- about: The Indian School Certificate exams at the end of grade 12, set by India's CISCE board.
+- stats:
+  - My score: 99.25%
+  - My rank: 1st in the state, 4th in India
+  - Students who sat it: About 103,000
+- source: Deccan Herald, CISCE 2026 results: https://deccanherald.com/education/cisce-results-2026-icse-class-10-pass-percentage-at-9918-isc-class-12-at-9914-3986176
+
+### Euclid, 2026: 94/100. Top 50 of almost 24,000 entrants.
+- about: The University of Waterloo's contest for students in their last year of high school: 10 questions in 2.5 hours, out of 100.
+- stats:
+  - My score: 94/100
+  - My placing: Top 50
+  - Contestants: 23,985
+  - Average score: 52.2
+  - Distinction cutoff (top 25%): 66
+- source: CEMC, 2026 Euclid results: https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026_Euclid_Results.pdf
+
+### Euclid, 2025: 89/100. Top 150 of over 27,000 entrants.
+- about: The University of Waterloo's contest for students in their last year of high school: 10 questions in 2.5 hours, out of 100.
+- stats:
+  - My score: 89/100
+  - My placing: Top 150
+  - Average score: 54.8
+  - Distinction cutoff (top 25%): 68
+- source: CEMC, 2025 Euclid results: https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025EuclidResults.pdf
+
+### AMC 12A, 2025: 144/150. Qualified for the AIME.
+- about: The Mathematical Association of America's 25-question, 75-minute contest for grade 12 and below, out of 150.
+- stats:
+  - My score: 144/150
+  - Average score: 64.44
+  - AIME qualifying cutoff: 96
+  - Distinction cutoff (top 5%): 127.5
+- source: MAA cutoffs, as reported by Think Academy: https://www.thethinkacademy.com/blog/2025-amc-10-and-amc-12-cutoff-scores-qualification-thresholds/
+
+### CSMC, 2025: 60/60. A perfect score, ranked 1st globally.
+- about: The Canadian Senior Mathematics Contest, the University of Waterloo's contest for senior high school students, out of 60.
+- stats:
+  - My score: 60/60
+  - My rank: 1st
+  - Contestants: 15,153
+  - Average score: 28.6
+  - Distinction cutoff (top 25%): 35
+- source: CEMC, 2025 CSMC and CIMC results: https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025CSIMCResultsBooklet.pdf
+
+### CCC Junior, 2025: 73/75
+- about: The Canadian Computing Competition from the University of Waterloo: five programming problems in three hours, out of 75.
+- stats:
+  - My score: 73/75
+  - Field statistics: Not published for 2025
+- source: CEMC, Canadian Computing Competition: https://cemc.uwaterloo.ca/contests/ccc
+
+### CCC Senior, 2026: 39/75. Honour roll.
+- about: The harder division of the Canadian Computing Competition: five programming problems in three hours, out of 75.
+- stats:
+  - My score: 39/75
+  - Contestants: 2,439
+  - Average score: 15.56
+  - Distinction cutoff (top 25%): 26
+  - Honour roll band: 39 to 44
+- source: CEMC, 2026 CCC results: https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026CCCResults.pdf
 
 ## table
 - org: SNV Group of Schools, student council
