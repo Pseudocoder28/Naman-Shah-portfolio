@@ -12,7 +12,7 @@ paths:
 All three panels share one look: a brass frame around panel #363430, a small title bar like the reference frames, cream text and IBM Plex Mono with tabular numbers. All of them are keyboard reachable and work with screen readers.
 
 ## Equity readout
-The site's signature feature. As The Board deals, it shows how Param's hole cards (hand.hole in content) stand against one random opponent hand.
+The site's signature feature. As The Board deals, it shows how Naman's hole cards (hand.hole in content) stand against one random opponent hand.
 
 - It runs street by street: preflop, flop, turn and river. It starts preflop, and its button (Deal the flop, Deal the turn, Deal the river) deals one street at a time by writing the street store, which The Board's cards and the stage's deck follow. The button also asks for the hand, so the stage deals the hole cards first. It's gone once the river is out.
 - A ladder keeps each street's equity as it lands, so the hand reads as a story.
@@ -25,7 +25,7 @@ The site's signature feature. As The Board deals, it shows how Param's hole card
 
 ## Hand evaluator
 - Lives in src/lib/poker as pure TypeScript with no dependencies: card parsing, the equity functions and a 5-card and 7-card evaluator that returns a comparable rank and a category.
-- Param owns the evaluator's design. Before implementing it, propose an approach in a short note (for example rank counts with bitmask flush and straight detection, or a lookup table) and wait for his go-ahead. Comment the math so he can explain every line in an interview.
+- Naman owns the evaluator's design. Before implementing it, propose an approach in a short note (for example rank counts with bitmask flush and straight detection, or a lookup table) and wait for the go-ahead. Comment the math so every line can be explained in an interview.
 - Tests in tests/poker with Vitest, all passing before the readout ships:
   - Enumerating all 2,598,960 five-card hands yields exactly 7,462 distinct ranks.
   - Category counts across all five-card hands: 40 straight flushes, 624 four of a kinds, 3,744 full houses, 5,108 flushes, 10,200 straights, 54,912 three of a kinds, 123,552 two pairs, 1,098,240 pairs and 1,302,540 high cards.

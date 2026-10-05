@@ -50,7 +50,7 @@ const matches = counts.every((count, category) => count === published[category])
 console.log(`All ${hands.toLocaleString('en')} seven-card hands: ${(allHands / 1000).toFixed(2)} s, ${(hands / allHands / 1000).toFixed(1)} million evaluations a second`);
 console.log(`Category counts ${matches ? 'match' : 'DO NOT match'} the published table`);
 
-// Param's hand from content.md, read the way make-preflop.ts reads it: the hole cards, then the
+// Naman's hand from content.md, read the way make-preflop.ts reads it: the hole cards, then the
 // board from the project headings, flop first, then the turn and the river.
 const content = readFileSync(new URL('../../content.md', import.meta.url), 'utf8');
 const hole = content.match(/^- hole: (\S+) (\S+)/m)!.slice(1);

@@ -9,7 +9,7 @@ paths:
 Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, but nothing here depends on the stage.
 
 ## Nav
-- Left: "Param" in EB Garamond, linking to the top. From 1024px wide the stage's chip riffle sits beside it, in a slot that holds its size from the first paint.
+- Left: "Naman" in EB Garamond, linking to the top. From 1024px wide the stage's chip riffle sits beside it, in a slot that holds its size from the first paint.
 - Right: Hand History, The Board, Showdown, a Résumé button, a ⌘K button (Ctrl K on Windows and Linux) and, in phase 3, a sound toggle.
 - Transparent over the hero. After the hero it sits on rail #3A3329 at 90% opacity with a light backdrop blur.
 - Under 768px the links move into a sheet opened by a menu button. The Résumé button stays visible.
@@ -28,7 +28,7 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 - Phase 2: a small toggle on the panel opens the performance HUD.
 
 ## Hand History (experience)
-- One playing card per internship, dealt left to right in a row on desktop and in a horizontal scroll-snap row on phones.
+- One playing card per role, dealt left to right in a row on desktop and in a horizontal scroll-snap row on phones.
 - Face: the suit from content in the corners, then company, role, dates and the one-sentence result.
 - Activating a card (click, Enter or Space) flips it to the back, which lists the details and tags. Each card is a button with aria-expanded, and the back content is in the DOM.
 - A one-line suit legend sits under the row.
@@ -40,9 +40,14 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 - Activating a card opens the project sheet: an accessible dialog on a cream panel with the details markdown, the stack and the links.
 - The equity readout sits under the board, as one strip on a wide screen, and updates as each street lands.
 
+## The Cashes (awards)
+- Between The Board and The Table: the hand's winnings so far. One cream ticket per award in a grid, newest and biggest first.
+- Each ticket: the year on a stub behind a brass perforation, then the contest name, the result in card red and the optional note.
+- Reachable from the palette. It stays out of the nav, which has no room for a fourth link at 768px.
+
 ## The Table (leadership)
-- The Quant Research division story on the left: org, role, dates and the summary.
-- On the right, one chip stack per team with heights proportional to member counts, each labeled with its team name in HTML. The stacks become 3D in phase 2 and can be flicked in phase 3.
+- The student council story on the left: org, role, dates and the summary.
+- On the right, one chip stack per committee, each labeled with its name in HTML. With member counts for every team the heights are proportional and the counts show; without them every stack stands the same height and no count shows. The stacks become 3D in phase 2 and can be flicked in phase 3.
 
 ## Showdown (contact)
 - The heading, the inviting sentence from content, then four large chips as buttons: Email (copies the address and shows "Email copied"), GitHub, LinkedIn and Résumé.

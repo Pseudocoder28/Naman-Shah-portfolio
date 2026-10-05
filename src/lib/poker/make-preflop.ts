@@ -1,4 +1,4 @@
-// Param's exact preflop equity against one random hand, computed once and committed as
+// Naman's exact preflop equity against one random hand, computed once and committed as
 // preflop.json. Every five-card board from the 50 unseen cards (2,118,760) times every hand the
 // opponent could hold from the 45 cards left (990) is 2,097,572,400 matchups. That's too many for
 // a visitor's browser, so it runs here with a worker thread on every core.

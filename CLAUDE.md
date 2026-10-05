@@ -1,10 +1,14 @@
-# Param's portfolio: the poker table
+# Naman's portfolio: the poker table
 
 ## What this is
 
-A personal portfolio for software engineering and quant roles, built as one hand of poker at a private table in a late-night lounge. The visitor sits down, the cards are dealt and each section is a street of the hand: The Deal (hero), The Player (about), Hand History (experience), The Board (projects), The Table (leadership) and Showdown (contact).
+Naman Shah's personal portfolio for software engineering and quant roles, built as one hand of poker at a private table in a late-night lounge. The visitor sits down, the cards are dealt and each section is a street of the hand: The Deal (hero), The Player (about), Hand History (experience), The Board (projects), The Cashes (awards), The Table (leadership) and Showdown (contact).
 
 The look comes from the frames in /reference, which are stills from an AI-generated concept video. Match their lighting, materials and lens. Never copy their text: it is garbled, and some of it is blackjack ("Dealer busts", "Double down", "Stand"), which must never appear on this site. The video's "Login" and "Sign up" links don't exist here either.
+
+## Origin
+
+This repo started as a copy of Param Shah's poker-table template (paramshah07/portfolio-claude-setup). The design, stack and rules carry over, but every word, link and asset on the page is Naman's. BRIEF.md holds the facts the content came from. Never put Naman's phone number on the page or in content.md.
 
 ## Current phase: 2
 

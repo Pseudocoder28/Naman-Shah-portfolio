@@ -30,7 +30,7 @@ export function dealt(board: EquityReadoutProps['board'], upTo: Street) {
 }
 
 /**
- * Param's hole cards against one random hand, for the cards dealt so far. It starts preflop, and
+ * Naman's hole cards against one random hand, for the cards dealt so far. It starts preflop, and
  * its button deals the flop, the turn and then the river, one at a time, keeping each street's
  * equity in a ladder as the hand plays out. The worker does the counting, so a flop's million
  * matchups never block the page. Numbers count up to each new street's answer, and screen readers

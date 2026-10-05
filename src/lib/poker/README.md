@@ -9,7 +9,7 @@ Up to seven cards in, one integer out. The higher integer wins and equal integer
 | equity.ts | The enumeration: every runout, every opponent hand |
 | api.ts | computeEquity, computeHeadsUp and the outs, which is what the site calls |
 | make-preflop.ts | The one-off script behind preflop.json |
-| preflop.json | Param's exact preflop counts |
+| preflop.json | Naman's exact preflop counts |
 | src/workers/equity.worker.ts | Runs the jobs off the main thread |
 
 The tests are in tests/poker, and `node tests/poker/bench.ts` reproduces the benchmarks.
@@ -53,7 +53,7 @@ Put the suits in two teams, spades with hearts and diamonds with clubs. Two card
 
 ## Straights by shifting
 
-Copy the ace below the deuce, `(ranks << 1) | (ranks >>> 12)`, then AND the mask with itself shifted up by 1, 2, 3 and 4. Here is Param's river, A K Q J T 7 2:
+Copy the ace below the deuce, `(ranks << 1) | (ranks >>> 12)`, then AND the mask with itself shifted up by 1, 2, 3 and 4. Here is Naman's river, A K Q J T 7 2:
 
 ```
                A K Q J T 9 8 7 6 5 4 3 2 A
@@ -106,7 +106,7 @@ A higher card is always a higher bit and a more important field always sits high
 
 ## Equity: counting every matchup
 
-Equity against one random hand is exact. Every way to finish the board is dealt once. Each finished board builds its words once and scores Param's hand once, and each opponent hand only ORs in two more bits:
+Equity against one random hand is exact. Every way to finish the board is dealt once. Each finished board builds its words once and scores Naman's hand once, and each opponent hand only ORs in two more bits:
 
 ```
 for each runout:                                   1,081 on the flop
@@ -140,13 +140,13 @@ Node 22.18 and later run TypeScript directly, so the script needs no build step.
 
 ## Outs
 
-On the flop and turn the readout lists every unseen card that improves Param's hand, grouped by what it makes, strongest first. An out has to lift Param's hand by more categories than it lifts the board on its own. On Q♠ J♠ 7♦ the Q♥ turns ace high into a pair of queens, but everyone gets that pair, so it isn't an out. The rule looks only at categories, so a card that just improves a kicker or turns a straight into a higher straight isn't listed.
+On the flop and turn the readout lists every unseen card that improves Naman's hand, grouped by what it makes, strongest first. An out has to lift Naman's hand by more categories than it lifts the board on its own. On Q♠ J♠ 7♦ the Q♥ turns ace high into a pair of queens, but everyone gets that pair, so it isn't an out. The rule looks only at categories, so a card that just improves a kicker or turns a straight into a higher straight isn't listed.
 
-## Param's hand, street by street
+## Naman's hand, street by street
 
 7♥ 2♠ against one random hand, dealt the board from content.md:
 
-| Street | Board | Param holds | Win | Tie | Loss | Equity | Matchups |
+| Street | Board | Naman holds | Win | Tie | Loss | Equity | Matchups |
 |---|---|---|---|---|---|---|---|
 | Preflop | | Seven high | 31.710% | 5.747% | 62.543% | 34.584% | 2,097,572,400 |
 | Flop | K♣ Q♦ 7♦ | Pair of sevens | 57.116% | 4.477% | 38.407% | 59.354% | 1,070,190 |
@@ -162,7 +162,7 @@ A king or a queen isn't an out: it pairs the board, and everyone gets that pair.
 
 ## Benchmarks
 
-Apple M4 Pro, Node 22.20, one thread unless noted, from `node tests/poker/bench.ts`, which reads Param's hand from content.md. The 12-thread row is from `node src/lib/poker/make-preflop.ts`:
+Apple M4 Pro, Node 22.20, one thread unless noted, from `node tests/poker/bench.ts`, which reads Naman's hand from content.md. The 12-thread row is from `node src/lib/poker/make-preflop.ts`:
 
 | What | Time | Rate |
 |---|---|---|
@@ -188,7 +188,7 @@ In Chrome the worker's first flop took 31 ms, JIT warm-up included. The worker b
 - preflop.json matches the hole cards in content.md, or the test prints the command to rerun.
 - Monte Carlo agrees with preflop.json within its 95% interval and puts pocket aces near 85.2% against a random hand. Exact and Monte Carlo also agree on five sampled flops, using 99% intervals so that all five pass by chance 95% of the time, like one 95% comparison. Seeds are fixed, so every run deals the same cards.
 - Pocket aces against pocket kings come out near 82%: 81.3% against K♦ K♣ and 82.6% against K♠ K♥.
-- Param's flop has the 18 outs listed above, and a card that improves every hand alike isn't one.
+- Naman's flop has the 18 outs listed above, and a card that improves every hand alike isn't one.
 - Bad input is rejected, and the worker drops a job when a newer one arrives.
 
 The benchmark also checks all 133,784,560 seven-card hands against the published category counts.
@@ -220,7 +220,7 @@ Preflop against a random hand is 2,097,572,400 matchups: about 28 seconds on one
 The enumeration is a generator that yields after each slice of runouts, 46 slices on the flop. After each slice the worker pauses through a MessageChannel, which lets any newer message run first, then checks whether its job is still the latest and stops if it isn't. setTimeout(0) would be clamped to 4 ms after a few nested calls, and terminating the worker would throw away its warmed-up JIT. The page also ignores any answer whose id isn't the latest.
 
 **9. What counts as an out?**
-A card that lifts Param's hand by more categories than it lifts the board alone. On K♣ Q♦ 7♦ the K♥ gives Param two pair, kings and sevens, but it pairs the board, so everyone climbs the same one category and it isn't an out. With A♠ K♠ on A♦ 7♣ 2♥, a seven gives two pair to every hand with a pair, so it isn't one either. The rule only looks at categories, so a better kicker or a higher straight isn't listed.
+A card that lifts Naman's hand by more categories than it lifts the board alone. On K♣ Q♦ 7♦ the K♥ gives Naman two pair, kings and sevens, but it pairs the board, so everyone climbs the same one category and it isn't an out. With A♠ K♠ on A♦ 7♣ 2♥, a seven gives two pair to every hand with a pair, so it isn't one either. The rule only looks at categories, so a better kicker or a higher straight isn't listed.
 
 **10. How would you make it faster?**
-With 7♥ 2♠ the two suits Param doesn't hold are interchangeable, so many runouts and opponent hands come in pairs that share one answer, and suit isomorphism could skip one of each. A suited hand like A♠ K♠ leaves three interchangeable suits and groups of up to six. The inner loop could also update the board's rank masks for the opponent's two cards instead of rebuilding them. A seven-card lookup table like the Two Plus Two evaluator is faster still, but it's about 130 MB, far too big to ship to a browser. One idea that didn't work: counting two suits per 32-bit word in one popcount pass ran 9% slower in V8, so the plain version stayed.
+With 7♥ 2♠ the two suits Naman doesn't hold are interchangeable, so many runouts and opponent hands come in pairs that share one answer, and suit isomorphism could skip one of each. A suited hand like A♠ K♠ leaves three interchangeable suits and groups of up to six. The inner loop could also update the board's rank masks for the opponent's two cards instead of rebuilding them. A seven-card lookup table like the Two Plus Two evaluator is faster still, but it's about 130 MB, far too big to ship to a browser. One idea that didn't work: counting two suits per 32-bit word in one popcount pass ran 9% slower in V8, so the plain version stayed.

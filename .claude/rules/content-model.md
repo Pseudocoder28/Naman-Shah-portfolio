@@ -6,14 +6,15 @@ paths:
 
 # Content model
 
-content.md is the source Param edits. src/content mirrors it as typed data validated with zod. When they disagree, content.md wins: update src/content to match and never the other way round. A missing field renders nothing. Never fill a gap with invented text.
+content.md is the source Naman edits. src/content mirrors it as typed data validated with zod. When they disagree, content.md wins: update src/content to match and never the other way round. A missing field renders nothing. Never fill a gap with invented text.
 
 - site: name, tagline, title, description, email, github, linkedin, resumePath (public/resume.pdf), url
-- player: blurb (three sentences at most), stats (label, value, optional note; four at most, only numbers Param can defend)
+- player: blurb (three sentences at most), stats (label, value, optional note; four at most, only numbers Naman can defend)
 - hand: hole (exactly two cards written like "As" and "Ks"), used by the equity readout
 - experience: company, role, start, end, location, result (one sentence), details (up to three bullets), tags, suit
 - board: exactly five projects, each with street (flop, flop, flop, turn, river), card (rank and suit, like "Qh"), name, pitch (one line), metric (one number with its unit), stack (tags), links (label and href) and details (markdown for the project sheet)
-- table: org, role, dates, summary, teams (name and member count)
+- cashes (awards in profile.json): name, year, result (the score or rank), note (one short sentence); newest and biggest first
+- table: org, role, dates, summary, teams (name and an optional member count; give every team a count or none, and never invent one)
 - showdown: one inviting sentence
 
 The build must fail with a clear message when:

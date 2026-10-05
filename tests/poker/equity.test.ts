@@ -7,7 +7,7 @@ import preflop from '../../src/lib/poker/preflop.json';
 import type { EquityRequest, EquityResponse } from '../../src/workers/equity.worker';
 import { draw, mulberry32 } from './random';
 
-// Param's hand from content.md, dealt street by street.
+// Naman's hand from content.md, dealt street by street.
 const hole = ['7h', '2s'];
 const flop = ['Kc', 'Qd', '7d'];
 const turn = [...flop, '2c'];
@@ -125,7 +125,7 @@ test('heads-up counts every runout: 1,712,304 preflop, 990 on the flop, 44 on th
   expect(computeHeadsUp(hole, opponent, river).matchups).toBe(1);
 });
 
-test("lists Param's flop outs by what they make, strongest first", () => {
+test("lists Naman's flop outs by what they make, strongest first", () => {
   const { outs = [] } = computeEquity(hole, flop);
   expect(outs.map((group) => group.makes)).toEqual(['Three of a kind, sevens', 'Two pair, sevens and twos']);
   expect(outs[0].text).toBe('7♠ and 7♣ make three of a kind, sevens');
@@ -153,10 +153,10 @@ test('outs appear on the flop and turn only', () => {
   expect(computeEquity(hole, river).outs).toBeUndefined();
 });
 
-test("Param's river fills him up, and only bigger full houses beat him", () => {
+test("Naman's river fills up, and only bigger full houses beat it", () => {
   const result = computeEquity(hole, river);
   expect(result.madeHand).toBe('Full house, sevens full of twos');
-  // Of the 990 hands left, he loses to pocket kings or queens (three each) and to the last seven
+  // Of the 990 hands left, the hand loses to pocket kings or queens (three each) and to the last seven
   // with a king or a queen (three each), and splits with the last seven and a two (two).
   expect(result.loss * 990).toBeCloseTo(12, 9);
   expect(result.tie * 990).toBeCloseTo(2, 9);
