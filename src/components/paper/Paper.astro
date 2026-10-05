@@ -74,8 +74,11 @@ const contacts = {
   linkedin: site.linkedin && { label: 'LinkedIn', long: site.linkedin.replace('https://www.', ''), href: site.linkedin, attrs: external },
   resume: site.resumePath && { label: 'Résumé', long: 'Résumé (PDF)', href: site.resumePath, attrs: external },
 };
-// The front page's three numbers: the stats that are figures, not dates like "May 2031".
-const figures = player.stats.filter((s) => /^\d/.test(s.value)).slice(0, 3);
+// The front page's numbers: the figures sit three across, and a date like "May 2031" takes one line
+// above them, so every stat shows without a fourth column the page has no room for.
+const isFigure = (value: string) => /^\d/.test(value);
+const dated = player.stats.filter((s) => !isFigure(s.value));
+const figures = player.stats.filter((s) => isFigure(s.value)).slice(0, 3);
 const PIPS = { s: '♠', h: '♥', d: '♦', c: '♣' } as const;
 const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
 ---
@@ -144,8 +147,14 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
                       </details>
                     )}
                   </article>
-                  {figures.length > 0 && (
+                  {player.stats.length > 0 && (
                     <dl class="numbers" aria-label="By the numbers">
+                      {dated.map((s) => (
+                        <div class="dated">
+                          <dt>{s.label}</dt>
+                          <dd class="figure">{s.value}</dd>
+                        </div>
+                      ))}
                       {figures.map((s) => (
                         <div>
                           <dt>{s.label}</dt>
@@ -636,8 +645,8 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
   /* The front page stands on its own: who, what now, the numbers, how to reach him and the index. */
   .front-body {
     display: grid;
-    gap: 0.8em;
-    margin-top: 0.8em;
+    gap: 0.65em;
+    margin-top: 0.7em;
   }
 
   .name {
@@ -652,8 +661,8 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
   }
 
   .roles {
-    margin-top: 0.45em;
-    padding-top: 0.4em;
+    margin-top: 0.35em;
+    padding-top: 0.3em;
     border-top: 1px solid var(--rule);
   }
 
@@ -668,14 +677,33 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
   .numbers {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.6em 1em;
-    padding: 0.5em 0;
+    gap: 0.4em 1em;
+    padding: 0.45em 0;
     border-block: 1px solid var(--color-ink);
   }
 
   .numbers > div {
     display: flex;
     flex-direction: column;
+  }
+
+  /* A phone has the height a book page doesn't, so its figures stack one per row. */
+  @media (max-width: 559px) {
+    .numbers {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* A date stat runs across the top of the block on one line: the figure, then its label. */
+  .numbers .dated {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.6em;
+  }
+
+  .numbers .dated .figure {
+    font-size: 1.1em;
   }
 
   /* The figure reads first, above its label. */
@@ -704,7 +732,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
     display: flex;
     align-items: baseline;
     gap: 0.6em;
-    padding: 0.15em 0;
+    padding: 0.08em 0;
     text-decoration: none;
   }
 
