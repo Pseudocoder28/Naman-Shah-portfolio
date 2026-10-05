@@ -341,8 +341,7 @@
         "id": "sports",
         "label": "D1",
         "name": "Sports",
-        "headline": "Box scores",
-        "deck": "Each result against the whole field. Averages and cutoffs are the organizers' own published numbers."
+        "headline": "Box scores"
       },
       {
         "id": "community",
@@ -366,21 +365,21 @@
     "ads": [
       {
         "title": "Wanted: one co-op term",
-        "body": "First-year Computer Science student at Waterloo seeks a quant development or software engineering co-op. Python, Java and TypeScript. Work samples in Technology, C1.",
+        "body": "First-year Computer Science student at Waterloo seeks a quant development or software engineering co-op.",
         "links": [
           "email"
         ]
       },
       {
         "title": "Lost: two suits",
-        "body": "Diamonds and clubs, last seen in the deck. Finder is a team that works in data, research or infrastructure. Reward: one keen co-op student.",
+        "body": "Diamonds and clubs. Finder works in data, research or infrastructure. Reward: one keen co-op student.",
         "links": [
           "email"
         ]
       },
       {
         "title": "Free to a good home",
-        "body": "One résumé, a single page, every link live.",
+        "body": "One résumé. One page. Every link live.",
         "links": [
           "resume"
         ]

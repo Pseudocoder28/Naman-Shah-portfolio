@@ -180,19 +180,19 @@ The non-poker version at /straight: the same story as a morning newspaper. The j
 - motto: Everything from last night's table, minus the cards.
 - place: Waterloo, Ontario
 - price: Free for recruiters
-- pages (label, name, then an optional headline and deck):
+- pages (label, name, then an optional headline):
   - A1 Front page
   - B1 Business: Two jobs, one habit: build the thing everyone else relies on
   - C1 Technology: Five projects, every line of code public
   - C2 Technology: Continued from C1
-  - D1 Sports: Box scores. Deck: Each result against the whole field. Averages and cutoffs are the organizers' own published numbers.
+  - D1 Sports: Box scores
   - E1 Community: Student president steers a 75-member council
   - F1 Classifieds: Help wanted, and other notices
   - F2 Back page: Prefer cards?
 - classifieds (title, body, then the contacts the ad links to):
-  - Wanted: one co-op term: First-year Computer Science student at Waterloo seeks a quant development or software engineering co-op. Python, Java and TypeScript. Work samples in Technology, C1. (links to email)
-  - Lost: two suits: Diamonds and clubs, last seen in the deck. Finder is a team that works in data, research or infrastructure. Reward: one keen co-op student. (links to email)
-  - Free to a good home: One résumé, a single page, every link live. (links to resume)
+  - Wanted: one co-op term: First-year Computer Science student at Waterloo seeks a quant development or software engineering co-op. (links to email)
+  - Lost: two suits: Diamonds and clubs. Finder works in data, research or infrastructure. Reward: one keen co-op student. (links to email)
+  - Free to a good home: One résumé. One page. Every link live. (links to resume)
   - Open daily: Code on GitHub, the rest on LinkedIn. (links to github and linkedin)
 - back page (under a photo of the room captioned "The table, last night. The chips were still warm."): Last night this same story was dealt as one hand of poker at a private table: the jobs as the hand history, the projects as the board and the awards as the cashes. You don't need to know the game to sit down. Link: Take a seat at the table
 - the question on a first visit to the poker page: Do you play poker? Note: This site is one hand of poker. If cards aren't your thing, the same story is printed as a morning paper. Buttons: Yes, deal me in / No, give it to me straight
