@@ -11,6 +11,7 @@ paths:
   - Navigate: The Deal, The Player, Hand History, The Board, The Table, Showdown.
   - Contact: Copy email (shows "Email copied"), Open GitHub, Open LinkedIn, Open résumé.
   - Table (phases 2 and 3): Show performance HUD, How this table works, Turn sound on or off.
+- On the morning paper the island gets the paper's pages as a prop: Navigate lists them (A1 Front page and so on) and the Table group holds only "Take a seat at the table". The paper cancels the palette:go event and turns its own pages when it's a book.
 - Fuzzy search matches labels plus a few keywords per item, so "cv" finds the résumé.
 - Esc closes it. Focus stays trapped inside while it's open and returns to whatever opened it.
 - On phones it opens as a full-width sheet from the bottom.
