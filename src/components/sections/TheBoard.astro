@@ -22,6 +22,8 @@ const streets = [
   { street: 'turn', name: 'Turn' },
   { street: 'river', name: 'River' },
 ];
+const opens = (project: (typeof projects)[number]) =>
+  project.hasSheet ? { type: 'button', commandfor: `sheet-${project.id}`, command: 'show-modal', 'aria-haspopup': 'dialog' } : {};
 const face = (card: string) => {
   const suit = SUIT_OF[card[1] as keyof typeof SUIT_OF];
   return { rank: card[0] === 'T' ? '10' : card[0], pip: PIPS[suit], red: suit === 'hearts' || suit === 'diamonds' };
@@ -31,6 +33,39 @@ const face = (card: string) => {
 <section id="the-board" class="lamp-pool px-6 py-16 md:px-12 md:py-24">
   <div class="board-area mx-auto max-w-7xl">
     <h2 class="text-h2">The Board</h2>
+    {/* Phones get the board at a glance: all five cards small in one row, face down until their
+        street is dealt, right above the readout and its deal button, so a deal and its equity share
+        the screen. The dealt projects list under the readout, a tap from their sheets. The full row
+        of cards is for wider screens. */}
+    <div class="glance mt-6" data-glance>
+      <div class="g-board" aria-hidden="true">
+        {
+          streets.map(({ street, name }) => (
+            <div class="g-street">
+              <span class="street-name">{name}</span>
+              <span class="g-cards">
+                {projects
+                  .filter((project) => project.data.street === street)
+                  .map((project) => {
+                    const { rank, pip, red } = face(project.data.card);
+                    return (
+                      <span class:list={['g-card', { red }]} data-street={street}>
+                        <span class="g-inner">
+                          <span class="g-back" />
+                          <span class="g-face">
+                            {rank}
+                            <span>{pip}</span>
+                          </span>
+                        </span>
+                      </span>
+                    );
+                  })}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
     <div class="board mt-12">
       {
         streets.map(({ street, name }) => (
@@ -42,12 +77,9 @@ const face = (card: string) => {
                 .map((project) => {
                   const { rank, pip, red } = face(project.data.card);
                   const Card = project.hasSheet ? 'button' : 'div';
-                  const opens = project.hasSheet
-                    ? { type: 'button', commandfor: `sheet-${project.id}`, command: 'show-modal', 'aria-haspopup': 'dialog' }
-                    : {};
                   return (
                     <li>
-                      <Card class:list={['card card-stock', { red }]} {...opens}>
+                      <Card class:list={['card card-stock', { red }]} {...opens(project)}>
                         <span class="index">
                           {rank}
                           <span>{pip}</span>
@@ -77,6 +109,28 @@ const face = (card: string) => {
       }
     </div>
     <EquityReadout client:idle hole={hand.hole} board={projects.map(({ data }) => ({ street: data.street, card: data.card }))} />
+    <div class="glance" data-glance>
+      <ol class="g-list" role="list">
+        {
+          projects.map((project) => {
+            const { rank, pip, red } = face(project.data.card);
+            const Row = project.hasSheet ? 'button' : 'div';
+            return (
+              <li data-street={project.data.street}>
+                <Row class="g-row" {...opens(project)}>
+                  <span class:list={['g-index', { red }]} aria-hidden="true">
+                    {rank}
+                    {pip}
+                  </span>
+                  <span class="g-title">{project.data.name}</span>
+                  {project.data.metric && <span class="g-metric">{project.data.metric}</span>}
+                </Row>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </div>
   </div>
 
   {
@@ -93,6 +147,7 @@ const face = (card: string) => {
             </button>
           </div>
           {data.pitch && <p class="mt-3">{data.pitch}</p>}
+          {data.metric && <p class="metric mt-2">{data.metric}</p>}
           <div class="details mt-6">
             <Details />
           </div>
@@ -137,6 +192,131 @@ const face = (card: string) => {
   /* Three flop cards, a gap, the turn, a gap, the river. Phones and tablets scroll the row. */
   .board-area {
     container-type: inline-size;
+  }
+
+  /* ---- The board at a glance, on phones only. ---- */
+  .glance {
+    display: none;
+  }
+
+  /* The row's own display comes later in this sheet, so the phone rule names it more exactly. */
+  @media (max-width: 767px) {
+    .glance {
+      display: block;
+    }
+
+    .board-area > .board {
+      display: none;
+    }
+  }
+
+  .g-board {
+    display: flex;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .g-cards {
+    display: flex;
+    gap: 0.375rem;
+    margin-top: 0.375rem;
+  }
+
+  .g-card {
+    width: clamp(3rem, 14.5vw, 4rem);
+    aspect-ratio: 63 / 88;
+    perspective: 500px;
+  }
+
+  /* Face down until its street is dealt, then turned over. Without JavaScript they lie face up. */
+  .g-inner {
+    position: relative;
+    display: block;
+    height: 100%;
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+  }
+
+  .g-back,
+  .g-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.375rem;
+    backface-visibility: hidden;
+    box-shadow: 0 8px 14px -8px rgb(0 0 0 / 0.75);
+  }
+
+  .g-back {
+    border: 0.2rem solid var(--color-cream);
+    background: repeating-linear-gradient(
+      45deg,
+      var(--color-card-red) 0 0.2rem,
+      color-mix(in srgb, var(--color-card-red), black 25%) 0.2rem 0.4rem
+    );
+  }
+
+  .g-face {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1;
+    transform: rotateY(180deg);
+  }
+
+  .red .g-face,
+  .g-index.red {
+    color: var(--color-card-red);
+  }
+
+  /* The dealt projects, one row each under the readout, a tap from their sheet. */
+  .g-list {
+    margin-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-cream) 25%, transparent);
+  }
+
+  .g-list li {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-cream) 25%, transparent);
+  }
+
+  .g-row {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0 0.75rem;
+    width: 100%;
+    padding: 0.625rem 0;
+    text-align: left;
+  }
+
+  .g-index {
+    grid-row: span 2;
+    display: grid;
+    place-items: center;
+    align-self: center;
+    border-radius: 0.375rem;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-weight: 500;
+    line-height: 2.2;
+  }
+
+  .g-title {
+    font-weight: 500;
+  }
+
+  button.g-row .g-title::after {
+    content: ' →';
+    color: var(--color-lamp);
+  }
+
+  .g-metric {
+    font-size: var(--text-small);
+    color: color-mix(in srgb, var(--color-cream) 80%, transparent);
   }
 
   .board {

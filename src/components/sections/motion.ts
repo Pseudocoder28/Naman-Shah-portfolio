@@ -125,8 +125,38 @@ const row = document.querySelector('#hand-history .row');
 const board = document.querySelector('#the-board .board');
 
 // The Board starts fully dealt if it's already in view when this runs, so nothing on screen
-// vanishes. Otherwise its streets wait for the equity readout's button.
-if (reduce || !belowFold(board)) street.set('river');
+// vanishes. Otherwise its streets wait for the equity readout's button. The section is measured,
+// not the row of cards, since phones hide the row for the board at a glance.
+if (reduce || !belowFold(document.getElementById('the-board'))) street.set('river');
+
+// The board at a glance, on phones: its small cards lie face down and its rows wait until their
+// street is dealt, then the cards turn over and the projects join the list, in view of the readout.
+const glance = document.getElementById('the-board');
+if (glance?.querySelector('[data-glance]')) {
+  const order = ['preflop', 'flop', 'turn', 'river'];
+  const turned = new Set<string>();
+  let first = true;
+  street.subscribe((now) => {
+    for (const s of order.slice(1)) {
+      const cards = glance.querySelectorAll(`.g-card[data-street="${s}"] .g-inner`);
+      const rows = glance.querySelectorAll<HTMLElement>(`li[data-street="${s}"]`);
+      if (order.indexOf(s) > order.indexOf(now)) {
+        gsap.set(cards, { rotationY: 0 });
+        rows.forEach((row) => (row.hidden = true));
+        continue;
+      }
+      if (turned.has(s)) continue;
+      turned.add(s);
+      rows.forEach((row) => (row.hidden = false));
+      if (first || reduce) gsap.set(cards, { rotationY: 180 });
+      else {
+        gsap.fromTo(cards, { rotationY: 0 }, { rotationY: 180, duration: 0.8, stagger: 0.1, ease: 'expo.out' });
+        gsap.from(rows, { y: 12, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' });
+      }
+    }
+    first = false;
+  });
+}
 
 // Opacity only, never visibility, so keyboard focus can still reach content before it reveals.
 if (!reduce) {

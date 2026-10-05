@@ -39,6 +39,8 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 - Face: rank and suit from content in the corners, the project name, the one-line pitch, the metric and stack tags.
 - Activating a card opens the project sheet: an accessible dialog on a cream panel with the details markdown, the stack and the links.
 - The equity readout sits under the board, as one strip on a wide screen, and updates as each street lands.
+- Phones (under 768px) get the board at a glance instead of the row of full cards, which only ever showed one and a half at a time: all five cards small in one row under their street names, face down until their street is dealt, then turned over with a 2D flip. The readout and its deal button sit right under them, so a deal and its equity share the screen, and the dealt projects list under the readout as rows (rank and suit, name and metric) that open each project's sheet. motion.ts measures the section, not the hidden row, to decide whether the board starts dealt.
+- The project sheet shows the metric in card red under the pitch.
 
 ## The Cashes (awards)
 - Between The Board and The Table: the hand's winnings so far. One cream ticket per award in a grid, newest and biggest first.
