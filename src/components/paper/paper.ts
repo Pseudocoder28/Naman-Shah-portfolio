@@ -28,6 +28,7 @@ function openBook(book: HTMLElement) {
   // The paper takes over its transform from the stylesheet, which drew it closed on the front page.
   gsap.set(paper, { x: 0, xPercent: shift(0, count), rotationX: 4 });
   controls.hidden = false;
+  for (const side of book.querySelectorAll<HTMLElement>('.side')) side.hidden = false;
   for (const corner of book.querySelectorAll<HTMLElement>('.corner')) corner.hidden = false;
 
   // A leaf darkens toward its fold as it lifts, most when it stands upright.
@@ -46,7 +47,7 @@ function openBook(book: HTMLElement) {
     });
     for (const button of controls.querySelectorAll<HTMLElement>('[data-goto]'))
       button.setAttribute('aria-current', String(open.includes(Number(button.dataset.goto))));
-    for (const step of controls.querySelectorAll<HTMLButtonElement>('.step'))
+    for (const step of book.querySelectorAll<HTMLButtonElement>('[data-step]'))
       step.disabled = step.dataset.turn === '1' ? spread === count : spread === 0;
     status.textContent = `Showing ${open.map((i) => sheets[i].querySelector('.page-foot')?.textContent).join(' and ')}`;
   };
@@ -169,6 +170,11 @@ function openBook(book: HTMLElement) {
   // The one orchestrated moment: the paper is tossed onto the desk and settles.
   gsap.from(paper, { y: -90, rotationX: 38, rotationZ: -5, scale: 0.94, duration: 1.2, ease: 'power3.out' });
   gsap.from(book.querySelector('.chips'), { autoAlpha: 0, y: 12, duration: 0.6, delay: 0.7, ease: 'power3.out' });
+  // Once the paper has landed, its corner lifts and the Next arrow swells, once, to show it turns.
+  gsap
+    .timeline({ delay: 1.4 })
+    .to(sheets[0].querySelector('.corner'), { width: '4.4em', height: '4.4em', duration: 0.45, ease: 'power3.out', yoyo: true, repeat: 1, repeatDelay: 0.3 })
+    .to(book.querySelector('.side.next .disc'), { scale: 1.15, duration: 0.35, ease: 'power3.out', yoyo: true, repeat: 1, clearProps: 'scale' }, 0.1);
   root.classList.remove('intro');
   root.classList.add('book-ready');
 }

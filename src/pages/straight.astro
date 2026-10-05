@@ -32,11 +32,11 @@ const pages = (straight?.pages ?? []).map((page) => ({
     <script is:inline set:html={`if ((${backToQuestion.toString()})(performance.getEntriesByType('navigation')[0]?.type)) location.replace('/');`} />
     <script is:inline>
       // Wide screens with motion get the paper as a book, decided before first paint so nothing jumps.
-      // Below 800px tall a book's pages can't hold their stories at the 15px floor, so shorter screens get the stack.
+      // Below 1280x800 a book's pages can't hold their stories at the 15px floor, so smaller screens get the stack.
       // If the paper's script never arrives, the sheets fall back to a stack rather than a closed book.
       (() => {
         const root = document.documentElement;
-        if (!matchMedia('(min-width: 1200px) and (min-height: 800px) and (prefers-reduced-motion: no-preference)').matches) return;
+        if (!matchMedia('(min-width: 1280px) and (min-height: 800px) and (prefers-reduced-motion: no-preference)').matches) return;
         root.classList.add('book-mode', 'intro');
         setTimeout(() => root.classList.contains('book-ready') || root.classList.remove('book-mode', 'intro'), 4000);
       })();

@@ -508,8 +508,17 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
       ))
     }
   </div>
+  <!-- Big arrows either side of the open paper, so turning a page is never hard to find. -->
+  <button type="button" class="side prev" data-turn="-1" data-step aria-label="Previous page" hidden>
+    <span class="disc" aria-hidden="true">←</span>
+    <span class="side-label" aria-hidden="true">Back</span>
+  </button>
+  <button type="button" class="side next" data-turn="1" data-step aria-label="Next page" hidden>
+    <span class="disc" aria-hidden="true">→</span>
+    <span class="side-label" aria-hidden="true">Next</span>
+  </button>
   <nav class="controls" aria-label="Pages" data-controls hidden>
-    <button type="button" class="step" data-turn="-1">Back</button>
+    <button type="button" class="step" data-turn="-1" data-step><span aria-hidden="true">← </span>Back</button>
     <ul role="list">
       {
         pages.map((page, i) => (
@@ -521,7 +530,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
         ))
       }
     </ul>
-    <button type="button" class="step" data-turn="1">Next</button>
+    <button type="button" class="step" data-turn="1" data-step>Next<span aria-hidden="true"> →</span></button>
   </nav>
   <p class="sr-only" role="status" data-status></p>
   <span class="chips" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -1407,7 +1416,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
   /* ---- The book: wide screens with motion, set before first paint by the page's head script. ---- */
   :global(.book-mode) .book {
     /* As tall as the desk allows under the bar and above the tabs, and a broadsheet's width. */
-    --page-h: min(calc(100dvh - 9.5rem), calc((100vw - 8rem) / 2 / 0.88), 58rem);
+    --page-h: min(calc(100dvh - 9.5rem), calc((100vw - 12rem) / 2 / 0.88), 58rem);
     --page-w: calc(var(--page-h) * 0.88);
     width: calc(var(--page-w) * 2);
     height: var(--page-h);
@@ -1546,19 +1555,85 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
     color: var(--color-lamp);
   }
 
+  /* Back and Next are the solid ones, so they read first among the tabs. */
   .controls .step {
-    border: 1px solid color-mix(in srgb, var(--color-brass) 70%, transparent);
+    padding: 0.3rem 1rem;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-weight: 500;
   }
 
-  .controls .step:disabled {
-    opacity: 0.35;
+  .controls .step:hover {
+    background: var(--color-lamp);
+    color: var(--color-ink);
+  }
+
+  .controls .step:disabled,
+  .side:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .side {
+    display: none;
+  }
+
+  /* The big arrows: cream discs on the desk at either side of the paper, at its middle. */
+  :global(.book-mode) .side {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    translate: 0 -50%;
+    color: var(--color-cream);
+    font-size: 0.875rem;
+  }
+
+  :global(.book-mode) .side.prev {
+    right: calc(100% + 1.25rem);
+  }
+
+  :global(.book-mode) .side.next {
+    left: calc(100% + 1.25rem);
+  }
+
+  .disc {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-size: 1.5rem;
+    box-shadow: 0 12px 24px -10px rgb(0 0 0 / 0.8);
+    transition:
+      background-color 0.35s cubic-bezier(0.215, 0.61, 0.355, 1),
+      scale 0.35s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .side:hover .disc,
+  .side:focus-visible .disc {
+    background: var(--color-lamp);
+    scale: 1.08;
+  }
+
+  .side:focus-visible {
+    outline: none;
+  }
+
+  .side:focus-visible .disc {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
   }
 
   /* Last night's chips, still on the desk beside the paper. */
   :global(.book-mode) .chips {
     position: absolute;
-    right: -6.5rem;
-    bottom: 0.5rem;
+    right: -4.5rem;
+    bottom: -0.5rem;
     display: block;
     width: 3.5rem;
     height: 3.5rem;
