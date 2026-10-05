@@ -1,11 +1,21 @@
 ---
-// Owns the head for the one page. Every word in it comes from content.md.
+// Owns the head for both pages: the poker table at / and the morning paper at /straight.
+// Every word in it comes from content.md.
 import { getEntry } from 'astro:content';
 import { Font } from 'astro:assets';
 import '../styles/global.css';
 
+interface Props {
+  /** The page's path, for its canonical URL. */
+  path?: string;
+  /** Preload the hero plate, which only the poker page paints in its first frame. */
+  plate?: boolean;
+  skip?: { href: string; label: string };
+  title?: string;
+}
+const { path = '/', plate = true, skip = { href: '#the-player', label: 'Skip to The Player' } } = Astro.props;
 const { site } = (await getEntry('profile', 'main'))!.data;
-const title = site.title ?? site.name;
+const title = Astro.props.title ?? site.title ?? site.name;
 // Canonical and social tags need absolute URLs, so they wait for site.url in content.md.
 const absolute = (path: string) => (site.url ? new URL(path, site.url).href : undefined);
 ---
@@ -16,13 +26,20 @@ const absolute = (path: string) => (site.url ? new URL(path, site.url).href : un
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline>document.documentElement.classList.add('js');</script>
+    <slot name="head" />
     <title>{title}</title>
     {site.description && <meta name="description" content={site.description} />}
-    {site.url && <link rel="canonical" href={absolute('/')} />}
+    {site.url && <link rel="canonical" href={absolute(path)} />}
     <meta name="theme-color" content="#1B1009" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preload" as="image" type="image/avif" href="/plates/hero-desktop.avif" media="(min-width: 768px)" fetchpriority="high" />
-    <link rel="preload" as="image" type="image/avif" href="/plates/hero-phone.avif" media="(max-width: 767px)" fetchpriority="high" />
+    {
+      plate && (
+        <>
+          <link rel="preload" as="image" type="image/avif" href="/plates/hero-desktop.avif" media="(min-width: 768px)" fetchpriority="high" />
+          <link rel="preload" as="image" type="image/avif" href="/plates/hero-phone.avif" media="(max-width: 767px)" fetchpriority="high" />
+        </>
+      )
+    }
     <Font cssVariable="--font-garamond" preload />
     <Font cssVariable="--font-plex-mono" />
     <meta property="og:type" content="website" />
@@ -31,7 +48,7 @@ const absolute = (path: string) => (site.url ? new URL(path, site.url).href : un
     {
       site.url && (
         <>
-          <meta property="og:url" content={absolute('/')} />
+          <meta property="og:url" content={absolute(path)} />
           <meta property="og:image" content={absolute('/og.jpg')} />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
@@ -41,7 +58,7 @@ const absolute = (path: string) => (site.url ? new URL(path, site.url).href : un
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
-    <a class="skip-link" href="#the-player">Skip to The Player</a>
+    <a class="skip-link" href={skip.href}>{skip.label}</a>
     <slot />
   </body>
 </html>

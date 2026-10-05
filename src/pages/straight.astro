@@ -1,0 +1,46 @@
+---
+// The version for visitors who don't play poker: the same story as a morning newspaper.
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Paper from '../components/paper/Paper.astro';
+
+const { site, straight } = (await getEntry('profile', 'main'))!.data;
+---
+
+<Base path="/straight" plate={false} title={[straight?.masthead, site.fullName ?? site.name].filter(Boolean).join(' | ')} skip={{ href: '#p-a1', label: 'Skip to the front page' }}>
+  <Fragment slot="head">
+    <script is:inline>
+      // Wide screens with motion get the paper as a book, decided before first paint so nothing jumps.
+      // If the paper's script never arrives, the sheets fall back to a stack rather than a closed book.
+      (() => {
+        const root = document.documentElement;
+        if (!matchMedia('(min-width: 1100px) and (min-height: 640px) and (prefers-reduced-motion: no-preference)').matches) return;
+        root.classList.add('book-mode', 'intro');
+        setTimeout(() => root.classList.contains('book-ready') || root.classList.remove('book-mode', 'intro'), 4000);
+      })();
+    </script>
+  </Fragment>
+  <main class="desk">
+    <Paper />
+  </main>
+</Base>
+
+<style>
+  /* The morning after: the same walnut, in daylight from a window up and to the left. */
+  .desk {
+    min-height: 100dvh;
+    padding: 2rem 1rem 4rem;
+    background:
+      radial-gradient(ellipse 70% 60% at 25% 10%, color-mix(in srgb, var(--color-lamp) 16%, transparent), transparent 70%),
+      repeating-linear-gradient(91deg, rgb(255 255 255 / 0.018) 0 2px, transparent 2px 11px),
+      linear-gradient(var(--color-rail), var(--color-room));
+  }
+
+  :global(.book-mode) .desk {
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 1rem 4rem 4rem;
+  }
+</style>
