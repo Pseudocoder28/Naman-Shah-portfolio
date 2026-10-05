@@ -1,24 +1,25 @@
 # content.md
 
-The single source of every word on the site. Replace each TODO, delete any line you don't want shown and keep only numbers you'd defend in an interview. Lines marked CHECK may be confidential, so confirm with that company before publishing them. Lines marked DRAFT are starting points to rewrite in your own voice. Lines marked PLACEHOLDER are stand-ins that let phase 2 be built. Replace them before launch.
+The single source of every word on the site. Replace each TODO, delete any line you don't want shown and keep only numbers you'd defend in an interview. Lines marked DRAFT are starting points to rewrite in your own voice. Never put a phone number here: the page is public.
 
 ## site
-- name: Param
-- tagline: Software engineer and quant developer. Waterloo Math, class of 2027. (DRAFT)
-- title: Param | Software engineering and quant development
-- description: TODO (one sentence for search results and link previews)
-- email: p7shah@uwaterloo.ca
-- github: https://github.com/paramshah07
-- linkedin: https://www.linkedin.com/in/param-shah-param007/
+- name: Naman
+- tagline: Computer Science at the University of Waterloo, class of 2031. Quant development and software engineering. (DRAFT)
+- title: Naman Shah | Quant development and software engineering
+- description: Naman Shah studies Computer Science at the University of Waterloo and builds quant and software systems. (DRAFT)
+- email: n45shah@uwaterloo.ca
+- github: https://github.com/Pseudocoder28
+- linkedin: https://www.linkedin.com/in/namanshah2008
 - resumePath: /resume.pdf
-- url: paramshah.com
+- url: TODO (none yet, the site runs on Vercel's default URL. Add it once there's a domain.)
 
 ## player
-- blurb (DRAFT, three sentences at most): I study mathematics at the University of Waterloo in the Joint Honours Statistics and Computing program and graduate in May 2027. I build systems where research meets production, from trading signals and auction models to AI agents. I'm looking for quant research, quant development and software engineering roles. Something something
+- blurb (DRAFT, three sentences at most): I study Computer Science co-op at the University of Waterloo and graduate in May 2031. I build systems where data meets markets, from a cross-venue arbitrage monitor for prediction markets to the research data pipeline and backtester for the UW Stocks Club. I'm looking for quant development and software engineering co-op roles.
 - stats (four at most):
-  - Internships: 6
-  - Students led: 25
-  - Graduating: May 2027
+  - Graduating: May 2031
+  - ISC grade 12: 99.25%
+  - Euclid 2026: 94/100
+  - Council led: 75
 
 ## hand
 - hole: 7h 2s
@@ -26,134 +27,97 @@ The single source of every word on the site. Replace each TODO, delete any line 
 ## experience
 Suits: spades for quant and trading, hearts for product and full-stack, diamonds for data and research, clubs for infrastructure.
 
-### TODO (company name)
-- role: Software Engineering Intern
-- start: Sept 2026
+### UW Stocks Club
+- role: Quantitative Developer
+- start: Apr 2026
 - end: present
-- location: New York City, US
-- result: TODO (one sentence)
-- details: TODO (up to three bullets)
-- tags: TODO
-- suit: Hearts
-
-### Capula Investment Management
-- role: Trading and Research Intern
-- start: June 2026
-- end: Aug 2026
-- location: London, UK
-- result: Built an OAT auction research framework and dashboard that became standard tooling for the researchers on the Euro fixed income relative value desk. (CHECK)
+- location: Waterloo, Canada
+- result: Built the data pipeline that is the core data infrastructure for all of the club's research.
 - details:
-  - Covers 1,400+ auctions across 20 years of data and runs ahead of every upcoming auction. (CHECK)
-  - Measures concession in futures and across the auctioned line and its neighbours, quantifies overbidding and values the greenshoe option. (CHECK)
-  - Built a butterfly trade attribution tool for the desk. (CHECK)
-- tags: TODO
+  - Ingests daily OHLCV bars, corporate actions and fundamentals for 1,000+ US equities through the LSEG API into a Parquet store, with automated checks for missing data, split and dividend adjustments and survivorship bias.
+  - Developed a performance attribution engine that splits returns into sector, factor and security selection effects with Brinson-Fachler attribution and multi-factor regression, plus ex-ante and ex-post risk metrics across every systematic strategy.
+  - Designed an event-driven backtesting engine that simulates 20 years of history across 1,000+ tickers, modelling transaction costs, slippage and point-in-time data to prevent lookahead bias.
+- tags: Python, LSEG API, Parquet, Pandas
 - suit: spades
 
-### Causeway Capital Management
-- role: Quant developer intern
-- start: May 2025
-- end: Aug 2025
-- location: Dallas, US
-- result: Took a short-squeeze signal from raw securities lending data all the way to production as a daily screen for portfolio managers.
+### Agropac Pvt Ltd
+- role: Software Engineer
+- start: Apr 2025
+- end: Jun 2025
+- location: India
+- result: Built backend services in Java and Spring for an in-house ERP covering inventory, orders and invoicing, procurement, production and the sales pipeline.
 - details:
-  - Built it on short interest, utilization and borrow rates, with point-in-time backtesting before it shipped.
-  - About +0.2 Sharpe with 70% recall on squeeze events. (CHECK)
-  - Built an Airflow and FastAPI platform for orchestrating ML jobs.
-- tags: TODO
-- suit: spades
-
-### Skopeo AI
-- role: Applied AI Engineering Intern
-- start: Sept 2025 
-- end: Feb 2025
-- location: San Francisco, US
-- result: TODO (one sentence on what the agent system let people do)
-- details:
-  - Built a planner agent and a RAG context engine on pgvector.
-  - Built the agent orchestration layer with retries and fallbacks, tracing and human-in-the-loop checkpoints.
-- tags: TODO
-- suit: Diamonds
-
-### Siemens Healthineers
-- role: Software Engineering Intern
-- start: Jan 2025
-- end: Apr 2025
-- location: Ottawa, Canada
-- result: TODO
-- details:
-  - Worked on CI/CD with AWS and Kubernetes. (TODO: add what it changed)
-- tags: TODO
-- suit: clubs
-
-### Axonify
-- role: QA automation engineer intern
-- start: May 2024
-- end: August 2024
-- location: Waterloo
-- result: TODO
-- details:
-  - Deployed test environments with Docker and Kubernetes.
-- tags: TODO
-- suit: clubs
+  - Owned authentication and role-based authorization across multiple sites, so each user reached only the records their role allowed.
+  - Built an internal LLM assistant using RAG over the ERP's data, letting executives ask about inventory, invoicing, procurement, production, HR and sales in plain English.
+- tags: Java, Spring, RAG, LLM
+- suit: hearts
 
 ## board
-Exactly five projects: three on the flop, one on the turn and one on the river. Your two hole cards plus these five must all be different. The suggested cards tell a story: your seven-deuce offsuit, the worst starting hand in poker, pairs its seven on the flop, makes two pair on the turn and fills up on the river, which is this site. Change any of them if you'd rather.
+Exactly five projects: three on the flop, one on the turn and one on the river. The two hole cards plus these five must all be different. The cards tell a story: seven-deuce offsuit, the worst starting hand in poker, pairs its seven on the flop, makes two pair on the turn and fills up on the river.
 
 ### flop: Kc
-- name: Kalshi and Polymarket arbitrage engine
-- pitch: A cross-venue statistical arbitrage detector and trader for prediction markets.
-- metric: Metric placeholder (PLACEHOLDER: one number with its unit)
-- stack: TODO
+- name: Cross-Book
+- pitch: Cross-venue arbitrage measurement for Kalshi and Polymarket US: fee-exact, depth-aware price gaps from live order books.
+- metric: TODO (one number with its unit, only once the README states one)
+- stack: Python, asyncio, WebSockets, Pandas, Plotly
 - links:
-  - GitHub: https://example.com/arbitrage-engine (PLACEHOLDER)
-- details: Live system stats, model and market selection and liquidity-aware sizing across both venues. (TODO: expand)
+  - GitHub: https://github.com/Pseudocoder28/Cross-Book
+- details: The gap between two best prices isn't an edge. Cross-Book walks both order books level by level, charges each venue's taker fee on every fill and stops at the first fill that doesn't pay for itself. One normalized order book serves both venues, a recorder stores every message before it's parsed, and a recorded run replays through the same code. It measures and paper-trades only: no code in it can place an order.
 
 ### flop: Qd
-- name: Open-source trading library
-- pitch: An algorithmic trading and backtesting framework published on PyPI.
-- metric: Metric placeholder (PLACEHOLDER: for example monthly downloads or GitHub stars)
-- stack: Python
+- name: Blurr
+- pitch: Real-time video redaction that blurs documents, ID cards, bystanders and on-screen text out of a live call, frame by frame.
+- stack: Python, FastAPI, aiortc, OpenCV, YOLOv8, React, TypeScript, Firebase
 - links:
-  - PyPI: https://example.com/trading-library/pypi (PLACEHOLDER)
-  - GitHub: https://example.com/trading-library/github (PLACEHOLDER)
-- details: TODO
+  - GitHub: https://github.com/Pseudocoder28/Blur
+- details: The camera feed streams over WebRTC to a FastAPI and aiortc server, which finds text-shaped regions with an OpenCV pipeline and cards, documents and other people with YOLOv8, then blurs them. Only the blurred video goes on to the other caller, and it's the same video you see in your own preview. Detection runs in a background thread on every second frame so the stream stays real time.
 
 ### flop: 7d
-- name: AI-native ERP for a family manufacturing business
-- pitch: Replaced paper and spreadsheets with one system for sales, inventory, accounts, staff and production.
-- metric: Weekly sales outreach up from 10 to 50 prospects, converting around 20%
-- stack: TODO (n8n plus what else)
+- name: Fast Flag
+- pitch: An AI race control assistant that spots a crash the moment it happens and recommends the flag. Built at FormulaTech Hacks 2026.
+- metric: Safety Car called in 1.0 s, against race control's 28.3 s
+- stack: Python, FastF1, IsolationForest, LightGBM
 - links:
-  - Write-up: https://example.com/ai-native-erp (PLACEHOLDER: a write-up or a demo video, since the system itself is private)
-- details: Covers sales leads, inventory, accounts, manufacturing output and staff attendance and productivity. n8n automations bring in new leads every day, and the business now has analytics on its supply chain, production lines and shipments.
+  - GitHub: https://github.com/Pseudocoder28/Fast-Flag
+- details: It replays historical FastF1 data tick by tick and never sees the future. Detectors, an anomaly model and a crash-risk model feed a rules engine that makes the flag call with a reason a steward can check. On a race the models never saw, the 2026 Azerbaijan GP, its median crash-to-Safety-Car call was 1.0 s against race control's 28.3 s, and it caught 7 of 10 incidents at 0.6 false alarms per race hour.
 
 ### turn: 2c
-- name: Cross-asset macro signals research
-- pitch: Macro signals tested on S&P 500 sector spread returns with Newey-West-adjusted regressions.
-- metric: Metric placeholder (PLACEHOLDER)
-- stack: TODO
+- name: Investing Made Easy
+- pitch: An ETF portfolio tool that matches a non-technical investor's goals and risk answers to an ETF, with a performance dashboard.
+- stack: Python, Pandas, FinQuant, Plotly, Panel
 - links:
-  - Write-up: https://example.com/macro-signals (PLACEHOLDER)
-- details: TODO
+  - GitHub: https://github.com/Pseudocoder28/Investing-made-easy
+- details: A short questionnaire builds the investor's risk profile and sector preferences. ETF data from the FinQuant and EOD APIs is cleaned and matched to that profile, and a dashboard shows the chosen ETF's top holdings, sector and region split, returns by period and prices against its top ten constituents.
 
 ### river: 7c
-- name: This site
-- pitch: The table you're sitting at, built with Astro, React Three Fiber and GSAP. (Once phase 2 ships, add the hand evaluator and exact equity math written from scratch.)
-- metric: Metric placeholder (PLACEHOLDER: after phase 2, for example the evaluator's test count or frame time)
-- stack: Astro, React Three Fiber, GSAP
+- name: LooLoop
+- pitch: Helps new university students find nearby events by voice or questionnaire and join event circles with people going too.
+- stack: JavaScript, Node.js, Express, Supabase
 - links:
-  - Repository: https://example.com/this-site (PLACEHOLDER: the repository is private for now)
-- details: TODO
+  - GitHub: https://github.com/Saarthi09/LooLoop
+- details: Students say what they want, answer a short questionnaire or browse everything. Events from Ticketmaster, the University of Waterloo and WUSA are filtered by interests, time, budget and travel distance, and signed-in students join a circle for each event through Supabase Auth. I'm the top contributor, with 21 of the project's 31 commits.
+
+## cashes
+Awards and competition results, newest and biggest first.
+- ISC grade 12, 2026: 99.25%. State topper and 4th in India.
+- Euclid, 2026: 94/100. Top 50 of almost 24,000 entrants.
+- Euclid, 2025: 89/100. Top 150 of over 27,000 entrants.
+- AMC 12A, 2025: 144/150. Qualified for the AIME.
+- CSMC, 2025: 60/60. A perfect score, ranked 1st globally.
+- CCC Junior, 2025: 73/75.
+- CCC Senior, 2026: 39/75. Honour roll.
 
 ## table
-- org: UW Stocks Club, Quantitative Research division
-- role: Founder and president
-- dates: January 2025 to January 2026
-- summary: Founded the club's quantitative research division and grew it to 25 students across three teams. (DRAFT)
-- teams (three, with member counts adding up to 25):
-  - Team A: 9 (PLACEHOLDER)
-  - Team B: 8 (PLACEHOLDER)
-  - Team C: 8 (PLACEHOLDER)
+- org: SNV Group of Schools, student council
+- role: Student President
+- dates: September 2024 to September 2025
+- summary: Led a 75-member student council representing more than 2,000 students, across five committees.
+- teams (five committees; add member counts adding up to 75 to size the stacks, or leave them out and every stack stands the same height):
+  - Discipline
+  - Cultural
+  - Well-being
+  - Literary
+  - Sports
 
 ## showdown
-- line (DRAFT): If you're hiring for quant or software engineering roles, I'd like to hear from you.
+- line (DRAFT): If you're hiring for quant development or software engineering co-op roles, I'd like to hear from you.

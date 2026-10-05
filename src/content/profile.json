@@ -1,24 +1,40 @@
 {
   "site": {
-    "name": "Param",
-    "tagline": "Software engineer and quant developer. Waterloo Math, class of 2027.",
-    "title": "Param | Software engineering and quant development",
-    "email": "p7shah@uwaterloo.ca",
-    "github": "https://github.com/paramshah07",
-    "linkedin": "https://www.linkedin.com/in/param-shah-param007/",
-    "resumePath": "/resume.pdf",
-    "url": "https://paramshah.com"
+    "name": "Naman",
+    "tagline": "Computer Science at the University of Waterloo, class of 2031. Quant development and software engineering.",
+    "title": "Naman Shah | Quant development and software engineering",
+    "description": "Naman Shah studies Computer Science at the University of Waterloo and builds quant and software systems.",
+    "email": "n45shah@uwaterloo.ca",
+    "github": "https://github.com/Pseudocoder28",
+    "linkedin": "https://www.linkedin.com/in/namanshah2008",
+    "resumePath": "/resume.pdf"
   },
   "player": {
-    "blurb": "I study mathematics at the University of Waterloo in the Joint Honours Statistics and Computing program and graduate in May 2027. I build systems where research meets production, from trading signals and auction models to AI agents. I'm looking for quant research, quant development and software engineering roles. Something something",
+    "blurb": "I study Computer Science co-op at the University of Waterloo and graduate in May 2031. I build systems where data meets markets, from a cross-venue arbitrage monitor for prediction markets to the research data pipeline and backtester for the UW Stocks Club. I'm looking for quant development and software engineering co-op roles.",
     "stats": [
-      { "label": "Internships", "value": "6" },
-      { "label": "Students led", "value": "25" },
-      { "label": "Graduating", "value": "May 2027" }
+      {
+        "label": "Graduating",
+        "value": "May 2031"
+      },
+      {
+        "label": "ISC grade 12",
+        "value": "99.25%"
+      },
+      {
+        "label": "Euclid 2026",
+        "value": "94/100"
+      },
+      {
+        "label": "Council led",
+        "value": "75"
+      }
     ]
   },
   "hand": {
-    "hole": ["7h", "2s"]
+    "hole": [
+      "7h",
+      "2s"
+    ]
   },
   "suits": {
     "spades": "quant and trading",
@@ -28,81 +44,110 @@
   },
   "experience": [
     {
-      "role": "Software Engineering Intern",
-      "start": "Sept 2026",
+      "company": "UW Stocks Club",
+      "role": "Quantitative Developer",
+      "start": "Apr 2026",
       "end": "present",
-      "location": "New York City, US",
+      "location": "Waterloo, Canada",
+      "result": "Built the data pipeline that is the core data infrastructure for all of the club's research.",
+      "details": [
+        "Ingests daily OHLCV bars, corporate actions and fundamentals for 1,000+ US equities through the LSEG API into a Parquet store, with automated checks for missing data, split and dividend adjustments and survivorship bias.",
+        "Developed a performance attribution engine that splits returns into sector, factor and security selection effects with Brinson-Fachler attribution and multi-factor regression, plus ex-ante and ex-post risk metrics across every systematic strategy.",
+        "Designed an event-driven backtesting engine that simulates 20 years of history across 1,000+ tickers, modelling transaction costs, slippage and point-in-time data to prevent lookahead bias."
+      ],
+      "tags": [
+        "Python",
+        "LSEG API",
+        "Parquet",
+        "Pandas"
+      ],
+      "suit": "spades"
+    },
+    {
+      "company": "Agropac Pvt Ltd",
+      "role": "Software Engineer",
+      "start": "Apr 2025",
+      "end": "Jun 2025",
+      "location": "India",
+      "result": "Built backend services in Java and Spring for an in-house ERP covering inventory, orders and invoicing, procurement, production and the sales pipeline.",
+      "details": [
+        "Owned authentication and role-based authorization across multiple sites, so each user reached only the records their role allowed.",
+        "Built an internal LLM assistant using RAG over the ERP's data, letting executives ask about inventory, invoicing, procurement, production, HR and sales in plain English."
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "RAG",
+        "LLM"
+      ],
       "suit": "hearts"
+    }
+  ],
+  "awards": [
+    {
+      "name": "ISC grade 12",
+      "year": "2026",
+      "result": "99.25%",
+      "note": "State topper and 4th in India."
     },
     {
-      "company": "Capula Investment Management",
-      "role": "Trading and Research Intern",
-      "start": "June 2026",
-      "end": "Aug 2026",
-      "location": "London, UK",
-      "result": "Built an OAT auction research framework and dashboard that became standard tooling for the researchers on the Euro fixed income relative value desk.",
-      "details": [
-        "Covers 1,400+ auctions across 20 years of data and runs ahead of every upcoming auction.",
-        "Measures concession in futures and across the auctioned line and its neighbours, quantifies overbidding and values the greenshoe option.",
-        "Built a butterfly trade attribution tool for the desk."
-      ],
-      "suit": "spades"
+      "name": "Euclid",
+      "year": "2026",
+      "result": "94/100",
+      "note": "Top 50 of almost 24,000 entrants."
     },
     {
-      "company": "Causeway Capital Management",
-      "role": "Quant developer intern",
-      "start": "May 2025",
-      "end": "Aug 2025",
-      "location": "Dallas, US",
-      "result": "Took a short-squeeze signal from raw securities lending data all the way to production as a daily screen for portfolio managers.",
-      "details": [
-        "Built it on short interest, utilization and borrow rates, with point-in-time backtesting before it shipped.",
-        "About +0.2 Sharpe with 70% recall on squeeze events.",
-        "Built an Airflow and FastAPI platform for orchestrating ML jobs."
-      ],
-      "suit": "spades"
+      "name": "Euclid",
+      "year": "2025",
+      "result": "89/100",
+      "note": "Top 150 of over 27,000 entrants."
     },
     {
-      "company": "Skopeo AI",
-      "role": "Applied AI Engineering Intern",
-      "start": "Sept 2025",
-      "end": "Feb 2025",
-      "location": "San Francisco, US",
-      "details": [
-        "Built a planner agent and a RAG context engine on pgvector.",
-        "Built the agent orchestration layer with retries and fallbacks, tracing and human-in-the-loop checkpoints."
-      ],
-      "suit": "diamonds"
+      "name": "AMC 12A",
+      "year": "2025",
+      "result": "144/150",
+      "note": "Qualified for the AIME."
     },
     {
-      "company": "Siemens Healthineers",
-      "role": "Software Engineering Intern",
-      "start": "Jan 2025",
-      "end": "Apr 2025",
-      "location": "Ottawa, Canada",
-      "details": ["Worked on CI/CD with AWS and Kubernetes."],
-      "suit": "clubs"
+      "name": "CSMC",
+      "year": "2025",
+      "result": "60/60",
+      "note": "A perfect score, ranked 1st globally."
     },
     {
-      "company": "Axonify",
-      "role": "QA automation engineer intern",
-      "start": "May 2024",
-      "end": "August 2024",
-      "location": "Waterloo",
-      "details": ["Deployed test environments with Docker and Kubernetes."],
-      "suit": "clubs"
+      "name": "CCC Junior",
+      "year": "2025",
+      "result": "73/75"
+    },
+    {
+      "name": "CCC Senior",
+      "year": "2026",
+      "result": "39/75",
+      "note": "Honour roll."
     }
   ],
   "table": {
-    "org": "UW Stocks Club, Quantitative Research division",
-    "role": "Founder and president",
-    "dates": "January 2025 to January 2026",
-    "summary": "Founded the club's quantitative research division and grew it to 25 students across three teams.",
+    "org": "SNV Group of Schools, student council",
+    "role": "Student President",
+    "dates": "September 2024 to September 2025",
+    "summary": "Led a 75-member student council representing more than 2,000 students, across five committees.",
     "teams": [
-      { "name": "Team A", "members": 9 },
-      { "name": "Team B", "members": 8 },
-      { "name": "Team C", "members": 8 }
+      {
+        "name": "Discipline"
+      },
+      {
+        "name": "Cultural"
+      },
+      {
+        "name": "Well-being"
+      },
+      {
+        "name": "Literary"
+      },
+      {
+        "name": "Sports"
+      }
     ]
   },
-  "showdown": "If you're hiring for quant or software engineering roles, I'd like to hear from you."
+  "showdown": "If you're hiring for quant development or software engineering co-op roles, I'd like to hear from you."
 }

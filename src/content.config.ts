@@ -53,8 +53,12 @@ const profile = defineCollection({
       role: text,
       dates: text,
       summary: text,
-      teams: z.array(z.object({ name: z.string(), members: z.number().int().positive() })).default([]),
+      // Member counts are optional. Without them every stack stands the same height and shows no count.
+      teams: z.array(z.object({ name: z.string(), members: z.number().int().positive().optional() })).default([]),
     }),
+    awards: z
+      .array(z.object({ name: z.string(), year: text, result: text, note: text }))
+      .default([]),
     showdown: text,
   }),
 });
