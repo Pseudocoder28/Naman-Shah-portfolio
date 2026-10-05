@@ -3,7 +3,7 @@
 The single source of every word on the site. Replace each TODO, delete any line you don't want shown and keep only numbers you'd defend in an interview. Never put a phone number here: the page is public.
 
 ## site
-- name: Naman
+- name: Naman Shah
 - tagline: First-year Computer Science at Waterloo. I build the data pipelines, backtesters and market tools that quant work runs on.
 - title: Naman Shah | Quant development and software engineering
 - description: Naman Shah is a first-year Computer Science student at Waterloo who builds data pipelines, backtesters and market tools for quant work.
