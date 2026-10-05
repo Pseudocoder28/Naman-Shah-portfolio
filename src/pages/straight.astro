@@ -3,26 +3,47 @@
 import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Paper from '../components/paper/Paper.astro';
+import PaperBar from '../components/paper/PaperBar.astro';
+import CommandPalette from '../components/palette/CommandPalette';
 
 const { site, straight } = (await getEntry('profile', 'main'))!.data;
+// The palette's Navigate group on the paper: its pages, found by the plain word for each section.
+const KEYWORDS: Record<string, string[]> = {
+  front: ['home', 'top', 'about', 'front'],
+  business: ['experience', 'work', 'jobs'],
+  technology: ['projects', 'code'],
+  'technology-more': ['projects', 'code'],
+  sports: ['awards', 'contests', 'scores', 'math'],
+  community: ['leadership', 'council', 'president'],
+  classifieds: ['contact', 'hire', 'email'],
+  back: ['poker', 'cards', 'table'],
+};
+const pages = (straight?.pages ?? []).map((page) => ({
+  id: `p-${page.label.toLowerCase()}`,
+  name: `${page.label} ${page.name}`,
+  keywords: KEYWORDS[page.id],
+}));
 ---
 
 <Base path="/straight" plate={false} title={[straight?.masthead, site.name].filter(Boolean).join(' | ')} skip={{ href: '#p-a1', label: 'Skip to the front page' }}>
   <Fragment slot="head">
     <script is:inline>
       // Wide screens with motion get the paper as a book, decided before first paint so nothing jumps.
+      // Below 760px tall a book's type would drop under 12px, so shorter screens get the stack.
       // If the paper's script never arrives, the sheets fall back to a stack rather than a closed book.
       (() => {
         const root = document.documentElement;
-        if (!matchMedia('(min-width: 1100px) and (min-height: 640px) and (prefers-reduced-motion: no-preference)').matches) return;
+        if (!matchMedia('(min-width: 1100px) and (min-height: 760px) and (prefers-reduced-motion: no-preference)').matches) return;
         root.classList.add('book-mode', 'intro');
         setTimeout(() => root.classList.contains('book-ready') || root.classList.remove('book-mode', 'intro'), 4000);
       })();
     </script>
   </Fragment>
+  <PaperBar />
   <main class="desk">
     <Paper />
   </main>
+  <CommandPalette client:idle site={site} pages={pages} />
 </Base>
 
 <style>
@@ -41,6 +62,6 @@ const { site, straight } = (await getEntry('profile', 'main'))!.data;
     place-items: center;
     height: 100dvh;
     overflow: hidden;
-    padding: 1rem 4rem 4rem;
+    padding: 3.5rem 4rem 4rem;
   }
 </style>

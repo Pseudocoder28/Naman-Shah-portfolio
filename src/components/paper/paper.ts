@@ -83,6 +83,22 @@ function openBook(book: HTMLElement) {
     }
   });
 
+  // The bar's name goes back to the front page, and the palette turns to any page it's asked for.
+  document.querySelector('[data-front]')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    go(0);
+  });
+  document.addEventListener('palette:go', (event) => {
+    const page = sheets.findIndex((sheet) => sheet.id === (event as CustomEvent<string>).detail);
+    if (page < 0) return;
+    event.preventDefault();
+    go(spreadOf(page));
+    const heading = sheets[page].querySelector<HTMLElement>('h1, h2');
+    if (!heading) return;
+    heading.tabIndex = -1;
+    heading.focus({ preventScroll: true });
+  });
+
   addEventListener('keydown', (event) => {
     if (event.altKey || event.metaKey || event.ctrlKey || (event.target as Element).closest('input, textarea, select')) return;
     const step = { ArrowRight: 1, PageDown: 1, ArrowLeft: -1, PageUp: -1 }[event.key];

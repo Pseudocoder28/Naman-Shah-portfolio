@@ -1,0 +1,152 @@
+---
+// The paper's own bar: the name back to the front page, every way to get in touch and the command
+// palette, the same as the poker table's nav offers. Email copies the address; without JavaScript
+// it stays a mailto link.
+import { getEntry } from 'astro:content';
+
+const { site } = (await getEntry('profile', 'main'))!.data;
+const external = { target: '_blank', rel: 'noopener' };
+const links = [
+  site.email && { label: 'Email', href: `mailto:${site.email}`, attrs: { 'data-copy': site.email } },
+  site.github && { label: 'GitHub', href: site.github, attrs: external },
+  site.linkedin && { label: 'LinkedIn', href: site.linkedin, attrs: external },
+  site.resumePath && { label: 'Résumé', href: site.resumePath, attrs: external },
+].filter((link) => !!link);
+---
+
+<header class="bar" data-paper-bar>
+  <a href="#p-a1" class="name" data-front>{site.name}</a>
+  <nav aria-label="Contact">
+    <ul role="list">
+      {
+        links.map((link) => (
+          <li>
+            <a class="pill" href={link.href} {...link.attrs}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <button type="button" class="pill key" aria-label="Command palette" aria-haspopup="dialog" data-palette>
+    <span data-mod>⌘</span>K
+  </button>
+  <p class="sr-only" role="status" data-copied></p>
+</header>
+
+<script>
+  import { palette } from '../../lib/state/palette';
+
+  const bar = document.querySelector<HTMLElement>('[data-paper-bar]')!;
+  bar.querySelector('[data-palette]')?.addEventListener('click', () => palette.set(true));
+
+  // Copies the address instead of opening a mail app, and says so on the button for a moment.
+  const email = bar.querySelector<HTMLAnchorElement>('[data-copy]');
+  const status = bar.querySelector('[data-copied]')!;
+  email?.addEventListener('click', (event) => {
+    event.preventDefault();
+    navigator.clipboard.writeText(email.dataset.copy!).then(
+      () => {
+        status.textContent = 'Email copied';
+        email.textContent = 'Copied';
+        setTimeout(() => (email.textContent = 'Email'), 1800);
+      },
+      () => (location.href = email.href),
+    );
+  });
+
+  // ⌘ reads Ctrl off Apple devices.
+  if (!/Mac|iPhone|iPad/.test(navigator.userAgent)) {
+    for (const key of bar.querySelectorAll('[data-mod]')) key.textContent = 'Ctrl ';
+  }
+</script>
+
+<style>
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+    background-color: color-mix(in srgb, var(--color-rail) 90%, transparent);
+    backdrop-filter: blur(8px);
+    color: var(--color-cream);
+  }
+
+  /* Over the book the bar floats on the desk, like the poker nav over the hero. */
+  :global(.book-mode) .bar {
+    position: fixed;
+    inset: 0 0 auto;
+    padding-inline: 2rem;
+    background-color: transparent;
+    backdrop-filter: none;
+  }
+
+  .name {
+    margin-right: auto;
+    font-size: 1.375rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .pill {
+    display: inline-block;
+    border: 1px solid color-mix(in srgb, var(--color-brass) 70%, transparent);
+    border-radius: var(--radius-chip);
+    padding: 0.2rem 0.85rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+
+  .pill:hover {
+    border-color: var(--color-brass);
+    color: var(--color-lamp);
+  }
+
+  /* Wide enough for "Ctrl K", so swapping the label never shifts the bar. */
+  .key {
+    min-width: 4.25rem;
+  }
+
+  :global(html:not(.js)) .key {
+    display: none;
+  }
+
+  /* A phone keeps every contact and the palette, and lets the name go. */
+  @media (max-width: 559px) {
+    .bar {
+      gap: 0.375rem;
+      padding-inline: 0.75rem;
+    }
+
+    .name {
+      display: none;
+    }
+
+    nav {
+      margin-right: auto;
+    }
+
+    nav ul {
+      gap: 0.375rem;
+    }
+
+    .pill {
+      padding: 0.15rem 0.6rem;
+      font-size: 0.875rem;
+    }
+
+    .key {
+      min-width: 3.75rem;
+    }
+  }
+</style>

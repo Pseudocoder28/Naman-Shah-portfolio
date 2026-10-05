@@ -26,12 +26,20 @@ export function isShortcut(event: Key, mac: boolean, typing: boolean) {
   return event.key === '/' && !typing && !event.metaKey && !event.ctrlKey;
 }
 
+type Place = { id: string; name: string; keywords?: string[] };
+type Props = {
+  site: CollectionEntry<'profile'>['data']['site'];
+  /** The morning paper's pages. Given, the palette navigates the paper instead of the table. */
+  pages?: Place[];
+};
+
 // A native modal dialog traps focus, closes on Esc and returns focus to whatever opened it.
-export default function CommandPalette({ site }: { site: CollectionEntry<'profile'>['data']['site'] }) {
+export default function CommandPalette({ site, pages }: Props) {
+  const places: Place[] = pages ?? SECTIONS.map(({ id, name }) => ({ id, name, keywords: KEYWORDS[id] }));
   const open = useStore(palette);
   const dialog = useRef<HTMLDialogElement>(null);
   const [search, setSearch] = useState('');
-  const [selected, setSelected] = useState<string>(SECTIONS[0].name);
+  const [selected, setSelected] = useState<string>(places[0].name);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -55,7 +63,7 @@ export default function CommandPalette({ site }: { site: CollectionEntry<'profil
   useEffect(() => {
     if (!open) return dialog.current!.close();
     setSearch('');
-    setSelected(SECTIONS[0].name);
+    setSelected(places[0].name);
     setCopied(false);
     dialog.current!.showModal();
     // The dialog focuses the panel. On a touch screen it stays there, because focusing the
@@ -77,8 +85,10 @@ export default function CommandPalette({ site }: { site: CollectionEntry<'profil
     (onButton ? input : button).focus();
   };
 
-  const go = (id: SectionId) => {
+  const go = (id: string) => {
     close();
+    // The paper turns its own pages when it's a book, and cancels this event to say so.
+    if (!document.dispatchEvent(new CustomEvent('palette:go', { detail: id, cancelable: true }))) return;
     const section = document.getElementById(id)!;
     const heading = section.querySelector<HTMLElement>('h1, h2')!;
     heading.tabIndex = -1;
@@ -126,8 +136,8 @@ export default function CommandPalette({ site }: { site: CollectionEntry<'profil
         <Command.List>
           <Command.Empty>No matches</Command.Empty>
           <Command.Group heading="Navigate">
-            {SECTIONS.map(({ id, name }) => (
-              <Command.Item key={id} value={name} keywords={KEYWORDS[id]} onSelect={() => go(id)}>
+            {places.map(({ id, name, keywords }) => (
+              <Command.Item key={id} value={name} keywords={keywords} onSelect={() => go(id)}>
                 {name}
                 {enter}
               </Command.Item>
@@ -149,20 +159,29 @@ export default function CommandPalette({ site }: { site: CollectionEntry<'profil
               ))}
             </Command.Group>
           )}
-          <Command.Group heading="Table">
-            <Command.Item value="Show performance HUD" keywords={['performance', 'fps', 'frame rate', 'stats']} onSelect={() => (close(), hud.set(true))}>
-              Show performance HUD
-              <kbd aria-hidden="true">H</kbd>
-            </Command.Item>
-            <Command.Item value="Read the morning paper" keywords={['plain', 'newspaper', 'no poker', 'simple', 'straight']} onSelect={() => (close(), (location.href = '/straight'))}>
-              Read the morning paper
-              {enter}
-            </Command.Item>
-            <Command.Item value="How this table works" keywords={['about', 'architecture', 'built', 'source']} onSelect={() => (close(), thisTableOpen.set(true))}>
-              How this table works
-              {enter}
-            </Command.Item>
-          </Command.Group>
+          {pages ? (
+            <Command.Group heading="Table">
+              <Command.Item value="Take a seat at the table" keywords={['poker', 'cards', 'game', '3d']} onSelect={() => (close(), (location.href = '/?seat=poker'))}>
+                Take a seat at the table
+                {enter}
+              </Command.Item>
+            </Command.Group>
+          ) : (
+            <Command.Group heading="Table">
+              <Command.Item value="Show performance HUD" keywords={['performance', 'fps', 'frame rate', 'stats']} onSelect={() => (close(), hud.set(true))}>
+                Show performance HUD
+                <kbd aria-hidden="true">H</kbd>
+              </Command.Item>
+              <Command.Item value="Read the morning paper" keywords={['plain', 'newspaper', 'no poker', 'simple', 'straight']} onSelect={() => (close(), (location.href = '/straight'))}>
+                Read the morning paper
+                {enter}
+              </Command.Item>
+              <Command.Item value="How this table works" keywords={['about', 'architecture', 'built', 'source']} onSelect={() => (close(), thisTableOpen.set(true))}>
+                How this table works
+                {enter}
+              </Command.Item>
+            </Command.Group>
+          )}
         </Command.List>
         <p role="status" className="sr-only">
           {copied && 'Email copied'}

@@ -980,7 +980,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
 
   /* ---- The book: wide screens with motion, set before first paint by the page's head script. ---- */
   :global(.book-mode) .book {
-    --page-w: min(calc((100vw - 8rem) / 2), calc((100dvh - 8.5rem) * 0.7), 34rem);
+    --page-w: min(calc((100vw - 8rem) / 2), calc((100dvh - 11rem) * 0.7), 34rem);
     --page-h: calc(var(--page-w) / 0.7);
     width: calc(var(--page-w) * 2);
     height: var(--page-h);
