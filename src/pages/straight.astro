@@ -36,7 +36,7 @@ const pages = (straight?.pages ?? []).map((page) => ({
       // If the paper's script never arrives, the sheets fall back to a stack rather than a closed book.
       (() => {
         const root = document.documentElement;
-        if (!matchMedia('(min-width: 1100px) and (min-height: 800px) and (prefers-reduced-motion: no-preference)').matches) return;
+        if (!matchMedia('(min-width: 1200px) and (min-height: 800px) and (prefers-reduced-motion: no-preference)').matches) return;
         root.classList.add('book-mode', 'intro');
         setTimeout(() => root.classList.contains('book-ready') || root.classList.remove('book-mode', 'intro'), 4000);
       })();
@@ -65,6 +65,6 @@ const pages = (straight?.pages ?? []).map((page) => ({
     place-items: center;
     height: 100dvh;
     overflow: hidden;
-    padding: 3.5rem 4rem 4rem;
+    padding: 3.25rem 4rem 3.25rem;
   }
 </style>
