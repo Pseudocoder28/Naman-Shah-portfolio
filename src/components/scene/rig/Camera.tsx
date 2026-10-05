@@ -14,7 +14,7 @@ const TILT = THREE.MathUtils.degToRad(2);
 type Pose = { at: [number, number, number]; look: [number, number, number] };
 
 // One pose per section, in table space (the felt is y = 0 and +z points at the player's seat),
-// matched to frames 01 to 06 of the concept video. The Deal is the rest pose the room plate was
+// matched to frames 01 to 06 of the concept video (The Cashes, added later, sits between two of them). The Deal is the rest pose the room plate was
 // built for, at the world origin looking straight down -z, so the stage lines up with the HTML
 // plate. The others look at a spot on the felt. The depth of field focuses where each one looks.
 const POSES: Pose[] = [
@@ -27,6 +27,8 @@ const POSES: Pose[] = [
   { at: [0, 0.5, 0.62], look: [0, 0, 0.2] },
   // The Board: nearly overhead on the middle of the table.
   { at: [0, 0.9, 0.5], look: [0, 0, 0.08] },
+  // The Cashes: easing down off the board toward the player's winnings by the chip stacks.
+  { at: [0.15, 0.55, 0.6], look: [0.15, 0, 0.18] },
   // The Table: a low angle across the chip stacks.
   { at: [0.25, 0.24, 0.62], look: [0.2, 0, 0.12] },
   // Showdown: pulled back to wide.

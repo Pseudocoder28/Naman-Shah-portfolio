@@ -12,7 +12,8 @@ const KEYWORDS: Record<SectionId, string[]> = {
   'the-player': ['about', 'bio'],
   'hand-history': ['experience', 'work', 'internships'],
   'the-board': ['projects'],
-  'the-table': ['leadership', 'club'],
+  'the-cashes': ['awards', 'competitions', 'contests', 'math'],
+  'the-table': ['leadership', 'student council', 'president'],
   showdown: ['contact'],
 };
 

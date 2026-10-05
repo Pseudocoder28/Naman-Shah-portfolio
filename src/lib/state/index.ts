@@ -7,6 +7,7 @@ export const SECTIONS = [
   { id: 'the-player', name: 'The Player' },
   { id: 'hand-history', name: 'Hand History' },
   { id: 'the-board', name: 'The Board' },
+  { id: 'the-cashes', name: 'The Cashes' },
   { id: 'the-table', name: 'The Table' },
   { id: 'showdown', name: 'Showdown' },
 ] as const;
