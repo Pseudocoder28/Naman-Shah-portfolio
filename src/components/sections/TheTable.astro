@@ -6,7 +6,8 @@ const { table } = (await getEntry('profile', 'main'))!.data;
 const counted = table.teams.every((team) => team.members);
 const tallest = counted ? Math.max(...table.teams.map((team) => team.members!)) : 1;
 const height = (members?: number) => (counted ? members! / tallest : 1);
-const chips = ['--color-cream', '--color-panel', '--color-felt', '--color-card-red'];
+// Felt green would vanish against the felt, so the stacks take turns in the other three clays.
+const chips = ['--color-cream', '--color-panel', '--color-card-red'];
 const byline = [table.role, table.dates].filter(Boolean).join(' · ');
 ---
 

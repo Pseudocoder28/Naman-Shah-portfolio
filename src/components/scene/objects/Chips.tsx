@@ -15,8 +15,8 @@ const MODEL = '/models/chip.glb';
 const meshopt = (loader: GLTFLoader) => loader.setMeshoptDecoder(MeshoptDecoder);
 useLoader.preload(GLTFLoader, MODEL, meshopt);
 export const PARTS = ['body', 'inserts', 'label', 'ring'] as const;
-// Clay in the token colours, in the order The Table section colours its teams: cream with card-red
-// spots, then panel, felt and card red with cream spots. The cream body is a shade under the label.
+// Clay in the token colours: cream with card-red spots, then panel, felt and card red with cream
+// spots. The cream body is a shade under the label.
 export const CLAYS = [
   { body: '#E9E1CF', spot: '#9B3A2E' },
   { body: '#363430', spot: '#F3EEE2' },
@@ -34,6 +34,8 @@ const DECOR = [
   { x: 0.86, z: -0.22, clay: 2, count: 7 },
 ];
 const SPACING = 0.055; // between the team stacks
+// The clays the team stacks take turns in, matching The Table section. Felt would vanish on the felt.
+const TEAM_CLAYS = [0, 1, 3];
 // The chips in each stack when the teams have no member counts, so every stack stands alike.
 const UNCOUNTED = 10;
 
@@ -50,7 +52,7 @@ export function Chips({ teams }: Pick<StageProps, 'teams'>) {
     ...teams.map((team, i) => ({
       x: SPOTS.stacks.x + i * SPACING,
       z: SPOTS.stacks.z,
-      clay: i % CLAYS.length,
+      clay: TEAM_CLAYS[i % TEAM_CLAYS.length],
       count: counted ? team.members! : UNCOUNTED,
     })),
     ...DECOR,
