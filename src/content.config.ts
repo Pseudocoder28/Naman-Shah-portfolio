@@ -18,6 +18,7 @@ const profile = defineCollection({
   schema: z.object({
     site: z.object({
       name: z.string(),
+      fullName: text,
       tagline: text,
       title: text,
       description: text,
@@ -70,6 +71,32 @@ const profile = defineCollection({
       )
       .default([]),
     showdown: text,
+    // The line under Hand History's suit legend while some suits have no card yet.
+    drawing: z.object({ line: z.string(), cta: text }).optional(),
+    // The non-poker version at /straight: a morning newspaper. Only the paper's own words live here.
+    straight: z
+      .object({
+        masthead: z.string(),
+        motto: text,
+        place: text,
+        price: text,
+        pages: z.array(
+          z.object({
+            id: z.enum(['front', 'business', 'technology', 'technology-more', 'sports', 'community', 'classifieds', 'back']),
+            label: z.string(),
+            name: z.string(),
+            headline: text,
+            deck: text,
+          }),
+        ),
+        ads: z
+          .array(z.object({ title: z.string(), body: z.string(), links: z.array(z.enum(['email', 'github', 'linkedin', 'resume'])).default([]) }))
+          .default([]),
+        back: z.object({ body: z.string(), cta: z.string(), caption: text }),
+        gate: z.object({ question: z.string(), note: text, yes: z.string(), no: z.string() }),
+        footer: text,
+      })
+      .optional(),
   }),
 });
 

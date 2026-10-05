@@ -4,6 +4,7 @@ The single source of every word on the site. Replace each TODO, delete any line 
 
 ## site
 - name: Naman
+- full name: Naman Shah
 - tagline: First-year Computer Science at Waterloo. I build the data pipelines, backtesters and market tools that quant work runs on.
 - title: Naman Shah | Quant development and software engineering
 - description: Naman Shah is a first-year Computer Science student at Waterloo who builds data pipelines, backtesters and market tools for quant work.
@@ -52,16 +53,10 @@ Suits: spades for quant and trading, hearts for product and full-stack, diamonds
 - tags: Java, Spring, RAG, LLM
 - suit: hearts
 
-### Neocab Pvt Ltd
-- role: Software Engineering Intern
-- start: May 2022
-- end: Aug 2022
-- location: India
-- result: Built a full-stack e-commerce website and app with five other interns that increased sales by 200%.
-- details:
-  - Built a custom notification system with JavaScript and WebSockets for real-time messages between employees and supervisors.
-- tags: JavaScript, WebSockets
-- suit: hearts
+## drawing
+Shown under the suit legend while some suits have no card yet. Rewrite it once every suit is in the hand.
+- line: Two suits down, two to draw. If your team works in data, research or infrastructure, you're holding the diamonds and clubs I'm missing.
+- cta (a link to the email address): Deal me in
 
 ## board
 Exactly five projects: three on the flop, one on the turn and one on the river. The two hole cards plus these five must all be different. The cards tell a story: seven-deuce offsuit, the worst starting hand in poker, pairs its seven on the flop, makes two pair on the turn and fills up on the river.
@@ -138,10 +133,11 @@ Awards and competition results, newest and biggest first. Each ticket opens a sh
   - Distinction cutoff (top 25%): 68
 - source: CEMC, 2025 Euclid results: https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025EuclidResults.pdf
 
-### AMC 12A, 2025: 144/150. Qualified for the AIME.
+### AMC 12A, 2025: 144/150. Top 5% distinction. Qualified for the AIME.
 - about: The Mathematical Association of America's 25-question, 75-minute contest for grade 12 and below, out of 150.
 - stats:
   - My score: 144/150
+  - My award: Distinction (top 5%)
   - Average score: 64.44
   - AIME qualifying cutoff: 96
   - Distinction cutoff (top 5%): 127.5
@@ -156,13 +152,6 @@ Awards and competition results, newest and biggest first. Each ticket opens a sh
   - Average score: 28.6
   - Distinction cutoff (top 25%): 35
 - source: CEMC, 2025 CSMC and CIMC results: https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025CSIMCResultsBooklet.pdf
-
-### CCC Junior, 2025: 73/75
-- about: The Canadian Computing Competition from the University of Waterloo: five programming problems in three hours, out of 75.
-- stats:
-  - My score: 73/75
-  - Field statistics: Not published for 2025
-- source: CEMC, Canadian Computing Competition: https://cemc.uwaterloo.ca/contests/ccc
 
 ### CCC Senior, 2026: 39/75. Honour roll.
 - about: The harder division of the Canadian Computing Competition: five programming problems in three hours, out of 75.
@@ -185,6 +174,30 @@ Awards and competition results, newest and biggest first. Each ticket opens a sh
   - Literary: 12
   - Well-being: 11
   - Cultural: 11
+
+## straight
+The non-poker version at /straight: the same story as a morning newspaper. The jobs, projects, awards and council come from the sections above; only the paper's own words live here.
+- masthead: The Morning After
+- motto: Everything from last night's table, minus the cards.
+- place: Waterloo, Ontario
+- price: Free for recruiters
+- pages (label, name, then an optional headline and deck):
+  - A1 Front page
+  - B1 Business: Two jobs, one habit: build the thing everyone else relies on
+  - C1 Technology: Five projects, every line of code public
+  - C2 Technology: Continued from C1
+  - D1 Sports: Box scores. Deck: Each result against the whole field. Averages and cutoffs are the organizers' own published numbers.
+  - E1 Community: Student president steers a 75-member council
+  - F1 Classifieds: Help wanted, and other notices
+  - F2 Back page: Prefer cards?
+- classifieds (title, body, then the contacts the ad links to):
+  - Wanted: one co-op term: First-year Computer Science student at Waterloo seeks a quant development or software engineering co-op. Python, Java and TypeScript. Work samples in Technology, C1. (links to email)
+  - Lost: two suits: Diamonds and clubs, last seen in the deck. Finder is a team that works in data, research or infrastructure. Reward: one keen co-op student. (links to email)
+  - Free to a good home: One résumé, a single page, every link live. (links to resume)
+  - Open daily: Code on GitHub, the rest on LinkedIn. (links to github and linkedin)
+- back page (under a photo of the room captioned "The table, last night. The chips were still warm."): Last night this same story was dealt as one hand of poker at a private table: the jobs as the hand history, the projects as the board and the awards as the cashes. You don't need to know the game to sit down. Link: Take a seat at the table
+- the question on a first visit to the poker page: Do you play poker? Note: This site is one hand of poker. If cards aren't your thing, the same story is printed as a morning paper. Buttons: Yes, deal me in / No, give it to me straight
+- note on the poker page, linking here: Not a card player? The same story, in plain print.
 
 ## showdown
 - line: Hiring for a quant development or software engineering co-op? Send me an email.

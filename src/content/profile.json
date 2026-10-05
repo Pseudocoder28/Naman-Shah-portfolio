@@ -1,6 +1,7 @@
 {
   "site": {
     "name": "Naman",
+    "fullName": "Naman Shah",
     "tagline": "First-year Computer Science at Waterloo. I build the data pipelines, backtesters and market tools that quant work runs on.",
     "title": "Naman Shah | Quant development and software engineering",
     "description": "Naman Shah is a first-year Computer Science student at Waterloo who builds data pipelines, backtesters and market tools for quant work.",
@@ -83,22 +84,6 @@
         "Spring",
         "RAG",
         "LLM"
-      ],
-      "suit": "hearts"
-    },
-    {
-      "company": "Neocab Pvt Ltd",
-      "role": "Software Engineering Intern",
-      "start": "May 2022",
-      "end": "Aug 2022",
-      "location": "India",
-      "result": "Built a full-stack e-commerce website and app with five other interns that increased sales by 200%.",
-      "details": [
-        "Built a custom notification system with JavaScript and WebSockets for real-time messages between employees and supervisors."
-      ],
-      "tags": [
-        "JavaScript",
-        "WebSockets"
       ],
       "suit": "hearts"
     }
@@ -195,12 +180,16 @@
       "name": "AMC 12A",
       "year": "2025",
       "result": "144/150",
-      "note": "Qualified for the AIME.",
+      "note": "Top 5% distinction. Qualified for the AIME.",
       "about": "The Mathematical Association of America's 25-question, 75-minute contest for grade 12 and below, out of 150.",
       "stats": [
         {
           "label": "My score",
           "value": "144/150"
+        },
+        {
+          "label": "My award",
+          "value": "Distinction (top 5%)"
         },
         {
           "label": "Average score",
@@ -251,26 +240,6 @@
       "source": {
         "label": "CEMC, 2025 CSMC and CIMC results",
         "href": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025CSIMCResultsBooklet.pdf"
-      }
-    },
-    {
-      "name": "CCC Junior",
-      "year": "2025",
-      "result": "73/75",
-      "about": "The Canadian Computing Competition from the University of Waterloo: five programming problems in three hours, out of 75.",
-      "stats": [
-        {
-          "label": "My score",
-          "value": "73/75"
-        },
-        {
-          "label": "Field statistics",
-          "value": "Not published for 2025"
-        }
-      ],
-      "source": {
-        "label": "CEMC, Canadian Computing Competition",
-        "href": "https://cemc.uwaterloo.ca/contests/ccc"
       }
     },
     {
@@ -335,5 +304,108 @@
       }
     ]
   },
-  "showdown": "Hiring for a quant development or software engineering co-op? Send me an email."
+  "showdown": "Hiring for a quant development or software engineering co-op? Send me an email.",
+  "drawing": {
+    "line": "Two suits down, two to draw. If your team works in data, research or infrastructure, you're holding the diamonds and clubs I'm missing.",
+    "cta": "Deal me in"
+  },
+  "straight": {
+    "masthead": "The Morning After",
+    "motto": "Everything from last night's table, minus the cards.",
+    "place": "Waterloo, Ontario",
+    "price": "Free for recruiters",
+    "pages": [
+      {
+        "id": "front",
+        "label": "A1",
+        "name": "Front page"
+      },
+      {
+        "id": "business",
+        "label": "B1",
+        "name": "Business",
+        "headline": "Two jobs, one habit: build the thing everyone else relies on"
+      },
+      {
+        "id": "technology",
+        "label": "C1",
+        "name": "Technology",
+        "headline": "Five projects, every line of code public"
+      },
+      {
+        "id": "technology-more",
+        "label": "C2",
+        "name": "Technology",
+        "headline": "Continued from C1"
+      },
+      {
+        "id": "sports",
+        "label": "D1",
+        "name": "Sports",
+        "headline": "Box scores",
+        "deck": "Each result against the whole field. Averages and cutoffs are the organizers' own published numbers."
+      },
+      {
+        "id": "community",
+        "label": "E1",
+        "name": "Community",
+        "headline": "Student president steers a 75-member council"
+      },
+      {
+        "id": "classifieds",
+        "label": "F1",
+        "name": "Classifieds",
+        "headline": "Help wanted, and other notices"
+      },
+      {
+        "id": "back",
+        "label": "F2",
+        "name": "Back page",
+        "headline": "Prefer cards?"
+      }
+    ],
+    "ads": [
+      {
+        "title": "Wanted: one co-op term",
+        "body": "First-year Computer Science student at Waterloo seeks a quant development or software engineering co-op. Python, Java and TypeScript. Work samples in Technology, C1.",
+        "links": [
+          "email"
+        ]
+      },
+      {
+        "title": "Lost: two suits",
+        "body": "Diamonds and clubs, last seen in the deck. Finder is a team that works in data, research or infrastructure. Reward: one keen co-op student.",
+        "links": [
+          "email"
+        ]
+      },
+      {
+        "title": "Free to a good home",
+        "body": "One résumé, a single page, every link live.",
+        "links": [
+          "resume"
+        ]
+      },
+      {
+        "title": "Open daily",
+        "body": "Code on GitHub, the rest on LinkedIn.",
+        "links": [
+          "github",
+          "linkedin"
+        ]
+      }
+    ],
+    "back": {
+      "body": "Last night this same story was dealt as one hand of poker at a private table: the jobs as the hand history, the projects as the board and the awards as the cashes. You don't need to know the game to sit down.",
+      "cta": "Take a seat at the table",
+      "caption": "The table, last night. The chips were still warm."
+    },
+    "footer": "Not a card player? The same story, in plain print.",
+    "gate": {
+      "question": "Do you play poker?",
+      "note": "This site is one hand of poker. If cards aren't your thing, the same story is printed as a morning paper.",
+      "yes": "Yes, deal me in",
+      "no": "No, give it to me straight"
+    }
+  }
 }
