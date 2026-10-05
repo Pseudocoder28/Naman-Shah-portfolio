@@ -36,7 +36,7 @@ const teasers: Record<string, string> = {
   business: list(experience.map((job) => job.company).filter((name): name is string => !!name)),
   technology: list(projects.slice(0, SPLIT).map((project) => project.name)),
   'technology-more': list(projects.slice(SPLIT).map((project) => project.name)),
-  sports: list([...new Set(awards.map((award) => award.name))]),
+  education: list([...player.education.map((school) => school.school), ...new Set(awards.map((award) => award.name))]),
   community: table.org ?? '',
   classifieds: straight.ads[0]?.title ?? '',
   back: pageOf('back')?.headline ?? '',
@@ -330,8 +330,18 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
                 </div>
               )}
 
-              {page.id === 'sports' && (
+              {page.id === 'education' && (
                 <div class="scores">
+                  {player.education.length > 0 && (
+                    <ul class="schools" role="list">
+                      {player.education.map((school) => (
+                        <li>
+                          <strong>{school.school}</strong>
+                          {school.program && `, ${school.program}`} <span class="small">{school.dates}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   <table>
                     <thead>
                       <tr>
@@ -355,6 +365,13 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
                                 {' '}→
                               </span>
                             </button>
+                            {row.marks && (
+                              <span class="track" aria-hidden="true">
+                                {row.marks.average !== undefined && <i class="avg" style={`left: ${row.marks.average}%`} />}
+                                {row.marks.cutoff !== undefined && <i class="cut" style={`left: ${row.marks.cutoff}%`} />}
+                                <i class="dot" style={`left: ${row.marks.score}%`} />
+                              </span>
+                            )}
                           </th>
                           <td class="mine">{row.award.result}</td>
                           <td>{row.average ?? '–'}</td>
@@ -363,23 +380,9 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
                       ))}
                     </tbody>
                   </table>
-                  <figure class="bullets" aria-hidden="true">
-                    {scores
-                      .filter((row) => row.marks)
-                      .map((row) => (
-                        <div class="bullet">
-                          <span class="small">{row.contest}</span>
-                          <span class="track">
-                            {row.marks!.average !== undefined && <i class="avg" style={`left: ${row.marks!.average}%`} />}
-                            {row.marks!.cutoff !== undefined && <i class="cut" style={`left: ${row.marks!.cutoff}%`} />}
-                            <i class="dot" style={`left: ${row.marks!.score}%`} />
-                          </span>
-                        </div>
-                      ))}
-                    <figcaption class="small">
-                      <span class="key dot" /> Naman <span class="key avg" /> average <span class="key cut" /> distinction
-                    </figcaption>
-                  </figure>
+                  <p class="small legend" aria-hidden="true">
+                    <span class="key dot" /> Naman <span class="key avg" /> average <span class="key cut" /> distinction, each on the contest's own scale
+                  </p>
                   {/* The full contests: the lens shows one at a time, and without JavaScript they open here. */}
                   <details class="more fields">
                     <summary class="small">See every contest's field and source</summary>
@@ -949,9 +952,20 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
     color: var(--color-card-red);
   }
 
-  /* Sports: an agate box score, a bullet line per contest and each contest's field in the lens. */
+  /* Education: the schools, an agate box score, a bullet line per contest and each contest's field in the lens. */
   .scores {
     margin-top: 0.8em;
+  }
+
+  /* The schools, a line each, above the contest results. */
+  .schools {
+    margin-bottom: 0.5em;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid var(--color-ink);
+  }
+
+  .schools strong {
+    font-weight: 500;
   }
 
   .scores table {
@@ -962,7 +976,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
 
   .scores th,
   .scores td {
-    padding: 0.4em 0.25em;
+    padding: 0.3em 0.25em;
     border-bottom: 1px solid var(--rule);
     text-align: right;
     vertical-align: top;
@@ -1001,22 +1015,17 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
     color: var(--color-card-red);
   }
 
-  .bullets {
-    display: grid;
-    gap: 0.35em;
-    margin-top: 0.9em;
+  .legend {
+    margin-top: 0.6em;
   }
 
-  .bullet {
-    display: grid;
-    grid-template-columns: 8.5em minmax(0, 1fr);
-    align-items: center;
-    gap: 0.6em;
-  }
-
+  /* Each contest's line sits under its name: where Naman landed against the average and the cutoff. */
   .track {
     position: relative;
-    height: 0.5em;
+    display: block;
+    width: 92%;
+    margin: 0.35em 0 0.1em;
+    height: 0.45em;
     border-radius: 1em;
     background: color-mix(in srgb, var(--color-ink) 10%, transparent);
   }
@@ -1050,7 +1059,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
     background: var(--color-card-red);
   }
 
-  figcaption .key {
+  .legend .key {
     position: relative;
     display: inline-block;
     top: auto;
@@ -1059,8 +1068,8 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
     vertical-align: middle;
   }
 
-  figcaption .key.avg,
-  figcaption .key.cut {
+  .legend .key.avg,
+  .legend .key.cut {
     height: 0.9em;
   }
 

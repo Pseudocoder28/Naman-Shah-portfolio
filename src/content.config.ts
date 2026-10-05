@@ -86,7 +86,7 @@ const profile = defineCollection({
         price: text,
         pages: z.array(
           z.object({
-            id: z.enum(['front', 'business', 'technology', 'technology-more', 'sports', 'community', 'classifieds', 'back']),
+            id: z.enum(['front', 'business', 'technology', 'technology-more', 'education', 'community', 'classifieds', 'back']),
             label: z.string(),
             name: z.string(),
             headline: text,

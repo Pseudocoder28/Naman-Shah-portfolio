@@ -237,7 +237,7 @@ The non-poker version at /straight: the same story as a morning newspaper. The j
   - B1 Business: Two jobs, one habit: build the thing everyone else relies on
   - C1 Technology: Five projects, every line of code public
   - C2 Technology: Continued from C1
-  - D1 Sports: Box scores
+  - D1 Education: Top of the state, and top 50 of almost 24,000
   - E1 Community: Student president steers a 75-member council
   - F1 Classifieds: Help wanted, and other notices
   - F2 Back page: Prefer cards?
