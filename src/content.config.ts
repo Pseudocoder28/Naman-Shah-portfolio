@@ -84,6 +84,8 @@ const profile = defineCollection({
       )
       .default([]),
     showdown: text,
+    // The line under The Board's heading: what the flop, the turn and the river are, in plain words.
+    boardIntro: text,
     // The line under Hand History's suit legend while some suits have no card yet.
     drawing: z.object({ line: z.string(), cta: text }).optional(),
     // The non-poker version at /straight: a morning newspaper. Only the paper's own words live here.

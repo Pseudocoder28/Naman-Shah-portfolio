@@ -4,7 +4,7 @@ import SectionTitle from './SectionTitle.astro';
 import { PIPS, SUIT_OF } from '../../lib/deck';
 import EquityReadout from '../hud/EquityReadout';
 
-const { hand } = (await getEntry('profile', 'main'))!.data;
+const { hand, boardIntro } = (await getEntry('profile', 'main'))!.data;
 
 const projects = await Promise.all(
   (await getCollection('board'))
@@ -33,7 +33,11 @@ const face = (card: string) => {
 
 <section id="the-board" class="lamp-pool px-6 py-16 md:px-12 md:py-24">
   <div class="board-area mx-auto max-w-7xl">
-    <SectionTitle id="the-board" />
+    {/* On a wide screen the intro sits beside the heading, so the readout's button stays in view. */}
+    <div class="head">
+      <SectionTitle id="the-board" />
+      {boardIntro && <p class="intro">{boardIntro}</p>}
+    </div>
     {/* Phones get the board at a glance too: all five cards small in one row, face down until their
         street is dealt, right above the readout and its deal button, so a deal and its equity share
         the screen. The full cards follow under the readout as a row to swipe through. */}
@@ -66,7 +70,7 @@ const face = (card: string) => {
         }
       </div>
     </div>
-    <div class="board mt-12">
+    <div class="board mt-8">
       {
         streets.map(({ street, name }) => (
           <div class="street">
@@ -170,6 +174,27 @@ const face = (card: string) => {
   /* Three flop cards, a gap, the turn, a gap, the river. Phones and tablets scroll the row. */
   .board-area {
     container-type: inline-size;
+  }
+
+  /* What dealing does, for visitors who don't play. */
+  .intro {
+    max-width: 62ch;
+    margin-top: 1rem;
+    color: color-mix(in srgb, var(--color-cream) 85%, transparent);
+  }
+
+  @media (min-width: 1024px) {
+    .head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+
+    .intro {
+      margin-top: 0;
+      font-size: var(--text-small);
+    }
   }
 
   /* ---- The board at a glance, on phones only. ---- */

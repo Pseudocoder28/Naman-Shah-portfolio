@@ -104,6 +104,15 @@ export default function EquityReadout({ hole, board }: EquityReadoutProps) {
 
   const cell = (stat: keyof Shares) => (el: HTMLElement | null) => void (cells.current[stat] = el);
   const coming = next(current);
+  // What the next deal turns over, for visitors who don't know a flop from a river.
+  const turning = coming ? board.filter((b) => b.street === coming).length : 0;
+  const hint = !coming
+    ? ''
+    : coming === 'flop'
+      ? `Turns the first ${turning} projects face up`
+      : next(coming)
+        ? `Turns ${turning} more ${turning === 1 ? 'project' : 'projects'} face up`
+        : 'Turns the last project face up';
   // The hand comes first: a street dealt before the hero's deal waits on the stage for it.
   const deal = () => {
     handDealt.set(true);
@@ -160,9 +169,14 @@ export default function EquityReadout({ hole, board }: EquityReadoutProps) {
             <p className="hud-note exact">{result && (result.exact ? `Exact over ${count.format(result.matchups)} matchups` : 'Estimated')}</p>
           </div>
           {coming && (
-            <button type="button" className="deal" onClick={deal}>
-              Deal the {coming}
-            </button>
+            <div className="dealer">
+              <button type="button" className="deal" onClick={deal} aria-describedby="deal-hint">
+                Deal the {coming}
+              </button>
+              <p id="deal-hint" className="hud-note hint">
+                {hint}
+              </p>
+            </div>
           )}
         </div>
         <p className="sr-only" role="status">

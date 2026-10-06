@@ -14,7 +14,7 @@ The single source of every word on the site. Replace each TODO, delete any line 
 - url: https://naman-shah-portfolio.vercel.app
 
 ## player
-- blurb (three sentences at most): I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm looking for a quant development or software engineering co-op.
+- blurb (three sentences at most): I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm open to any co-op, internship or interview, so if you're hiring, get in touch.
 - stats (four at most, each with an optional note in plain words):
   - Graduating: May 2031
   - Grade 12 board exams: 99.25% (note: ISC, India: top of the state and 4th in the country)
@@ -71,6 +71,8 @@ Shown under the suit legend while some suits have no card yet. Rewrite it once e
 
 ## board
 Exactly five projects: three on the flop, one on the turn and one on the river. The two hole cards plus these five must all be different. The cards tell a story: seven-deuce offsuit, the worst starting hand in poker, pairs its seven on the flop, makes two pair on the turn and fills up on the river.
+
+- intro (shown under the heading, for visitors who don't play): Five projects, dealt like the five shared cards in poker: three on the flop, then one on the turn and one on the river. Deal each street to turn its projects face up, and the readout shows how the hand's chance of winning changes. Click any card for the whole project.
 
 ### flop: Kc
 - name: Cross-Book
@@ -256,7 +258,7 @@ The non-poker version at /straight: the same story as a morning newspaper. The j
   - F1 Classifieds: Help wanted, and other notices
   - F2 Back page: Prefer cards?
 - classifieds (title, body, then the contacts the ad links to):
-  - Wanted: one co-op term: First-year Computer Science student at Waterloo seeks a quant development or software engineering co-op. (links to email)
+  - Wanted: one co-op term: First-year Computer Science student at Waterloo seeks a co-op or internship. Any team, any role. Will consider all offers. (links to email)
   - Lost: two suits: Diamonds and clubs. Finder works in data, research or infrastructure. Reward: one keen co-op student. (links to email)
   - Free to a good home: One résumé. One page. Every link live. (links to resume)
   - Open daily: Code on GitHub, the rest on LinkedIn. (links to github and linkedin)
@@ -265,4 +267,4 @@ The non-poker version at /straight: the same story as a morning newspaper. The j
 - note on the poker page, linking here: Not a card player? The same story, in plain print.
 
 ## showdown
-- line: Hiring for a quant development or software engineering co-op? Send me an email.
+- line: Hiring for any role, or have an interview to offer? Send me an email.

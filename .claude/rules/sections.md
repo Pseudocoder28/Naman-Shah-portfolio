@@ -36,6 +36,7 @@ Every section heading after the hero pairs its poker name with a plain one, for 
 - A one-line suit legend sits under the row. Suits no card holds yet show as open seats, a dashed outline round their meaning, and while any are open the drawing line from content follows, with its "Deal me in" link to the email address.
 
 ## The Board (projects)
+- Under the heading, the intro line from content says in plain words what the flop, the turn and the river are, what dealing does and that a card opens its project.
 - Five cards laid out as a real board: three for the flop, a small gap, the turn, a small gap, the river. Street names (Flop, Turn, River) sit above in small EB Garamond.
 - The board starts empty, each card's place a faint brass outline. The equity readout's button deals the flop, then the turn, then the river, each street preceded by a burn card that slides off to the side. Under reduced motion, or if the board is already in view when the motion pass runs, it starts fully dealt.
 - Face: rank and suit from content in the corners, the project name, the one-line pitch, the metric and stack tags.

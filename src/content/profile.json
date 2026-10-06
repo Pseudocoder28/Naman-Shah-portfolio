@@ -11,7 +11,7 @@
     "url": "https://naman-shah-portfolio.vercel.app"
   },
   "player": {
-    "blurb": "I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm looking for a quant development or software engineering co-op.",
+    "blurb": "I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm open to any co-op, internship or interview, so if you're hiring, get in touch.",
     "stats": [
       {
         "label": "Graduating",
@@ -111,6 +111,7 @@
       "2s"
     ]
   },
+  "boardIntro": "Five projects, dealt like the five shared cards in poker: three on the flop, then one on the turn and one on the river. Deal each street to turn its projects face up, and the readout shows how the hand's chance of winning changes. Click any card for the whole project.",
   "suits": {
     "spades": "quant and trading",
     "hearts": "product and full-stack",
@@ -400,7 +401,7 @@
     "lesson": "That month taught me that leadership is stepping in wherever I'm needed. Next time, I'd build the backup plan before the rain.",
     "hook": "120,000 rupees to charity, and a rained-out sports day back on track within an hour"
   },
-  "showdown": "Hiring for a quant development or software engineering co-op? Send me an email.",
+  "showdown": "Hiring for any role, or have an interview to offer? Send me an email.",
   "drawing": {
     "line": "Two suits down, two to draw. If your team works in data, research or infrastructure, you're holding the diamonds and clubs I'm missing.",
     "cta": "Deal me in"
@@ -462,7 +463,7 @@
     "ads": [
       {
         "title": "Wanted: one co-op term",
-        "body": "First-year Computer Science student at Waterloo seeks a quant development or software engineering co-op.",
+        "body": "First-year Computer Science student at Waterloo seeks a co-op or internship. Any team, any role. Will consider all offers.",
         "links": [
           "email"
         ]

@@ -191,6 +191,12 @@ html:not(.js) .equity {
   background: color-mix(in srgb, var(--color-lamp) 12%, transparent);
 }
 
+/* Under the button: what this deal turns over. */
+.equity .hint {
+  margin: -0.5rem 1rem 1rem;
+  text-align: center;
+}
+
 /* On a wide screen the readout runs as one strip under the board, so the cards, the numbers and
    the deal button all fit on screen together: the equity, the shares, the ladder, the button. */
 @media (min-width: 1024px) {
@@ -236,8 +242,14 @@ html:not(.js) .equity {
   }
 
   .equity .body .deal {
-    width: auto;
+    width: 100%;
     margin: 0;
+    white-space: nowrap;
+  }
+
+  .equity .body .hint {
+    margin: 0.5rem 0 0;
+    padding: 0;
     white-space: nowrap;
   }
 }
