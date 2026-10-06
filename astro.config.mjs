@@ -11,7 +11,12 @@ export default defineConfig({
   // One page, so a separate stylesheet only adds a render-blocking round trip.
   build: { inlineStylesheets: 'always' },
   integrations: [react(), sitemap(), buildStats()],
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    // Named, not looked up: the lookup picks up a tsconfig.json in a folder above this one, like
+    // the main checkout above a worktree, and fails when that folder has no node_modules.
+    tsconfig: './tsconfig.json',
+    plugins: [tailwindcss()],
+  },
   fonts: [
     {
       provider: fontProviders.fontsource(),
