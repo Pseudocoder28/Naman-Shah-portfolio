@@ -35,7 +35,7 @@ type Props = {
 
 // A native modal dialog traps focus, closes on Esc and returns focus to whatever opened it.
 export default function CommandPalette({ site, pages }: Props) {
-  const places: Place[] = pages ?? SECTIONS.map(({ id, name }) => ({ id, name, keywords: KEYWORDS[id] }));
+  const places: Place[] = pages ?? SECTIONS.map(({ id, name, plain }) => ({ id, name: plain ? `${name} | ${plain}` : name, keywords: KEYWORDS[id] }));
   const open = useStore(palette);
   const dialog = useRef<HTMLDialogElement>(null);
   const [search, setSearch] = useState('');

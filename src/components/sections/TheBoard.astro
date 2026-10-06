@@ -1,5 +1,6 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
+import SectionTitle from './SectionTitle.astro';
 import { PIPS, SUIT_OF } from '../../lib/deck';
 import EquityReadout from '../hud/EquityReadout';
 
@@ -32,7 +33,7 @@ const face = (card: string) => {
 
 <section id="the-board" class="lamp-pool px-6 py-16 md:px-12 md:py-24">
   <div class="board-area mx-auto max-w-7xl">
-    <h2 class="text-h2">The Board</h2>
+    <SectionTitle id="the-board" />
     {/* Phones get the board at a glance too: all five cards small in one row, face down until their
         street is dealt, right above the readout and its deal button, so a deal and its equity share
         the screen. The full cards follow under the readout as a row to swipe through. */}

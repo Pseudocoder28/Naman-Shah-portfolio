@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import SectionTitle from './SectionTitle.astro';
 import { PIPS, type Suit } from '../../lib/deck';
 
 const { experience, suits, drawing, site } = (await getEntry('profile', 'main'))!.data;
@@ -11,7 +12,7 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
 
 <section id="hand-history" class="lamp-pool px-6 py-16 md:px-12 md:py-24">
   <div class="mx-auto max-w-7xl">
-    <h2 class="text-h2">Hand History</h2>
+    <SectionTitle id="hand-history" />
     <ol class="row mt-12" role="list">
       {
         experience.map((job, i) => {

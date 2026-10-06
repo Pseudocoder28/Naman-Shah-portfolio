@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import SectionTitle from './SectionTitle.astro';
 
 const { player } = (await getEntry('profile', 'main'))!.data;
 ---
@@ -7,7 +8,7 @@ const { player } = (await getEntry('profile', 'main'))!.data;
 <section id="the-player" class="lamp-pool px-6 py-16 md:px-12 md:py-24">
   <div class="on-cream mx-auto grid max-w-6xl gap-12 rounded-panel p-8 shadow-2xl md:grid-cols-[minmax(0,1fr)_20rem] md:p-16">
     <div>
-      <h2 class="text-h2">The Player</h2>
+      <SectionTitle id="the-player" />
       {player.blurb && <p class="mt-6 max-w-[62ch]" data-follow>{player.blurb}</p>}
     </div>
     {

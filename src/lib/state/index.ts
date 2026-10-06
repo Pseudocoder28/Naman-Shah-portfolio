@@ -2,14 +2,15 @@
 import { atom } from 'nanostores';
 import type { Street } from '../poker/api';
 
+// Each section's poker name, and the plain one beside it for visitors who don't play.
 export const SECTIONS = [
-  { id: 'the-deal', name: 'The Deal' },
-  { id: 'the-player', name: 'The Player' },
-  { id: 'hand-history', name: 'Hand History' },
-  { id: 'the-board', name: 'The Board' },
-  { id: 'the-cashes', name: 'The Cashes' },
-  { id: 'the-table', name: 'The Table' },
-  { id: 'showdown', name: 'Showdown' },
+  { id: 'the-deal', name: 'The Deal', plain: '' },
+  { id: 'the-player', name: 'The Player', plain: 'About' },
+  { id: 'hand-history', name: 'Hand History', plain: 'Experience' },
+  { id: 'the-board', name: 'The Board', plain: 'Projects' },
+  { id: 'the-cashes', name: 'The Cashes', plain: 'Awards' },
+  { id: 'the-table', name: 'The Table', plain: 'Leadership' },
+  { id: 'showdown', name: 'Showdown', plain: 'Contact' },
 ] as const;
 
 export type SectionId = (typeof SECTIONS)[number]['id'];
