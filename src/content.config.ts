@@ -40,6 +40,8 @@ const profile = defineCollection({
       .array(
         z.object({
           company: text,
+          // What the company is, in a few words, for anyone who hasn't heard of it.
+          about: text,
           role: text,
           start: text,
           end: text,

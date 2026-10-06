@@ -20,7 +20,7 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
           const hasBack = job.details.length > 0 || job.tags.length > 0;
           const Face = hasBack ? 'button' : 'div';
           const when = [job.start, job.end].filter(Boolean).join(' – ');
-          const meta = [job.location, when].filter(Boolean).join(' · ');
+          const meta = [job.about, job.location, when].filter(Boolean);
           const flip = hasBack ? { type: 'button', 'aria-expanded': 'false', 'aria-controls': `job-${i}` } : {};
           return (
             <li class="slot">
@@ -32,7 +32,17 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
                 )}
                 {job.company && <span class="company">{job.company}</span>}
                 {job.role && <span>{job.role}</span>}
-                {meta && <span class="meta">{meta}</span>}
+                {/* Each part stays whole, so the line only breaks between them, never inside a date. */}
+                {meta.length > 0 && (
+                  <span class="meta">
+                    {meta.map((part, k) => (
+                      <>
+                        {k > 0 && ' · '}
+                        <span class="part">{part}</span>
+                      </>
+                    ))}
+                  </span>
+                )}
                 {job.result && <span class="result">{job.result}</span>}
                 {/* Says the card turns over, so nobody misses that the details are on its back. */}
                 {hasBack && (
@@ -181,6 +191,10 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
     font-size: 1.125rem;
     font-weight: 500;
     line-height: 1.25;
+  }
+
+  .meta .part {
+    white-space: nowrap;
   }
 
   .meta {

@@ -50,6 +50,7 @@ Suits: spades for quant and trading, hearts for product and full-stack, diamonds
 - suit: spades
 
 ### Agropac Pvt Ltd
+- about (what the company is, in a few words): Packaging manufacturer
 - role: Software Engineer
 - start: Apr 2025
 - end: Jun 2025
@@ -234,9 +235,9 @@ Awards and competition results, biggest first, so a reader who stops after one s
 - highlights (a short title, then what happened):
   - Straight in on Teachers' Day: Appointed school president on Teachers' Day, three days after the results, with that day's celebrations, cultural week and sports day to run right away. I handed each event to its committee head, assigned the volunteers and worked with the school board.
   - Rain on sports day: Sudden rain threw out the schedule. I coordinated everyone from the head administration to the ground staff and helped clear the field myself. We were back on track within an hour.
-  - A charity fair, doubled: Oversaw a pre-Navratri fair of food stalls whose earnings all went to charity, and struck a deal with the school chairman to match them. We donated more than 100,000 rupees.
+  - A charity fair, doubled: Oversaw a pre-Navratri fair of food stalls whose earnings all went to charity, and struck a deal with the school chairman to match them. Together we donated 120,000 rupees.
 - lesson: That month taught me that leadership is stepping in wherever I'm needed. Next time, I'd build the backup plan before the rain.
-- hook (one line with numbers, for the morning paper): More than 100,000 rupees to charity, and a rained-out sports day back on track within an hour
+- hook (one line with numbers, for the morning paper): 120,000 rupees to charity, and a rained-out sports day back on track within an hour
 
 ## straight
 The non-poker version at /straight: the same story as a morning newspaper. The jobs, projects, awards and council come from the sections above; only the paper's own words live here.

@@ -30,6 +30,9 @@ const date = built.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric'
 /** "a, b and c", the house style: no Oxford comma. */
 const list = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`);
 const span = (start?: string, end?: string) => [start, end].filter(Boolean).join(' to ');
+/** "Packaging manufacturer" mid-line, as "packaging manufacturer". Leaves acronyms like "NASA" alone. */
+const lower = (text?: string) => (text && /^[A-Z][a-z]/.test(text) ? text[0].toLowerCase() + text.slice(1) : text);
+const kicker = (job: (typeof experience)[number]) => [job.company, lower(job.about), job.location].filter(Boolean).join(', ');
 
 // The front page's index, one teaser per section built from that section's own content.
 const teasers: Record<string, string> = {
@@ -248,7 +251,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
                 <div class="stories">
                   {experience.map((job) => (
                     <article class="story" data-story>
-                      <p class="kicker small">{[job.company, job.location].filter(Boolean).join(', ')}</p>
+                      <p class="kicker small">{kicker(job)}</p>
                       {job.result && <h3 class="headline">{job.result}</h3>}
                       <p class="line">{[job.role, span(job.start, job.end)].filter(Boolean).join(', ')}</p>
                       {(job.hook || job.tags.length > 0) && <p class="fact small">{job.hook ? <span class="mine">{job.hook}</span> : list(job.tags)}</p>}
@@ -256,7 +259,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
                         <summary class="read">Read the full story<span aria-hidden="true"> →</span></summary>
                         <div class="full">
                           <header class="full-head">
-                            <p class="kicker small">{[job.company, job.location].filter(Boolean).join(', ')}</p>
+                            <p class="kicker small">{kicker(job)}</p>
                             {job.result && <h3 class="headline">{job.result}</h3>}
                             <p class="line">{[job.role, span(job.start, job.end)].filter(Boolean).join(', ')}</p>
                             {job.hook && <p class="pull">{job.hook}</p>}

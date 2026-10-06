@@ -31,7 +31,7 @@ Every section heading after the hero pairs its poker name with a plain one, for 
 
 ## Hand History (experience)
 - One playing card per role, dealt left to right in a row on desktop and in a horizontal scroll-snap row on phones.
-- Face: the suit from content in the corners, then company, role, dates and the one-sentence result, and at its foot "Turn over for the details ↻", an ink pill that turns card red under the pointer, so nobody misses that the card has a back.
+- Face: the suit from content in the corners, then company, role, what the company is with its location and dates, and the one-sentence result, and at its foot "Turn over for the details ↻", an ink pill that turns card red under the pointer, so nobody misses that the card has a back.
 - Activating a card (click, Enter or Space) flips it to the back, which lists the details and tags and ends in "Turn back ↺". Each card is a button with aria-expanded, and the back content is in the DOM. Without JavaScript the back lies open under the face and neither pill shows.
 - A one-line suit legend sits under the row. Suits no card holds yet show as open seats, a dashed outline round their meaning, and while any are open the drawing line from content follows, with its "Deal me in" link to the email address.
 
