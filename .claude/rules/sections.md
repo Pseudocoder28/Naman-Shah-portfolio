@@ -56,7 +56,7 @@ Every section heading after the hero pairs its poker name with a plain one, for 
 - On the right, one chip stack per committee, each labeled with its name in HTML. With member counts for every team the heights are proportional and the counts show; without them every stack stands the same height and no count shows. The stacks become 3D in phase 2 and can be flicked in phase 3.
 
 ## Showdown (contact)
-- The heading, the closing line from content (the hand's story, the worst starting hand played into a full house, as the case for hiring Naman), then four large chips as buttons: Email (copies the address and shows "Email copied"), GitHub, LinkedIn and Résumé.
+- The heading, the closing line from content (the hand's story, seven-deuce played into a full house, as the case for hiring Naman), then four large chips as buttons: Email (copies the address and shows "Email copied"), GitHub, LinkedIn and Résumé.
 - A hint below: "Press ⌘K for everything else" (Ctrl K on Windows and Linux).
 - The footer follows, with a link to the morning paper at /straight for visitors who don't play.
 
