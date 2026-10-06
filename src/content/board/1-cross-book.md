@@ -2,7 +2,7 @@
 street: flop
 card: Kc
 name: Cross-Book
-pitch: Finds the Kalshi and Polymarket price gaps that still pay after every fee and level of depth.
+pitch: "Cross-venue arbitrage measurement for Kalshi and Polymarket US: fee-exact, depth-aware price gaps from live order books."
 metric: 500+ automated tests
 stack: [Python, asyncio, WebSockets, Pandas, Plotly]
 links:
@@ -14,7 +14,7 @@ The gap between two best prices isn't an edge. Cross-Book walks both order books
 
 - One normalized order book for both venues, in integer ticks of $0.0001, so live Kalshi books with fractional counts fit.
 - Fees are worked out with exact fractions, then rounded the way each venue documents: Kalshi up to the next tick, Polymarket US half-even to the cent.
-- Every raw message is recorded before it's parsed, so any run replays through the same code on the recorded clock.
+- Every raw message is recorded before it's parsed, and a recorded run replays through the same code on the recorded clock.
 - A keyboard-driven terminal UI with 8 pages, from the live depth monitor to the control plane, where every action is validated and audited.
 - 394 Python tests and 109 frontend tests, with the parsers tested on captured venue payloads.
 

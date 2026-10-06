@@ -60,11 +60,18 @@ const profile = defineCollection({
       summary: text,
       // Member counts are optional. Without them every stack stands the same height and shows no count.
       teams: z.array(z.object({ name: z.string(), members: z.number().int().positive().optional() })).default([]),
+      // The story of the year: a few moments, each a short title and what happened, then the lesson.
+      highlights: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
+      lesson: text,
+      // One line with numbers: the morning paper's fact for the council.
+      hook: text,
     }),
     awards: z
       .array(
         z.object({
           name: z.string(),
+          // The contest's full name, or what it is when the name says nothing, for anyone who doesn't know it.
+          full: text,
           year: text,
           result: text,
           note: text,

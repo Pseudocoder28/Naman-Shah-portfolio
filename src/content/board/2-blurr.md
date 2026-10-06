@@ -2,7 +2,7 @@
 street: flop
 card: Qd
 name: Blurr
-pitch: Blurs IDs, documents, bystanders and screen text out of live video before anyone sees them.
+pitch: Real-time video redaction that blurs documents, ID cards, bystanders and on-screen text out of a live call, frame by frame.
 metric: 4 kinds of sensitive content, blurred live
 stack: [Python, FastAPI, aiortc, OpenCV, YOLOv8, React, TypeScript, Firebase]
 links:

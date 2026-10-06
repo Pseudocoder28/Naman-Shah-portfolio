@@ -8,6 +8,8 @@ paths:
 
 Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, but nothing here depends on the stage.
 
+Every section heading after the hero pairs its poker name with a plain one, for visitors who don't play: The Player | About, Hand History | Experience, The Board | Projects, The Cashes | Awards, The Table | Leadership, Showdown | Contact. SectionTitle.astro draws it from SECTIONS in src/lib/state: the poker name at h2 size, a thin brass rule, then the plain name at 0.6 of the size in a quieter tone on the same baseline. Under 640px the plain name takes its own line below, without the rule. The palette lists the sections the same way.
+
 ## Nav
 - Left: "Naman" in EB Garamond, linking to the top. From 1024px wide the stage's chip riffle sits beside it, in a slot that holds its size from the first paint.
 - Right: Hand History, The Board, Showdown, a folded-newspaper icon to the morning paper at /straight (from 640px wide; the phone sheet lists The Morning After instead), a Résumé button, a ⌘K button (Ctrl K on Windows and Linux) and, in phase 3, a sound toggle.
@@ -44,12 +46,12 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 
 ## The Cashes (awards)
 - Between The Board and The Table: the hand's winnings so far. One cream ticket per award in a grid, biggest first.
-- Each ticket: the year on a stub behind a brass perforation, then the contest name, the result in card red, the optional note and "See the field".
+- Each ticket: the year on a stub behind a brass perforation, then the contest name with its full name (or what it is) under it in small grey, the result in card red, the optional note and "See the field".
 - Activating a ticket opens a sheet like The Board's: an accessible dialog on a cream panel with what the contest is, the field's official numbers (Naman's own result first, in card red) and a link to the source. Only numbers the source publishes go in, so no invented medians or percentiles.
 - Reachable from the palette. It stays out of the nav, which has no room for a fourth link at 768px.
 
 ## The Table (leadership)
-- The student council story on the left: org, role, dates and the summary.
+- The student council story on the left: org, role, dates and the summary. Under it and the stacks, the year's moments from content in a row of three on a wide screen (a short title, then what happened, each behind a brass rule), and the lesson last in lamp light.
 - On the right, one chip stack per committee, each labeled with its name in HTML. With member counts for every team the heights are proportional and the counts show; without them every stack stands the same height and no count shows. The stacks become 3D in phase 2 and can be flicked in phase 3.
 
 ## Showdown (contact)

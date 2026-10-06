@@ -40,12 +40,12 @@ Suits: spades for quant and trading, hearts for product and full-stack, diamonds
 - start: Apr 2026
 - end: present
 - location: Waterloo, Canada
-- result: Built the data pipeline all of the club's research runs on, so every strategy starts from data that's already been checked.
+- result: Built the data pipeline that is the core data infrastructure for all of the club's research.
 - details:
-  - Pulls daily prices, corporate actions and fundamentals for 1,000+ US equities from the LSEG API into Parquet, checked for gaps, splits, dividends and survivorship bias, so no backtest looks good by forgetting the companies that didn't make it.
-  - Built a performance attribution engine (Brinson-Fachler and multi-factor regression, with ex-ante and ex-post risk), so the club sees why each strategy made money and not only whether it did.
-  - Designed an event-driven backtester that replays 20 years across 1,000+ tickers with costs, slippage and point-in-time data, so a strategy only trades on what it could have known that day.
-- hook (one line with numbers, for the morning paper): 1,000+ US equities and 20 years of history under every club strategy
+  - Ingests daily OHLCV bars, corporate actions and fundamentals for 1,000+ US equities through the LSEG API into a Parquet store, with automated checks for missing data, split and dividend adjustments and survivorship bias.
+  - Developed a performance attribution engine that splits returns into sector, factor and security selection effects with Brinson-Fachler attribution and multi-factor regression, plus ex-ante and ex-post risk metrics across every systematic strategy.
+  - Designed an event-driven backtesting engine that simulates 20 years of history across 1,000+ tickers, modelling transaction costs, slippage and point-in-time data to prevent lookahead bias.
+- hook (one line with numbers, for the morning paper): 1,000+ US equities, 20 years of history, every club strategy
 - tags: Python, LSEG API, Parquet, Pandas
 - suit: spades
 
@@ -54,12 +54,11 @@ Suits: spades for quant and trading, hearts for product and full-stack, diamonds
 - start: Apr 2025
 - end: Jun 2025
 - location: India
-- result: Built backend services for an in-house ERP and an AI assistant on top, so executives get answers by asking in plain English.
+- result: Built backend services in Java and Spring for an in-house ERP covering inventory, orders and invoicing, procurement, production and the sales pipeline.
 - details:
-  - Built Java and Spring services for inventory, orders, invoicing, procurement, production and sales, so 6 parts of the business ran on one system.
-  - Owned sign-in and role-based access across multiple sites, so each user reached only the records their role allowed.
-  - Built an LLM assistant with RAG over the ERP's data, so an executive with a question about stock, invoices, production, HR or sales just asks it in plain English.
-- hook (one line with numbers, for the morning paper): 6 parts of the business on one ERP, and an assistant executives just ask in plain English
+  - Owned authentication and role-based authorization across multiple sites, so each user reached only the records their role allowed.
+  - Built an internal LLM assistant using RAG over the ERP's data, letting executives ask about inventory, invoicing, procurement, production, HR and sales in plain English.
+- hook (one line with numbers, for the morning paper): One ERP across 6 parts of the business, and an assistant executives ask in plain English
 - tags: Java, Spring, RAG, LLM
 - suit: hearts
 
@@ -73,7 +72,7 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 
 ### flop: Kc
 - name: Cross-Book
-- pitch: Finds the Kalshi and Polymarket price gaps that still pay after every fee and level of depth.
+- pitch: Cross-venue arbitrage measurement for Kalshi and Polymarket US: fee-exact, depth-aware price gaps from live order books.
 - metric: 500+ automated tests
 - stack: Python, asyncio, WebSockets, Pandas, Plotly
 - links:
@@ -83,7 +82,7 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 
   - One normalized order book for both venues, in integer ticks of $0.0001, so live Kalshi books with fractional counts fit.
   - Fees are worked out with exact fractions, then rounded the way each venue documents: Kalshi up to the next tick, Polymarket US half-even to the cent.
-  - Every raw message is recorded before it's parsed, so any run replays through the same code on the recorded clock.
+  - Every raw message is recorded before it's parsed, and a recorded run replays through the same code on the recorded clock.
   - A keyboard-driven terminal UI with 8 pages, from the live depth monitor to the control plane, where every action is validated and audited.
   - 394 Python tests and 109 frontend tests, with the parsers tested on captured venue payloads.
 
@@ -91,7 +90,7 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 
 ### flop: Qd
 - name: Blurr
-- pitch: Blurs IDs, documents, bystanders and screen text out of live video before anyone sees them.
+- pitch: Real-time video redaction that blurs documents, ID cards, bystanders and on-screen text out of a live call, frame by frame.
 - metric: 4 kinds of sensitive content, blurred live
 - stack: Python, FastAPI, aiortc, OpenCV, YOLOv8, React, TypeScript, Firebase
 - links:
@@ -107,13 +106,13 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 
 ### flop: 7d
 - name: Fast Flag
-- pitch: An AI race control assistant that recommends the flag the moment a crash happens.
+- pitch: An AI race control assistant for Formula 1 that spots a crash the moment it happens and recommends the flag. Built at FormulaTech Hacks 2026.
 - metric: Safety Car called in 1.0 s, against race control's 28.3 s
 - stack: Python, FastF1, IsolationForest, LightGBM
 - links:
   - GitHub: https://github.com/Pseudocoder28/Fast-Flag
 - details:
-  Built at FormulaTech Hacks 2026. It replays historical FastF1 data tick by tick and never sees the future. Detectors, an anomaly model and a crash-risk model feed a rules engine that makes the flag call with a reason a steward can check.
+  It replays historical FastF1 data tick by tick and never sees the future. Detectors, an anomaly model and a crash-risk model feed a rules engine that makes the flag call with a reason a steward can check.
 
   On a race the models never saw, the 2026 Azerbaijan GP:
 
@@ -123,11 +122,11 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 
   Both models trained on 20 races. The anomaly model, an IsolationForest, learned normal driving without seeing a single crash. The LightGBM risk model, 10 s ahead, scores 13 times the chance level.
 
-  Across 62 crashes, every second a flag waits lets about 0.12 cars drive past the wreck at racing speed. On the Safety Car, Fast Flag gives race control a 27-second head start.
+  Across 62 crashes, every second a flag waits lets about 0.12 cars drive past the wreck at racing speed.
 
 ### turn: 2c
 - name: Investing Made Easy
-- pitch: Matches a non-technical investor to an ETF from a short questionnaire, no code needed.
+- pitch: An ETF portfolio tool that matches a non-technical investor's goals and risk answers to an ETF, with a performance dashboard.
 - metric: 8 dashboard views
 - stack: Python, Pandas, FinQuant, Plotly, Panel
 - links:
@@ -142,13 +141,13 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
 
 ### river: 7c
 - name: LooLoop
-- pitch: Helps new students find something to do nearby, and someone to go with, by voice or questionnaire.
-- metric: Top contributor, 21 of 31 commits
+- pitch: Helps new university students find nearby events by voice or questionnaire and join event circles with people going too.
+- metric: 3 event sources in one feed
 - stack: JavaScript, Node.js, Express, Supabase
 - links:
   - GitHub: https://github.com/Saarthi09/LooLoop
 - details:
-  Built to help new university students find something to do and someone to go with. I wrote 21 of the project's 31 commits, more than anyone else.
+  Built to help new university students find something to do and someone to go with. I'm the top contributor, with 21 of the project's 31 commits.
 
   - Events from Ticketmaster, the University of Waterloo and WUSA, searched together and filtered by interests, time, budget, travel distance and place.
   - Voice works in the browser: speech becomes text there and a local parser turns it into filters. No recording is sent to the server.
@@ -156,9 +155,10 @@ Exactly five projects: three on the flop, one on the turn and one on the river. 
   - One source failing never fails the feed: the others still return, with a warning.
 
 ## cashes
-Awards and competition results, biggest first, so a reader who stops after one sees the best one. Each ticket opens a sheet with what the contest is and the field's official numbers. Only numbers from the linked source go in; contests publish means and cutoffs, not medians, so there are none.
+Awards and competition results, biggest first, so a reader who stops after one sees the best one. Each ticket spells out the contest's full name and opens a sheet with what the contest is and the field's official numbers. Only numbers from the linked source go in; contests publish means and cutoffs, not medians, so there are none.
 
 ### CSMC, 2025: 60/60. A perfect score, ranked 1st globally.
+- full: Canadian Senior Mathematics Contest
 - about: The Canadian Senior Mathematics Contest, the University of Waterloo's contest for senior high school students, out of 60.
 - stats:
   - My score: 60/60
@@ -169,6 +169,7 @@ Awards and competition results, biggest first, so a reader who stops after one s
 - source: CEMC, 2025 CSMC and CIMC results: https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025CSIMCResultsBooklet.pdf
 
 ### ISC grade 12, 2026: 99.25%. State topper and 4th in India.
+- full: Indian School Certificate board exams
 - about: The Indian School Certificate exams at the end of grade 12, set by India's CISCE board.
 - stats:
   - My score: 99.25%
@@ -177,6 +178,7 @@ Awards and competition results, biggest first, so a reader who stops after one s
 - source: Deccan Herald, CISCE 2026 results: https://deccanherald.com/education/cisce-results-2026-icse-class-10-pass-percentage-at-9918-isc-class-12-at-9914-3986176
 
 ### Euclid, 2026: 94/100. Top 50 of almost 24,000 entrants.
+- full: University of Waterloo math contest
 - about: The University of Waterloo's contest for students in their last year of high school: 10 questions in 2.5 hours, out of 100.
 - stats:
   - My score: 94/100
@@ -187,6 +189,7 @@ Awards and competition results, biggest first, so a reader who stops after one s
 - source: CEMC, 2026 Euclid results: https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026_Euclid_Results.pdf
 
 ### Euclid, 2025: 89/100. Top 150 of over 27,000 entrants.
+- full: University of Waterloo math contest
 - about: The University of Waterloo's contest for students in their last year of high school: 10 questions in 2.5 hours, out of 100.
 - stats:
   - My score: 89/100
@@ -196,6 +199,7 @@ Awards and competition results, biggest first, so a reader who stops after one s
 - source: CEMC, 2025 Euclid results: https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025EuclidResults.pdf
 
 ### AMC 12A, 2025: 144/150. Top 5% distinction. Qualified for the AIME.
+- full: American Mathematics Competitions
 - about: The Mathematical Association of America's 25-question, 75-minute contest for grade 12 and below, out of 150.
 - stats:
   - My score: 144/150
@@ -206,6 +210,7 @@ Awards and competition results, biggest first, so a reader who stops after one s
 - source: MAA cutoffs, as reported by Think Academy: https://www.thethinkacademy.com/blog/2025-amc-10-and-amc-12-cutoff-scores-qualification-thresholds/
 
 ### CCC Senior, 2026: 39/75. Honour roll.
+- full: Canadian Computing Competition
 - about: The harder division of the Canadian Computing Competition: five programming problems in three hours, out of 75.
 - stats:
   - My score: 39/75
@@ -219,13 +224,19 @@ Awards and competition results, biggest first, so a reader who stops after one s
 - org: SNV Group of Schools, student council
 - role: Student President
 - dates: September 2024 to September 2025
-- summary: Led a 75-member student council across five committees, the voice of more than 2,000 students.
+- summary: Led a 75-member student council representing more than 2,000 students across five committees.
 - teams (five committees adding up to the council's 75):
   - Sports: 21
   - Discipline: 20
   - Literary: 12
   - Well-being: 11
   - Cultural: 11
+- highlights (a short title, then what happened):
+  - Straight in on Teachers' Day: Appointed school president on Teachers' Day, three days after the results, with that day's celebrations, cultural week and sports day to run right away. I handed each event to its committee head, assigned the volunteers and worked with the school board.
+  - Rain on sports day: Sudden rain threw out the schedule. I coordinated everyone from the head administration to the ground staff and helped clear the field myself. We were back on track within an hour.
+  - A charity fair, doubled: Oversaw a pre-Navratri fair of food stalls whose earnings all went to charity, and struck a deal with the school chairman to match them. We donated more than 100,000 rupees.
+- lesson: That month taught me that leadership is stepping in wherever I'm needed. Next time, I'd build the backup plan before the rain.
+- hook (one line with numbers, for the morning paper): More than 100,000 rupees to charity, and a rained-out sports day back on track within an hour
 
 ## straight
 The non-poker version at /straight: the same story as a morning newspaper. The jobs, projects, awards and council come from the sections above; only the paper's own words live here.
@@ -239,7 +250,7 @@ The non-poker version at /straight: the same story as a morning newspaper. The j
   - C1 Business: Two jobs, one habit: build the thing everyone else relies on
   - D1 Technology: Five projects, every line of code public
   - D2 Technology: Continued from D1
-  - E1 Community: Student president leads 75 and speaks for more than 2,000
+  - E1 Community: Student president steers a 75-member council
   - F1 Classifieds: Help wanted, and other notices
   - F2 Back page: Prefer cards?
 - classifieds (title, body, then the contacts the ad links to):

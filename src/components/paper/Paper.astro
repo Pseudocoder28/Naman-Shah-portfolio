@@ -389,6 +389,7 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
                     {scores.map(({ id, award, contest }) => (
                       <div id={id} class="full">
                         <header class="full-head">
+                          {award.full && <p class="kicker small">{award.full}</p>}
                           <h3 class="headline">{contest}</h3>
                           {award.note && <p class="line">{award.note}</p>}
                         </header>
@@ -418,10 +419,37 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
               )}
 
               {page.id === 'community' && (
-                <article class="story">
+                <article class="story" data-story={table.highlights.length > 0 || undefined}>
                   <p class="kicker small">{table.org}</p>
                   <p class="line">{[table.role, table.dates].filter(Boolean).join(', ')}</p>
                   {table.summary && <p class="lede">{table.summary}</p>}
+                  {table.hook && (
+                    <p class="fact small">
+                      <span class="mine">{table.hook}</span>
+                    </p>
+                  )}
+                  {table.highlights.length > 0 && (
+                    <details class="more">
+                      <summary class="read">Read the full story<span aria-hidden="true"> →</span></summary>
+                      <div class="full">
+                        <header class="full-head">
+                          <p class="kicker small">{table.org}</p>
+                          <h3 class="headline">{pageOf('community')?.headline ?? table.role}</h3>
+                          <p class="line">{[table.role, table.dates].filter(Boolean).join(', ')}</p>
+                          {table.hook && <p class="pull">{table.hook}</p>}
+                        </header>
+                        {table.summary && <p>{table.summary}</p>}
+                        <ul class="points">
+                          {table.highlights.map((moment) => (
+                            <li>
+                              <strong>{moment.title}.</strong> {moment.body}
+                            </li>
+                          ))}
+                        </ul>
+                        {table.lesson && <p class="lesson">{table.lesson}</p>}
+                      </div>
+                    </details>
+                  )}
                   {members > 0 && (
                     <p class="tally">
                       <span>
@@ -1311,6 +1339,12 @@ const RANK = (card: string) => (card[0] === 'T' ? '10' : card[0]);
 
   :is(.lens-body, .full) :global(strong) {
     font-weight: 500;
+  }
+
+  /* The council's lesson: the story's last word, set off by an ink rule. */
+  :is(.lens-body, .full) :global(.lesson) {
+    padding-left: 0.8em;
+    border-left: 2px solid var(--color-ink);
   }
 
   :is(.lens-body, .full) :global(.chips-row) {

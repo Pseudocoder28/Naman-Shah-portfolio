@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import SectionTitle from './SectionTitle.astro';
 
 const { awards } = (await getEntry('profile', 'main'))!.data;
 // A ticket opens a sheet only when the sheet has more than the ticket shows. Browsers without
@@ -11,7 +12,7 @@ const hasSheet = (award: (typeof awards)[number]) => Boolean(award.about) || awa
   awards.length > 0 && (
     <section id="the-cashes" class="lamp-pool px-6 py-16 md:px-12 md:py-24">
       <div class="mx-auto max-w-7xl">
-        <h2 class="text-h2">The Cashes</h2>
+        <SectionTitle id="the-cashes" />
         <ol class="tickets mt-12" role="list" data-follow>
           {awards.map((award, i) => {
             // Without JavaScript, invoker commands still open the sheet in browsers that support them.
@@ -25,6 +26,7 @@ const hasSheet = (award: (typeof awards)[number]) => Boolean(award.about) || awa
                   {award.year && <span class="year">{award.year}</span>}
                   <span class="body">
                     <span class="name">{award.name}</span>
+                    {award.full && <span class="full">{award.full}</span>}
                     {award.result && <span class="result">{award.result}</span>}
                     {award.note && <span class="note">{award.note}</span>}
                     {hasSheet(award) && <span class="more">See the field</span>}
@@ -142,6 +144,12 @@ const hasSheet = (award: (typeof awards)[number]) => Boolean(award.about) || awa
     font-size: var(--text-small);
     line-height: var(--text-small--line-height);
     color: color-mix(in srgb, var(--color-ink) 80%, var(--color-cream));
+  }
+
+  .full {
+    font-size: var(--text-small);
+    line-height: 1.35;
+    color: color-mix(in srgb, var(--color-ink) 72%, transparent);
   }
 
   .more {

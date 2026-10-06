@@ -124,11 +124,11 @@
       "start": "Apr 2026",
       "end": "present",
       "location": "Waterloo, Canada",
-      "result": "Built the data pipeline all of the club's research runs on, so every strategy starts from data that's already been checked.",
+      "result": "Built the data pipeline that is the core data infrastructure for all of the club's research.",
       "details": [
-        "Pulls daily prices, corporate actions and fundamentals for 1,000+ US equities from the LSEG API into Parquet, checked for gaps, splits, dividends and survivorship bias, so no backtest looks good by forgetting the companies that didn't make it.",
-        "Built a performance attribution engine (Brinson-Fachler and multi-factor regression, with ex-ante and ex-post risk), so the club sees why each strategy made money and not only whether it did.",
-        "Designed an event-driven backtester that replays 20 years across 1,000+ tickers with costs, slippage and point-in-time data, so a strategy only trades on what it could have known that day."
+        "Ingests daily OHLCV bars, corporate actions and fundamentals for 1,000+ US equities through the LSEG API into a Parquet store, with automated checks for missing data, split and dividend adjustments and survivorship bias.",
+        "Developed a performance attribution engine that splits returns into sector, factor and security selection effects with Brinson-Fachler attribution and multi-factor regression, plus ex-ante and ex-post risk metrics across every systematic strategy.",
+        "Designed an event-driven backtesting engine that simulates 20 years of history across 1,000+ tickers, modelling transaction costs, slippage and point-in-time data to prevent lookahead bias."
       ],
       "tags": [
         "Python",
@@ -137,7 +137,7 @@
         "Pandas"
       ],
       "suit": "spades",
-      "hook": "1,000+ US equities and 20 years of history under every club strategy"
+      "hook": "1,000+ US equities, 20 years of history, every club strategy"
     },
     {
       "company": "Agropac Pvt Ltd",
@@ -145,11 +145,10 @@
       "start": "Apr 2025",
       "end": "Jun 2025",
       "location": "India",
-      "result": "Built backend services for an in-house ERP and an AI assistant on top, so executives get answers by asking in plain English.",
+      "result": "Built backend services in Java and Spring for an in-house ERP covering inventory, orders and invoicing, procurement, production and the sales pipeline.",
       "details": [
-        "Built Java and Spring services for inventory, orders, invoicing, procurement, production and sales, so 6 parts of the business ran on one system.",
-        "Owned sign-in and role-based access across multiple sites, so each user reached only the records their role allowed.",
-        "Built an LLM assistant with RAG over the ERP's data, so an executive with a question about stock, invoices, production, HR or sales just asks it in plain English."
+        "Owned authentication and role-based authorization across multiple sites, so each user reached only the records their role allowed.",
+        "Built an internal LLM assistant using RAG over the ERP's data, letting executives ask about inventory, invoicing, procurement, production, HR and sales in plain English."
       ],
       "tags": [
         "Java",
@@ -158,12 +157,13 @@
         "LLM"
       ],
       "suit": "hearts",
-      "hook": "6 parts of the business on one ERP, and an assistant executives just ask in plain English"
+      "hook": "One ERP across 6 parts of the business, and an assistant executives ask in plain English"
     }
   ],
   "awards": [
     {
       "name": "CSMC",
+      "full": "Canadian Senior Mathematics Contest",
       "year": "2025",
       "result": "60/60",
       "note": "A perfect score, ranked 1st globally.",
@@ -197,6 +197,7 @@
     },
     {
       "name": "ISC grade 12",
+      "full": "Indian School Certificate board exams",
       "year": "2026",
       "result": "99.25%",
       "note": "State topper and 4th in India.",
@@ -222,6 +223,7 @@
     },
     {
       "name": "Euclid",
+      "full": "University of Waterloo math contest",
       "year": "2026",
       "result": "94/100",
       "note": "Top 50 of almost 24,000 entrants.",
@@ -255,6 +257,7 @@
     },
     {
       "name": "Euclid",
+      "full": "University of Waterloo math contest",
       "year": "2025",
       "result": "89/100",
       "note": "Top 150 of over 27,000 entrants.",
@@ -284,6 +287,7 @@
     },
     {
       "name": "AMC 12A",
+      "full": "American Mathematics Competitions",
       "year": "2025",
       "result": "144/150",
       "note": "Top 5% distinction. Qualified for the AIME.",
@@ -317,6 +321,7 @@
     },
     {
       "name": "CCC Senior",
+      "full": "Canadian Computing Competition",
       "year": "2026",
       "result": "39/75",
       "note": "Honour roll.",
@@ -353,7 +358,7 @@
     "org": "SNV Group of Schools, student council",
     "role": "Student President",
     "dates": "September 2024 to September 2025",
-    "summary": "Led a 75-member student council across five committees, the voice of more than 2,000 students.",
+    "summary": "Led a 75-member student council representing more than 2,000 students across five committees.",
     "teams": [
       {
         "name": "Sports",
@@ -375,7 +380,23 @@
         "name": "Cultural",
         "members": 11
       }
-    ]
+    ],
+    "highlights": [
+      {
+        "title": "Straight in on Teachers' Day",
+        "body": "Appointed school president on Teachers' Day, three days after the results, with that day's celebrations, cultural week and sports day to run right away. I handed each event to its committee head, assigned the volunteers and worked with the school board."
+      },
+      {
+        "title": "Rain on sports day",
+        "body": "Sudden rain threw out the schedule. I coordinated everyone from the head administration to the ground staff and helped clear the field myself. We were back on track within an hour."
+      },
+      {
+        "title": "A charity fair, doubled",
+        "body": "Oversaw a pre-Navratri fair of food stalls whose earnings all went to charity, and struck a deal with the school chairman to match them. We donated more than 100,000 rupees."
+      }
+    ],
+    "lesson": "That month taught me that leadership is stepping in wherever I'm needed. Next time, I'd build the backup plan before the rain.",
+    "hook": "More than 100,000 rupees to charity, and a rained-out sports day back on track within an hour"
   },
   "showdown": "Hiring for a quant development or software engineering co-op? Send me an email.",
   "drawing": {
@@ -421,7 +442,7 @@
         "id": "community",
         "label": "E1",
         "name": "Community",
-        "headline": "Student president leads 75 and speaks for more than 2,000"
+        "headline": "Student president steers a 75-member council"
       },
       {
         "id": "classifieds",
