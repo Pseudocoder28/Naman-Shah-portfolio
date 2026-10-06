@@ -267,4 +267,4 @@ The non-poker version at /straight: the same story as a morning newspaper. The j
 - note on the poker page, linking here: Not a card player? The same story, in plain print.
 
 ## showdown
-- line: Most players fold seven-deuce. I played it into a full house. Your move: send me an email.
+- line: Most players fold seven-deuce, the worst hand in poker. I played it into a full house. Your move: send me an email.
