@@ -33,6 +33,12 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
                 {job.role && <span>{job.role}</span>}
                 {meta && <span class="meta">{meta}</span>}
                 {job.result && <span class="result">{job.result}</span>}
+                {/* Says the card turns over, so nobody misses that the details are on its back. */}
+                {hasBack && (
+                  <span class="turn">
+                    Turn over for the details<span aria-hidden="true"> ↻</span>
+                  </span>
+                )}
                 {job.suit && (
                   <span class="pip end" aria-hidden="true">
                     {PIPS[job.suit]}
@@ -55,6 +61,9 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
                       ))}
                     </ul>
                   )}
+                  <span class="turn" aria-hidden="true">
+                    Turn back ↺
+                  </span>
                 </div>
               )}
             </li>
@@ -109,9 +118,11 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
     padding-bottom: 1rem;
   }
 
+  /* Wide enough on a phone that the back's details don't run the card long, with the next card
+     peeking in at the edge. */
   .slot {
     display: grid;
-    flex: 0 0 15rem;
+    flex: 0 0 min(20rem, 82vw);
     scroll-snap-align: center;
   }
 
@@ -176,12 +187,46 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
   }
 
   .result {
-    margin-top: 0.5rem;
+    margin-block: 0.5rem;
+  }
+
+  /* The cue to turn the card: an ink pill at the foot of the face, red under the pointer, like
+     the morning paper's "Read the full story". */
+  .turn {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 0.2rem 0.8rem;
+    border-radius: var(--radius-chip);
+    background: var(--color-ink);
+    color: var(--color-cream);
+    font-weight: 500;
+    box-shadow: 0 2px 0 color-mix(in srgb, var(--color-ink) 35%, transparent);
+    transition: background-color 0.35s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .face:hover .turn,
+  .face:focus-visible .turn,
+  .back:hover .turn {
+    background: var(--color-card-red);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .turn {
+      transition: none;
+    }
+  }
+
+  /* Without JavaScript nothing turns: the back already lies open under the face. */
+  :global(html:not(.js)) .turn {
+    display: none;
   }
 
   /* Positioned like the face, so DOM order puts the back on top when it shows. */
   .back {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
     padding: 1.5rem 1rem;
     outline: 1px solid color-mix(in srgb, var(--color-brass) 60%, transparent);
     outline-offset: -0.5rem;
@@ -198,8 +243,8 @@ const title = (suit: string) => suit[0].toUpperCase() + suit.slice(1);
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 0.75rem;
   }
+
 
   .tags li {
     border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
