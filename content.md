@@ -267,4 +267,4 @@ The non-poker version at /straight: the same story as a morning newspaper. The j
 - note on the poker page, linking here: Not a card player? The same story, in plain print.
 
 ## showdown
-- line: Hiring for any role, or have an interview to offer? Send me an email.
+- line: I was dealt seven-deuce, the worst starting hand in poker, and played it into a full house almost nothing beats. If you'd bet on a hand like that, send me an email.

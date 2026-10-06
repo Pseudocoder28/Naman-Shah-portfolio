@@ -8,7 +8,7 @@ paths:
 
 Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, but nothing here depends on the stage.
 
-Every section heading after the hero pairs its poker name with a plain one, for visitors who don't play: The Player | About, Hand History | Experience, The Board | Projects, The Cashes | Awards, The Table | Leadership, Showdown | Contact. SectionTitle.astro draws it from SECTIONS in src/lib/state: the poker name at h2 size, a thin brass rule, then the plain name at 0.6 of the size in a quieter tone on the same baseline. Under 640px the plain name takes its own line below, without the rule. The palette lists the sections the same way.
+Every section heading after the hero pairs its poker name with a plain one, for visitors who don't play: The Player | About, Hand History | Experience, The Board | Projects, The Cashes | Awards, The Table | Leadership, Showdown | Contact. SectionTitle.astro draws it from SECTIONS in src/lib/state: the poker name at h2 size, a thin brass rule, then the plain name at 0.6 of the size in a quieter tone on the same baseline. Under 640px the plain name takes its own line below, without the rule. Showdown, the one centred section, centres its heading too. The palette lists the sections the same way.
 
 ## Nav
 - Left: "Naman" in EB Garamond, linking to the top. From 1024px wide the stage's chip riffle sits beside it, in a slot that holds its size from the first paint.
@@ -56,7 +56,7 @@ Every section heading after the hero pairs its poker name with a plain one, for 
 - On the right, one chip stack per committee, each labeled with its name in HTML. With member counts for every team the heights are proportional and the counts show; without them every stack stands the same height and no count shows. The stacks become 3D in phase 2 and can be flicked in phase 3.
 
 ## Showdown (contact)
-- The heading, the inviting sentence from content, then four large chips as buttons: Email (copies the address and shows "Email copied"), GitHub, LinkedIn and Résumé.
+- The heading, the closing line from content (the hand's story, the worst starting hand played into a full house, as the case for hiring Naman), then four large chips as buttons: Email (copies the address and shows "Email copied"), GitHub, LinkedIn and Résumé.
 - A hint below: "Press ⌘K for everything else" (Ctrl K on Windows and Linux).
 - The footer follows, with a link to the morning paper at /straight for visitors who don't play.
 

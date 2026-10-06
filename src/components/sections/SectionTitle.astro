@@ -53,8 +53,10 @@ const { name, plain } = SECTIONS.find((section) => section.id === id)!;
   }
 
   @media (max-width: 639px) {
+    /* A whole line of its own, aligned like the heading: left, or centred in Showdown. */
     .plain {
       flex-basis: 100%;
+      justify-content: inherit;
     }
 
     .plain::before {
