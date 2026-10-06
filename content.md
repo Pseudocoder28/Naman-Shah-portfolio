@@ -55,11 +55,12 @@ Suits: spades for quant and trading, hearts for product and full-stack, diamonds
 - start: Apr 2025
 - end: Jun 2025
 - location: India
-- result: Built backend services in Java and Spring for an in-house ERP covering inventory, orders and invoicing, procurement, production and the sales pipeline.
+- result: Built backend services in Java and Spring for the company's in-house ERP, which every employee uses, from the director to factory workers who clock in with a face scan.
 - details:
-  - Owned authentication and role-based authorization across multiple sites, so each user reached only the records their role allowed.
+  - Services covered inventory, orders and invoicing, procurement, production and the sales pipeline.
+  - Owned authentication and role-based authorization across multiple sites, so everyone from the director to the factory floor reached only the records their role allowed.
   - Built an internal LLM assistant using RAG over the ERP's data, letting executives ask about inventory, invoicing, procurement, production, HR and sales in plain English.
-- hook (one line with numbers, for the morning paper): One ERP across 6 parts of the business, and an assistant executives ask in plain English
+- hook (one line with numbers, for the morning paper): One ERP for every employee across 6 parts of the business, and an assistant executives ask in plain English
 - tags: Java, Spring, RAG, LLM
 - suit: hearts
 
