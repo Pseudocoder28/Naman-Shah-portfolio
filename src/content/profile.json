@@ -124,11 +124,11 @@
       "start": "Apr 2026",
       "end": "present",
       "location": "Waterloo, Canada",
-      "result": "Built the data pipeline that is the core data infrastructure for all of the club's research.",
+      "result": "Built the data pipeline all of the club's research runs on, so every strategy starts from data that's already been checked.",
       "details": [
-        "Ingests daily OHLCV bars, corporate actions and fundamentals for 1,000+ US equities through the LSEG API into a Parquet store, with automated checks for missing data, split and dividend adjustments and survivorship bias.",
-        "Developed a performance attribution engine that splits returns into sector, factor and security selection effects with Brinson-Fachler attribution and multi-factor regression, plus ex-ante and ex-post risk metrics across every systematic strategy.",
-        "Designed an event-driven backtesting engine that simulates 20 years of history across 1,000+ tickers, modelling transaction costs, slippage and point-in-time data to prevent lookahead bias."
+        "Pulls daily prices, corporate actions and fundamentals for 1,000+ US equities from the LSEG API into Parquet, checked for gaps, splits, dividends and survivorship bias, so no backtest looks good by forgetting the companies that didn't make it.",
+        "Built a performance attribution engine (Brinson-Fachler and multi-factor regression, with ex-ante and ex-post risk), so the club sees why each strategy made money and not only whether it did.",
+        "Designed an event-driven backtester that replays 20 years across 1,000+ tickers with costs, slippage and point-in-time data, so a strategy only trades on what it could have known that day."
       ],
       "tags": [
         "Python",
@@ -137,7 +137,7 @@
         "Pandas"
       ],
       "suit": "spades",
-      "hook": "1,000+ US equities, 20 years of history, every club strategy"
+      "hook": "1,000+ US equities and 20 years of history under every club strategy"
     },
     {
       "company": "Agropac Pvt Ltd",
@@ -145,10 +145,11 @@
       "start": "Apr 2025",
       "end": "Jun 2025",
       "location": "India",
-      "result": "Built backend services in Java and Spring for an in-house ERP covering inventory, orders and invoicing, procurement, production and the sales pipeline.",
+      "result": "Built backend services for an in-house ERP and an AI assistant on top, so executives get answers by asking in plain English.",
       "details": [
-        "Owned authentication and role-based authorization across multiple sites, so each user reached only the records their role allowed.",
-        "Built an internal LLM assistant using RAG over the ERP's data, letting executives ask about inventory, invoicing, procurement, production, HR and sales in plain English."
+        "Built Java and Spring services for inventory, orders, invoicing, procurement, production and sales, so 6 parts of the business ran on one system.",
+        "Owned sign-in and role-based access across multiple sites, so each user reached only the records their role allowed.",
+        "Built an LLM assistant with RAG over the ERP's data, so an executive with a question about stock, invoices, production, HR or sales just asks it in plain English."
       ],
       "tags": [
         "Java",
@@ -157,10 +158,43 @@
         "LLM"
       ],
       "suit": "hearts",
-      "hook": "One ERP across 6 parts of the business, and an assistant executives ask in plain English"
+      "hook": "6 parts of the business on one ERP, and an assistant executives just ask in plain English"
     }
   ],
   "awards": [
+    {
+      "name": "CSMC",
+      "year": "2025",
+      "result": "60/60",
+      "note": "A perfect score, ranked 1st globally.",
+      "about": "The Canadian Senior Mathematics Contest, the University of Waterloo's contest for senior high school students, out of 60.",
+      "stats": [
+        {
+          "label": "My score",
+          "value": "60/60"
+        },
+        {
+          "label": "My rank",
+          "value": "1st"
+        },
+        {
+          "label": "Contestants",
+          "value": "15,153"
+        },
+        {
+          "label": "Average score",
+          "value": "28.6"
+        },
+        {
+          "label": "Distinction cutoff (top 25%)",
+          "value": "35"
+        }
+      ],
+      "source": {
+        "label": "CEMC, 2025 CSMC and CIMC results",
+        "href": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025CSIMCResultsBooklet.pdf"
+      }
+    },
     {
       "name": "ISC grade 12",
       "year": "2026",
@@ -282,39 +316,6 @@
       }
     },
     {
-      "name": "CSMC",
-      "year": "2025",
-      "result": "60/60",
-      "note": "A perfect score, ranked 1st globally.",
-      "about": "The Canadian Senior Mathematics Contest, the University of Waterloo's contest for senior high school students, out of 60.",
-      "stats": [
-        {
-          "label": "My score",
-          "value": "60/60"
-        },
-        {
-          "label": "My rank",
-          "value": "1st"
-        },
-        {
-          "label": "Contestants",
-          "value": "15,153"
-        },
-        {
-          "label": "Average score",
-          "value": "28.6"
-        },
-        {
-          "label": "Distinction cutoff (top 25%)",
-          "value": "35"
-        }
-      ],
-      "source": {
-        "label": "CEMC, 2025 CSMC and CIMC results",
-        "href": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025CSIMCResultsBooklet.pdf"
-      }
-    },
-    {
       "name": "CCC Senior",
       "year": "2026",
       "result": "39/75",
@@ -352,7 +353,7 @@
     "org": "SNV Group of Schools, student council",
     "role": "Student President",
     "dates": "September 2024 to September 2025",
-    "summary": "Led a 75-member student council representing more than 2,000 students across five committees.",
+    "summary": "Led a 75-member student council across five committees, the voice of more than 2,000 students.",
     "teams": [
       {
         "name": "Sports",
@@ -393,34 +394,34 @@
         "name": "Front page"
       },
       {
-        "id": "business",
+        "id": "education",
         "label": "B1",
+        "name": "Education",
+        "headline": "Student tops a field of 15,153, then the whole state"
+      },
+      {
+        "id": "business",
+        "label": "C1",
         "name": "Business",
         "headline": "Two jobs, one habit: build the thing everyone else relies on"
       },
       {
         "id": "technology",
-        "label": "C1",
+        "label": "D1",
         "name": "Technology",
         "headline": "Five projects, every line of code public"
       },
       {
         "id": "technology-more",
-        "label": "C2",
+        "label": "D2",
         "name": "Technology",
-        "headline": "Continued from C1"
-      },
-      {
-        "id": "education",
-        "label": "D1",
-        "name": "Education",
-        "headline": "Top of the state, and top 50 of almost 24,000"
+        "headline": "Continued from D1"
       },
       {
         "id": "community",
         "label": "E1",
         "name": "Community",
-        "headline": "Student president steers a 75-member council"
+        "headline": "Student president leads 75 and speaks for more than 2,000"
       },
       {
         "id": "classifieds",

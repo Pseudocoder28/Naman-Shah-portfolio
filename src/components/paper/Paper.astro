@@ -19,7 +19,7 @@ const projects = await Promise.all(
 );
 
 const pages = straight.pages;
-// Technology runs over two pages: the first two projects on C1, the rest continued on C2.
+// Technology runs over two pages, one spread: the first two projects on D1, the rest continued on D2.
 const SPLIT = 2;
 const leaves = Array.from({ length: Math.ceil(pages.length / 2) }, (_, i) => pages.slice(2 * i, 2 * i + 2));
 const sheetId = (label: string) => `p-${label.toLowerCase()}`;

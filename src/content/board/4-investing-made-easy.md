@@ -2,7 +2,7 @@
 street: turn
 card: 2c
 name: Investing Made Easy
-pitch: An ETF portfolio tool that matches a non-technical investor's goals and risk answers to an ETF, with a performance dashboard.
+pitch: Matches a non-technical investor to an ETF from a short questionnaire, no code needed.
 metric: 8 dashboard views
 stack: [Python, Pandas, FinQuant, Plotly, Panel]
 links:
