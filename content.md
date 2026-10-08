@@ -10,7 +10,7 @@ The single source of every word on the site. Replace each TODO, delete any line 
 - email: n45shah@uwaterloo.ca
 - github: https://github.com/Pseudocoder28
 - linkedin: https://www.linkedin.com/in/namanshah2008
-- resumePath: /resume.pdf
+- resumePath: /resume.pdf?v=2026-10-08 (bump the date whenever the PDF changes, so browsers fetch the new one)
 - url: https://naman-shah-portfolio.vercel.app
 
 ## player
