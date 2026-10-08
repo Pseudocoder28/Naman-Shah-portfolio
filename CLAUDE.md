@@ -10,7 +10,7 @@ The look comes from the frames in /reference, which are stills from an AI-genera
 
 ## Origin
 
-This repo started as a copy of Param Shah's poker-table template (paramshah07/portfolio-claude-setup). The design, stack and rules carry over, but every word, link and asset on the page is Naman's. BRIEF.md holds the facts the content came from. Never put Naman's phone number on the page or in content.md.
+This repo started as a copy of Param Shah's poker-table template (paramshah07/portfolio-claude-setup). The design, stack and rules carry over, but every word, link and asset on the page is Naman's. BRIEF.md holds the facts the content came from. Never put Naman's phone number on the page or in content.md, and never show his graduation date: Waterloo reads Sept 2026 to present, on the site and in the résumé.
 
 ## Current phase: 2
 

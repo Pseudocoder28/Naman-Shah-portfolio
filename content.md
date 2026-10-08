@@ -16,12 +16,11 @@ The single source of every word on the site. Replace each TODO, delete any line 
 ## player
 - blurb (three sentences at most): I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm open to any co-op, internship or interview, so if you're hiring, get in touch.
 - stats (four at most, each with an optional note in plain words):
-  - Graduating: May 2031
   - Grade 12 board exams: 99.25% (note: ISC, India: top of the state and 4th in the country)
   - Euclid 2026: 94/100 (note: Waterloo's math contest: top 50 of almost 24,000)
   - Student council led: 75 members (note: Representing more than 2,000 students)
 - education (in The Player and the morning paper's profile):
-  - University of Waterloo: Bachelor of Computer Science, co-op, Waterloo, Canada, Sept 2026 to May 2031
+  - University of Waterloo: Bachelor of Computer Science, co-op, Waterloo, Canada, Sept 2026 to present
   - SNV International School: ICSE and ISC, India, 2026
 - skills (in The Player and the morning paper's profile):
   - Languages: Python, Java, JavaScript, TypeScript, C, C++, C#, SQL, Bash, R

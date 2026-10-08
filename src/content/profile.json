@@ -14,10 +14,6 @@
     "blurb": "I'm a first-year Computer Science co-op student at Waterloo. Most of what I build sits between data and markets: the data pipeline and backtester the UW Stocks Club does its research on, and Cross-Book, which works out what a Kalshi and Polymarket price gap is really worth after fees and depth. I'm open to any co-op, internship or interview, so if you're hiring, get in touch.",
     "stats": [
       {
-        "label": "Graduating",
-        "value": "May 2031"
-      },
-      {
         "label": "Grade 12 board exams",
         "value": "99.25%",
         "note": "ISC, India: top of the state and 4th in the country"
@@ -38,7 +34,7 @@
         "school": "University of Waterloo",
         "program": "Bachelor of Computer Science, co-op",
         "place": "Waterloo, Canada",
-        "dates": "Sept 2026 to May 2031"
+        "dates": "Sept 2026 to present"
       },
       {
         "school": "SNV International School",

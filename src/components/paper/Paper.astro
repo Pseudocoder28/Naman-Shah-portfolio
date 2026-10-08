@@ -77,7 +77,7 @@ const contacts = {
   linkedin: site.linkedin && { label: 'LinkedIn', long: site.linkedin.replace('https://www.', ''), href: site.linkedin, attrs: external },
   resume: site.resumePath && { label: 'Résumé', long: 'Résumé (PDF)', href: site.resumePath, attrs: external },
 };
-// The front page's numbers: the figures sit three across, and a date like "May 2031" takes one line
+// The front page's numbers: the figures sit three across, and a date like "Sept 2026" takes one line
 // above them, so every stat shows without a fourth column the page has no room for.
 const isFigure = (value: string) => /^\d/.test(value);
 const dated = player.stats.filter((s) => !isFigure(s.value));

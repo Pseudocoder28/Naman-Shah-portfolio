@@ -10,7 +10,7 @@ use only what is below, and leave gaps empty or mark them TODO in content.md.
 ## site
 - name: Naman
 - full name: Naman Shah
-- tagline (draft): Computer Science at the University of Waterloo, class of 2031. Quant development and software engineering.
+- tagline (draft): Computer Science at the University of Waterloo. Quant development and software engineering.
 - email: n45shah@uwaterloo.ca
 - github: https://github.com/Pseudocoder28
 - linkedin: https://www.linkedin.com/in/namanshah2008
@@ -19,7 +19,7 @@ use only what is below, and leave gaps empty or mark them TODO in content.md.
 - Do not publish his phone number on the page.
 
 ## education (use in the blurb/stats)
-- University of Waterloo, Bachelor of Computer Science Co-op, Sept 2026 to May 2031
+- University of Waterloo, Bachelor of Computer Science Co-op, Sept 2026 to present. Never show the graduation date, on the site or the résumé.
 - SNV International School, India, ICSE / ISC 2026
 - ISC 12th grade: 99.25%, State Topper, 4th in the country (India)
 
