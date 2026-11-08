@@ -11,7 +11,7 @@ Everything here is HTML and CSS with GSAP. The 3D stage adds depth behind it, bu
 Every section heading after the hero pairs its poker name with a plain one, for visitors who don't play: The Player | About, Hand History | Experience, The Board | Projects, The Cashes | Awards, The Table | Leadership, Showdown | Contact. SectionTitle.astro draws it from SECTIONS in src/lib/state: the poker name at h2 size, a thin brass rule, then the plain name at 0.6 of the size in a quieter tone on the same baseline. Under 640px the plain name takes its own line below, without the rule. Showdown, the one centred section, centres its heading too. The palette lists the sections the same way.
 
 ## Nav
-- Left: "Naman" in EB Garamond, linking to the top. From 1024px wide the stage's chip riffle sits beside it, in a slot that holds its size from the first paint.
+- Left: the filament N mark (see ambience.md) and the name in EB Garamond, linking to the top; a little smaller under 640px so the pills keep one line. From 1024px wide the stage's chip riffle sits beside it, in a slot that holds its size from the first paint.
 - Right: Hand History, The Board, Showdown, a folded-newspaper icon to the morning paper at /straight (from 640px wide; the phone sheet lists The Morning After instead), a Résumé button, a ⌘K button (Ctrl K on Windows and Linux) and, in phase 3, a sound toggle.
 - Transparent over the hero. After the hero it sits on rail #3A3329 at 90% opacity with a light backdrop blur.
 - Under 768px the links move into a sheet opened by a menu button. The Résumé button stays visible.

@@ -4,6 +4,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SECTIONS, activeSection, handDealt, holeCards, peek, scrollProgress, street, tier } from '../../lib/state';
+import { ORBITS, orbitPoint } from './orbits';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,22 @@ for (const { id } of SECTIONS) {
   });
 }
 ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (self) => scrollProgress.set(self.progress) });
+
+// The orbits behind each section: their pips ride the rings as the section crosses the screen and
+// stop when the scroll does. Under reduced motion they stay where the server drew them.
+if (!reduce) {
+  for (const svg of document.querySelectorAll<SVGSVGElement>('[data-orbits]')) {
+    const pips = [...svg.querySelectorAll<SVGGElement>('[data-pip]')];
+    const place = ({ progress }: ScrollTrigger) =>
+      pips.forEach((pip, i) => {
+        const { x, y, behind } = orbitPoint(ORBITS[i], progress);
+        pip.setAttribute('transform', `translate(${x} ${y})`);
+        pip.classList.toggle('behind', behind);
+      });
+    // Placed once on arrival too, so a section already on screen doesn't hop on the first scroll.
+    place(ScrollTrigger.create({ trigger: svg.closest('section'), start: 'top bottom', end: 'bottom top', onUpdate: place }));
+  }
+}
 
 // The scroll cue grows once, then leaves on the first scroll.
 const cue = document.querySelector('#the-deal .cue');

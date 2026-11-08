@@ -50,6 +50,11 @@
 
 /* Each section's pool of lamp light, faded out well before its edges. */
 @utility lamp-pool {
+  /* Its own stacking context, so the orbits behind a section sit on its felt under its content,
+     and clipped across, so rings hanging off an edge never widen the page. */
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
   background: radial-gradient(
     ellipse 60% 45% at 50% 45%,
     color-mix(in srgb, var(--color-lamp) 7%, transparent),

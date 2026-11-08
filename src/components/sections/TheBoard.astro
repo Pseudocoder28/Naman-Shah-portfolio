@@ -1,5 +1,6 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
+import Orbits from './Orbits.astro';
 import SectionTitle from './SectionTitle.astro';
 import { PIPS, SUIT_OF } from '../../lib/deck';
 import EquityReadout from '../hud/EquityReadout';
@@ -32,6 +33,7 @@ const face = (card: string) => {
 ---
 
 <section id="the-board" class="lamp-pool px-6 py-16 md:px-12 md:py-24">
+  <Orbits side="left" top="35%" pips="♣♦♠♥" />
   <div class="board-area mx-auto max-w-7xl">
     {/* On a wide screen the intro sits beside the heading, so the readout's button stays in view. */}
     <div class="head">

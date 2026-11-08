@@ -41,6 +41,8 @@ A private card room in a members' lounge, late at night. Dark walnut walls, a ba
 - One orchestrated moment per view at most, and the hero deal is the big one. Section reveals stay quiet: a short rise and fade on the heading, then the content.
 - Eases: power3.out for deals and slides, power2.inOut for camera moves, expo.out for card flips. Durations run from 0.35s to 1.2s, and scrubbed camera moves feel like 1.5s to 2.5s.
 - Ambient motion is limited to a very slow lamp flicker (under 3% intensity) and, in phase 3, dust drifting through the lamp light. Nothing else loops.
+- Behind each section after the hero, faint brass orbits are printed on the felt like the rings of an astrolabe, hanging off one edge, with a suit pip on each ring (Orbits.astro, orbits.ts). The pips ride their rings only as the section scrolls past and stop when the scroll does, dimmer on the far half of the ring. Rings at 22% brass, pips at 55%, never over text strongly enough to cost it contrast.
+- The mark: an N bent from one brass filament wire in a double ring, the card back's medallion in line, beside the name in the nav. Current runs the wire once after load and again on hover or focus, warming it to lamp as it passes. Not under reduced motion.
 - ScrollSmoother stays off on touch devices.
 - Under prefers-reduced-motion: no camera moves, no deals, no smoothing. State changes become instant or a 150ms fade.
 
