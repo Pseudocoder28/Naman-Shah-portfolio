@@ -12,7 +12,20 @@ const links = [
 <header class="nav fixed inset-x-0 top-0 z-(--z-nav)" data-nav>
   <nav aria-label="Main" class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-6 md:px-12">
     <div class="mr-auto flex items-center gap-2">
-      <a href="#the-deal" class="whitespace-nowrap text-2xl font-medium">{site.name}</a>
+      <a href="#the-deal" class="brand flex items-center gap-2 whitespace-nowrap text-xl font-medium sm:gap-2.5 sm:text-2xl" data-brand>
+        {/* The mark: an N bent from one brass filament wire in a double ring, the card back's medallion
+            in line. Current runs through it once the page has loaded and again under the pointer or
+            focus, warming the wire as it passes. */}
+        <svg class="filament" viewBox="0 0 36 36" width="32" height="32" aria-hidden="true">
+          <circle class="ring" cx="18" cy="18" r="16.5" stroke-width="1.4" />
+          <circle class="ring" cx="18" cy="18" r="13.5" stroke-width="0.8" />
+          <path class="wire" d="M12 25V11l12 14V10" pathLength="100" />
+          <path class="spark" d="M12 25V11l12 14V10" pathLength="100" />
+          <circle class="end" cx="12" cy="26.6" r="1.3" />
+          <circle class="end" cx="24" cy="8.4" r="1.3" />
+        </svg>
+        {site.name}
+      </a>
       <!-- The stage draws its chip riffle here on wide screens. The slot keeps its size from the
            first paint, so nothing moves when the chips arrive, and stays empty without the stage. -->
       <span class="riffle hidden lg:block" data-riffle aria-hidden="true"></span>
@@ -66,6 +79,29 @@ const links = [
 
   document.querySelector('[data-palette]')?.addEventListener('click', () => palette.set(true));
 
+  // Current through the filament: a bright pulse runs the wire end to end as it warms and cools.
+  const brand = document.querySelector<HTMLElement>('[data-brand]');
+  const [wire, spark] = [brand?.querySelector('.wire'), brand?.querySelector('.spark')];
+  if (brand && wire && spark && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const timing = { duration: 1100, easing: 'cubic-bezier(0.455, 0.03, 0.515, 0.955)' };
+    let running: Animation | undefined;
+    const run = () => {
+      if (running?.playState === 'running') return;
+      wire.animate([{ stroke: '#AD9773' }, { stroke: '#F2D3A2', offset: 0.45 }, { stroke: '#AD9773' }], timing);
+      running = spark.animate(
+        [
+          { strokeDashoffset: 18, opacity: 1 },
+          { strokeDashoffset: -100, opacity: 1, offset: 0.9 },
+          { strokeDashoffset: -100, opacity: 0 },
+        ],
+        timing,
+      );
+    };
+    addEventListener('load', () => setTimeout(run, 600), { once: true });
+    brand.addEventListener('pointerenter', run);
+    brand.addEventListener('focus', run);
+  }
+
   // The sheet's links scroll the page, so the sheet closes on the way.
   const sheet = document.getElementById('nav-sheet')!;
   sheet.addEventListener('click', (event) => {
@@ -111,6 +147,7 @@ const links = [
     padding: 0.25rem 1rem;
     font-size: 1rem;
     line-height: 1.5;
+    white-space: nowrap;
   }
 
   .pill:hover {
@@ -120,6 +157,48 @@ const links = [
 
   /* Raised a little, so the stacks at rest stand on the name's baseline. The canvas leaves room
      above them for the pile at its tallest. */
+  .filament {
+    flex: none;
+    overflow: visible;
+  }
+
+  /* On a phone the name and its mark give up a little size, so the pills keep one line. */
+  @media (max-width: 639px) {
+    .filament {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .filament path {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .filament .ring {
+    fill: none;
+    stroke: color-mix(in srgb, var(--color-brass) 60%, transparent);
+  }
+
+  .filament .wire {
+    stroke: var(--color-brass);
+    stroke-width: 2.2;
+  }
+
+  /* The pulse: one short bright dash, hidden until current runs. */
+  .filament .spark {
+    stroke: var(--color-lamp);
+    stroke-width: 2.8;
+    stroke-dasharray: 18 100;
+    opacity: 0;
+    filter: drop-shadow(0 0 2px var(--color-lamp)) drop-shadow(0 0 5px color-mix(in srgb, var(--color-lamp) 60%, transparent));
+  }
+
+  .filament .end {
+    fill: var(--color-brass);
+  }
+
   .riffle {
     width: 6rem;
     height: 3rem;
