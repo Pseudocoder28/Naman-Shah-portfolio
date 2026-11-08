@@ -6,9 +6,11 @@ import { REFLECTIONS, Reflections } from '../rig/Lights';
 import { CLAYS, PARTS, noise, useChip } from './Chips';
 import { STACK, riffle } from './riffle';
 
-// One riffle for every 1.2 viewport heights of scroll.
+// One riffle is owed for every 1.2 viewport heights scrolled, either way, and each plays whole, forward,
+// in this many seconds. Scrubbing it with the scrollbar blurred a fast scroll into half riffles and
+// ran it backwards on the way up; now every riffle is a clean one at a hand's pace.
 const PER = 1.2;
-const riffles = () => scrollY / (PER * innerHeight);
+const DURATION = 1.6;
 // The nav keeps a slot for it beside the name, shown from this width up.
 const WIDE = '(min-width: 64rem)';
 // The pile at its tallest, the top half lifted off it in the cut, is 38 mm. A long lens looks at its
@@ -27,8 +29,8 @@ const one = new THREE.Vector3(1, 1, 1);
 const colour = new THREE.Color();
 
 /**
- * Five red chips and five cream riffled beside the name in the nav as the page scrolls, a riffle
- * for about every screen. A small canvas of its own in a slot the nav keeps for it, so it rides
+ * Five red chips and five cream riffled beside the name in the nav as the page scrolls, one whole
+ * riffle for about every screen scrolled. A small canvas of its own in a slot the nav keeps for it, so it rides
  * above the sections the stage goes behind. It draws only when the scroll moves, at a fixed
  * resolution, and it's decoration: the slot hides it from assistive tech and the pointer. It
  * leaves quietly if its context is lost, and while the nav is too narrow to show the slot.
@@ -85,7 +87,9 @@ function Riffle({ onFirstFrame }: { onFirstFrame: () => void }) {
   const { geometries, materials } = useChip();
   const meshes = useRef<THREE.InstancedMesh[]>([]);
   const invalidate = useThree((s) => s.invalidate);
-  const at = useRef(riffles());
+  // How far the chips have riffled, and how many riffles the scroll has asked for so far.
+  const at = useRef(0);
+  const owed = useRef(0);
   const first = useRef(true);
   // Each chip turned a fixed amount about its own axis, so the spots never line up, and a few percent
   // lighter or darker than its clay, as batches are.
@@ -104,7 +108,14 @@ function Riffle({ onFirstFrame }: { onFirstFrame: () => void }) {
   }, [chips]);
 
   useEffect(() => {
-    const wake = () => invalidate();
+    let last = scrollY;
+    let travelled = 0;
+    const wake = () => {
+      travelled += Math.abs(scrollY - last) / (PER * innerHeight);
+      last = scrollY;
+      owed.current = Math.floor(travelled);
+      invalidate();
+    };
     addEventListener('scroll', wake, { passive: true });
     addEventListener('resize', wake);
     return () => {
@@ -114,10 +125,13 @@ function Riffle({ onFirstFrame }: { onFirstFrame: () => void }) {
   }, [invalidate]);
 
   useFrame((_, dt) => {
-    // A short lag on the scroll, so a wheel's steps glide instead of jump, then exactly on it.
-    const target = riffles();
-    at.current = Math.abs(target - at.current) < 1e-4 ? target : THREE.MathUtils.damp(at.current, target, 6, Math.min(dt, 1 / 30));
-    if (at.current !== target) invalidate();
+    // Play toward the riffles owed at a steady pace, a little quicker when more than one is waiting,
+    // and stop exactly on a riffle's end, where the chips stand as two squared stacks.
+    const behind = owed.current - at.current;
+    if (behind > 0) {
+      at.current = Math.min(owed.current, at.current + (Math.min(dt, 1 / 30) * Math.max(1, behind)) / DURATION);
+      invalidate();
+    }
     riffle(at.current).forEach(({ x, y, tilt }, i) => {
       matrix.compose(position.set(x, y, 0), turn.setFromEuler(euler.set(0, chips[i].spin, tilt, 'ZYX')), one);
       for (const mesh of meshes.current) mesh.setMatrixAt(i, matrix);
