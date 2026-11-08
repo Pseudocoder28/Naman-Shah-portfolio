@@ -1,13 +1,11 @@
 ---
 import { getEntry } from 'astro:content';
-import Orbits from './Orbits.astro';
 import SectionTitle from './SectionTitle.astro';
 
 const { player } = (await getEntry('profile', 'main'))!.data;
 ---
 
 <section id="the-player" class="lamp-pool px-6 py-16 md:px-12 md:py-24">
-  <Orbits side="left" top="45%" pips="♠♥♦♣" />
   <div class="on-cream mx-auto grid max-w-6xl gap-12 rounded-panel p-8 shadow-2xl md:grid-cols-[minmax(0,1fr)_20rem] md:p-16">
     <div>
       <SectionTitle id="the-player" />
